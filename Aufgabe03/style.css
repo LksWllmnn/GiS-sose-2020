@@ -1,6 +1,8 @@
 body{
     background-image: url("Seiten-Design/bg.png");
     width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
