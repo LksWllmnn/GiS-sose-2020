@@ -1,34 +1,133 @@
 body{
-    background-color: black;
-    width: auto;
-    height: auto;
+    background-image: url("Seiten-Design/bg.png");
+    width: 800px;
     text-align: center;
-
-}
-header{
-   background-color: darkslategrey; 
-   height: 8%;
-}
-main{
-    background-color: darkslategrey;
-    height: 58%
-}
-footer{
-    background-color: darkslategrey;
-    box-shadow: 2px 2px 2px darkviolet;
-    height: 28%
-}
-h1{
-    color: #FFF;
     font-family: Arial, Helvetica, sans-serif;
-    text-shadow: 2px 2px 2px darkviolet;
+}
+
+header{
+    height: 150px;
+    background-image: url("Seiten-Design/Unbenannt.png")
+}
+
+header h1{
+    color: white;
+}
+
+main{
+    min-height: 550px;
+}
+
+footer{
+    height: 150px;
+    background-image: url("Seiten-Design/Unbenannt.png");
+}
+
+footer div{
+    position: relative;
+    top:50px;
+}
+
+footer p{
+    color: white;
+}
+
+article{
+    padding: 0px 0px;
+    margin: 10px 2px;
+    border-style: solid;
+    border-color: rgb(206, 63, 63);
+    border-radius: 25px;
+    box-shadow: 0  3px 3px rgba(0,0,0,0.12), 0 3px 3px rgba(0,0,0,0.24);
+}
+
+.sticky{
+    position: fixed;
+    top: -5px;
+    background-color: rgb(51, 11, 11);
+    text-align:center;
+    padding: 10px 5px;
+    text-decoration: none;
+    margin-left: 485px;
+    box-shadow: 0  3px 3px rgba(0,0,0,0.12), 0 3px 3px rgba(0,0,0,0.24);
+    border-radius: 5px;
+}
+
+.sticky a{
+    color: white;
+    text-decoration: none;
+    padding: 5px 12px;
+}
+.sticky a:hover{
+    background-color: white;
+    color: black;
+}
+
+.second img:hover{
+    background-color: white;
+    border-radius: 10px;
+}
+
+a.aktuell{
+    color: red;
+}
+
+.Initialien{
+    position: absolute;
+    left:500px;
+    bottom: 10px;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.12), 0 3px 3px rgba(0,0,0,0.24);
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ol{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 a{
-    color:#FFF;
     text-decoration: none;
-    background-color: darkmagenta;
+    color: rgb(37, 2, 2);
 }
-p{
-    color: #FFF;
+a:hover{
+    color: lawngreen;
+}
+
+li{
+    color: rgb(121, 11, 11);
+}
+main p{
+    color:rgb(121, 11, 11);
+}
+
+
+main h2{
+    color: rgb(121, 11, 11);
+}
+main h3{
+    color: rgb(121, 11, 11);
+}
+main h4{
+    color: rgb(121, 11, 11);
+}
+
+input{
+    color: white;
+    background-color: rgb(221, 211, 211);
+    border-radius: 5px;
+}
+
+button{
+    color: white;
+    background-color: rgb(221, 211, 211);
+}
+
+select{
+    color: white;
+    background-color: rgb(221, 211, 211);
 }
