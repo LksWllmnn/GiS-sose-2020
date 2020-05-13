@@ -1,6 +1,7 @@
 body{
     background-image: url("Seiten-Design/bg.png");
     width: 800px;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -8,8 +9,16 @@ body{
 }
 
 header{
-    height: 150px;
-    background-image: url("Seiten-Design/Unbenannt.png")
+    position: relative;
+    height: 600px;
+    background-color: rgb(117, 12, 12);
+    border-radius: 50%;
+    margin-top:-400px;
+}
+
+header div{
+    position:relative;
+    top: 450px;
 }
 
 header h1{
@@ -21,8 +30,9 @@ main{
 }
 
 footer{
-    height: 150px;
-    background-image: url("Seiten-Design/Unbenannt.png");
+    position: relative;
+    height:150px;
+    background-color: rgb(117, 12, 12);
 }
 
 footer div{
@@ -41,18 +51,20 @@ article{
     border-color: rgb(206, 63, 63);
     border-radius: 25px;
     box-shadow: 0  3px 3px rgba(0,0,0,0.12), 0 3px 3px rgba(0,0,0,0.24);
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .sticky{
     position: fixed;
     top: -5px;
     background-color: rgb(51, 11, 11);
-    text-align:center;
     padding: 10px 5px;
-    text-decoration: none;
     margin-left: 485px;
     box-shadow: 0  3px 3px rgba(0,0,0,0.12), 0 3px 3px rgba(0,0,0,0.24);
     border-radius: 5px;
+    z-index: 1;
 }
 
 .sticky a{
@@ -72,13 +84,6 @@ article{
 
 a.aktuell{
     color: red;
-}
-
-.Initialien{
-    position: absolute;
-    left:500px;
-    bottom: 10px;
-    box-shadow: 0 3px 3px rgba(0,0,0,0.12), 0 3px 3px rgba(0,0,0,0.24);
 }
 
 ul{
@@ -102,11 +107,14 @@ a:hover{
 
 li{
     color: rgb(121, 11, 11);
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
 }
 main p{
     color:rgb(121, 11, 11);
 }
-
 
 main h2{
     color: rgb(121, 11, 11);
@@ -132,4 +140,8 @@ button{
 select{
     color: white;
     background-color: rgb(221, 211, 211);
+}
+
+img{
+    margin-top: 5px;
 }
