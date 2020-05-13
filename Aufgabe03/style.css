@@ -25,9 +25,6 @@ header h1{
     color: white;
 }
 
-main{
-    min-height: 550px;
-}
 
 footer{
     position: relative;
@@ -54,6 +51,19 @@ article{
     width: 700px;
     margin-left: auto;
     margin-right: auto;
+}
+
+main{
+    min-height: 500px;
+}
+
+main div{
+    text-align: left;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    margin-bottom:20%;
 }
 
 .sticky{
@@ -128,20 +138,29 @@ main h4{
 
 input{
     color: white;
-    background-color: rgb(221, 211, 211);
+    background-color: rgb(177, 169, 169);
     border-radius: 5px;
 }
 
 button{
     color: white;
-    background-color: rgb(221, 211, 211);
+    background-color: rgb(177, 169, 169);
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 select{
     color: white;
-    background-color: rgb(221, 211, 211);
+    background-color: rgb(177, 169, 169);
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 img{
     margin-top: 5px;
+}
+
+#Nachricht{
+    width: 600px;
+    height: 200px;
 }
