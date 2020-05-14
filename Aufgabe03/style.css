@@ -25,7 +25,6 @@ header h1{
     color: white;
 }
 
-
 footer{
     position: relative;
     height:150px;
@@ -51,6 +50,22 @@ article{
     width: 700px;
     margin-left: auto;
     margin-right: auto;
+    padding: 5px;
+}
+article:hover{
+    width: 800px;
+    border-color: white;
+    background-color: rgb(117, 12, 12);
+    border-radius: 0px;
+    
+}
+
+article:hover h3{
+    color: white;
+}
+
+article:hover li{
+    color: white;
 }
 
 main{
@@ -92,7 +107,7 @@ main div{
 }
 
 a.aktuell{
-    color: red;
+    color: rgb(117, 12, 12);
 }
 
 ul{
@@ -111,7 +126,7 @@ a{
     color: rgb(37, 2, 2);
 }
 a:hover{
-    color: lawngreen;
+    color: rgb(37, 2, 2);
 }
 
 li{
@@ -131,8 +146,9 @@ main h2{
 main h3{
     color: rgb(121, 11, 11);
 }
-main h4{
+h4{
     color: rgb(121, 11, 11);
+    margin-bottom: 10;
 }
 
 input{
@@ -162,4 +178,30 @@ img{
 #Nachricht{
     width: 600px;
     height: 200px;
+}
+
+.Menschen{
+    background-color: rgb(51, 11, 11);
+    padding: 2px 5px;
+    color: rgb(177, 169, 169);
+}
+.Menschen:hover{
+    background-color: rgb(177, 169, 169);
+    padding: 2px 5px;
+    color: rgb(51, 11, 11);
+}
+
+footer a{
+    padding: 5px;
+    color: white;
+    background-color: rgb(51, 11, 11);
+}
+
+footer a:hover{
+    color: rgb(51, 11, 11);
+    background-color: white;
+}
+
+footer h4{
+    color: white;
 }
