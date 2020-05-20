@@ -1,0 +1,281 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fixnav .aktiv{
+    color: rgb(111, 112, 111);
+}
+
+/*alles im Header*/
+header{
+    position: relativ;
+    margin-top: -50px;
+    height: 200px;
+    background-color: black;
+    color: white;
+    transition: all 2s ease-in-out 0s;
+}
+
+header:hover{
+    background-color: red;
+}
+
+header h1{
+    position: relative;
+    top: 50px;
+    font-size: 70px;
+}
+
+header h3{
+    position: relative;
+    top: 10px;
+    font-size: 30px;
+}
+
+.fixnav{
+    border-style: solid;
+    border-width: 1px;
+    position: fixed;
+    top: -5px;
+    right: -1px;
+    background-color: rgb(90, 84, 84);
+    border-color: white;
+    padding: 10px 10px;
+    border-radius: 5px;
+    z-index: 1;
+    margin: 0px;
+}
+
+.fixnav a{
+    padding: 10px 10px;
+}
+.fixnav a:hover{
+    background-color: white;
+    color: rgb(90, 84, 84);
+}
+header a{
+    text-decoration: none;
+    color:white;
+    padding:10px;
+    margin: 10px;
+}
+.fixnav a img{
+    width: 20px;
+}
+
+/*alles im main*/
+main{
+    min-height: 600px;
+}
+
+main div{
+    display: inline-block;
+    width: 400px;
+    border-style: solid;
+    margin-right: auto;
+    margin-left:auto;
+    transition: all 2s ease-in-out 0s;
+}
+
+main div:hover{
+    border-color: red;
+}
+
+.secnav{
+    text-decoration: none;
+    color: white;
+}
+.secnav ul li{
+    margin: 25px;
+}
+
+.secnav ul{
+    list-style: none;
+    padding-left: 0px;
+}
+
+.secnav a{
+    border-style: solid;
+    padding: 10px 25%;
+    border-color: white;
+    border-radius: 1px;
+    border-width: 1px;
+    color: white;
+    text-decoration: none;
+    background-color: rgb(90, 84, 84);
+}
+
+.secnav a:hover{
+    background-color: white;
+    color: rgb(90, 84, 84);
+}
+
+aside{
+    margin-top: 2%;
+    margin-bottom: 2%; 
+}
+
+article{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.ag{
+    display: block;
+    margin-bottom: 10px;
+    min-height: min-content;
+}
+
+.ag>img{
+    float: left;
+    width: 390px;
+    margin: 5px;
+    
+}
+.ag button{
+    float: none;
+    background-color: rgb(24, 185, 19);
+    padding:10px 5px;
+    color: white;
+    border-radius: 5px;
+    border-color: rgb(24, 185, 19);
+    font-size: large;
+    margin-bottom: 5px;
+}
+
+.ag button:hover{
+    background-color: white;
+    color:rgb(24, 185, 19);
+}
+
+.ag ul{
+    list-style: none;
+    padding: 0px 0px 0px 0px;
+}
+
+#begrüßungstext{
+    margin: auto;
+    width: 60;
+}
+
+#begrüßungstext>img{
+    width: 400px;
+}
+
+.Preis{
+    color: red;
+    font-size: large;
+}
+
+#gekauft{
+    float: none;
+    background-color: rgb(10, 95, 7);
+    padding:20px 10px;
+    color: white;
+    border-radius: 5px;
+    border-color: rgb(10, 95, 7);
+    font-size: large;
+    margin-bottom: 5px;
+}
+
+#gekauft:hover{
+    background-color: white;
+    color:rgb(10, 95, 7);
+}
+
+.secnav .saktiv{
+    color: rgb(111, 112, 111);
+    border-color: rgb(111, 112, 111);
+}
+
+
+/*alles im footer*/
+footer{
+    clear: both;
+    position: relative;
+    height:150px;
+    background-color: black;
+    color: white;
+    margin-bottom: -5px;
+}
+footer nav a{
+    position: relative;
+    margin: 10px;
+    top: 50px;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color:white;
+    border-radius: 2px;
+}
+
+footer nav a:hover{
+    background-color: black;
+    color:white;
+}
+
+/*alles größer als 600px*/
+@media only screen and (min-width:600px){
+    article{
+        float: right;
+        width: 68%;
+    }
+
+    aside{
+        background-color: rgb(90, 84, 84);
+        height: 100%;
+        float: left;
+        width: 32%;
+    }
+
+    .ag>img{
+        width: 95%;
+    }
+
+    main div{
+        display: block;
+        height: fit-content;
+        width: 90%;
+        margin-right: auto;
+        margin-left:auto;
+    }
+
+    .secnav a{
+        padding: 5px 5%;
+    }
+    .secnav li{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    #begrüßungstext>img{
+        width: 80%;
+    }
+}
+
+/*alles größer als 1024px*/
+@media only screen and (min-width:1024px){
+    main{
+        min-height: 1000px;
+    }
+
+    article{
+        float: right;
+        width: 80%;
+    }
+    aside{
+        float: left;
+        width: 20%;
+    }
+    .ag>img{
+        width: 400px;
+    }
+    #begrüßungstext>img{
+        width: 700px;
+    }
+}
