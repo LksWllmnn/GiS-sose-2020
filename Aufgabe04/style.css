@@ -5,6 +5,7 @@ body{
     margin-right: auto;
 }
 
+/*1*/
 .fixnav .aktiv{
     color: rgb(111, 112, 111);
 }
@@ -19,6 +20,7 @@ header{
     transition: all 2s ease-in-out 0s;
 }
 
+/*2*/
 header:hover{
     background-color: red;
 }
@@ -81,6 +83,11 @@ main div{
 }
 
 main div:hover{
+    border-color: rgb(90, 84, 84);
+}
+
+/*3*/
+main div:nth-child(2n):hover{
     border-color: red;
 }
 
@@ -129,6 +136,7 @@ article{
     min-height: min-content;
 }
 
+/*4*/
 .ag>img{
     float: left;
     width: 390px;
@@ -165,11 +173,6 @@ article{
     width: 400px;
 }
 
-.Preis{
-    color: red;
-    font-size: large;
-}
-
 #gekauft{
     float: none;
     background-color: rgb(10, 95, 7);
@@ -191,6 +194,37 @@ article{
     border-color: rgb(111, 112, 111);
 }
 
+/*5*/
+ul+p{
+    color: red;
+    font-size: large;
+}
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(90, 84, 84);
+    min-width: 90px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 5px 5px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: white;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 
 /*alles im footer*/
 footer{
@@ -218,6 +252,11 @@ footer nav a{
 footer nav a:hover{
     background-color: black;
     color:white;
+}
+
+/*6*/
+h2[label=Spaß]{
+    color: rgb(90, 84, 84);
 }
 
 /*alles größer als 600px*/
