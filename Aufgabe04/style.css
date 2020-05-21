@@ -68,6 +68,37 @@ header a{
     width: 20px;
 }
 
+.drop-inhalt {
+    display: none;
+    position: absolute;
+    background-color: rgb(90, 84, 84);
+    width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+  }
+  
+  .drop-inhalt a {
+    float: none;
+    color: white;
+    padding: 5px 5px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .drop-inhalt a:hover {
+    background-color: white;
+  }
+  
+  .drop:hover .drop-inhalt {
+    display: block;
+  }
+
 /*alles im main*/
 main{
     min-height: 600px;
@@ -199,32 +230,6 @@ ul+p{
     color: red;
     font-size: large;
 }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: rgb(90, 84, 84);
-    min-width: 90px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    float: none;
-    color: black;
-    padding: 5px 5px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: white;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
 
 /*alles im footer*/
 footer{
