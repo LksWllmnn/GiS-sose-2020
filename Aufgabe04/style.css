@@ -45,7 +45,7 @@ header h3{
     right: -1px;
     background-color: rgb(90, 84, 84);
     border-color: white;
-    padding: 10px 10px;
+    padding: 10px 20px;
     border-radius: 5px;
     z-index: 1;
     margin: 0px;
@@ -200,7 +200,7 @@ article{
     width: 60;
 }
 
-#begrüßungstext>img{
+img[alt="Bild des Besitzers"]{
     width: 400px;
 }
 
@@ -260,7 +260,7 @@ footer nav a:hover{
 }
 
 /*6*/
-h2[label=Spaß]{
+div h2{
     color: rgb(90, 84, 84);
 }
 
