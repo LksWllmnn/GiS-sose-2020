@@ -106,7 +106,7 @@ main{
 
 main div{
     display: inline-block;
-    width: 400px;
+    width: 95%;
     border-style: solid;
     margin-right: auto;
     margin-left:auto;
@@ -170,7 +170,7 @@ article{
 /*4*/
 .ag>img{
     float: left;
-    width: 390px;
+    width: 95%;
     margin: 5px;
     
 }
@@ -321,5 +321,18 @@ h2[label=Spaß]{
     }
     #begrüßungstext>img{
         width: 700px;
+    }
+}
+
+@media only screen and (max-width:381px){
+    header h1{
+        font-size: 50px;
+    }
+
+    header h3{
+        font-size: 20px;
+    }
+    .secnav a{
+        padding: 10px 10%;
     }
 }
