@@ -47,7 +47,7 @@ namespace A05_I {
         let price: HTMLElement = document.createElement("p");
         price.setAttribute("class", "Preis");
         kasten.appendChild(price);
-        price.innerHTML = "" + list[i].preis + ",00 €";
+        price.innerHTML = "" + list[i].preis + " €";
 
         let knopf: HTMLElement = document.createElement("button");
         knopf.innerHTML = "In den Einkaufswagen";
