@@ -58,10 +58,10 @@ namespace A06_I {
         let knopf: HTMLElement = document.createElement("button");
         knopf.innerHTML = "In den Einkaufswagen";
         kasten.appendChild(knopf);
-        knopf.addEventListener("click", hndl);
+        knopf.addEventListener("click", hndl_Einkauf);
     }
 
-    function hndl(_event: Event): void {
+    function hndl_Einkauf(_event: Event): void {
         let geklickterKaschten: HTMLElement = <HTMLElement>_event.target;
         let prdNm: String = "";
         if (geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent)
