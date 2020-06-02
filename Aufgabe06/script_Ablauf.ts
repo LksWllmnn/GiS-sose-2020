@@ -61,13 +61,14 @@ namespace A06_I {
         knopf.addEventListener("click", hndl_Einkauf);
     }
 
+    //A06 Teil 1
     function hndl_Einkauf(_event: Event): void {
         let geklickterKaschten: HTMLElement = <HTMLElement>_event.target;
-        let prdNm: String = "";
+        let nameMeldung: String = "";
         if (geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent)
-        prdNm = "" + geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent;
+        nameMeldung = "" + geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent;
 
-        if (window.confirm("bisch sicher dass " + prdNm + " brauchsch?...")) {
+        if (window.confirm("bisch sicher dass " + nameMeldung + " brauchsch?...")) {
             rollband++;
             let einkaufsWagen: HTMLElement | null = document.getElementById("imEinkaufswagen");
             let einkaufsWagenII: HTMLElement | null = document.getElementById("imEinkaufswagenII");
@@ -93,6 +94,7 @@ namespace A06_I {
         } 
     }
 
+    //A06 Teil 2
     let hideI: HTMLElement | null = document.getElementById("hideTechnik");
     if (hideI)
     hideI.addEventListener("click", hndl_hide);
