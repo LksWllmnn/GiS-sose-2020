@@ -40,7 +40,7 @@ var A05_I;
         let price = document.createElement("p");
         price.setAttribute("class", "Preis");
         kasten.appendChild(price);
-        price.innerHTML = "" + A05_I.list[i].preis + ",00 €";
+        price.innerHTML = "" + A05_I.list[i].preis + " €";
         let knopf = document.createElement("button");
         knopf.innerHTML = "In den Einkaufswagen";
         kasten.appendChild(knopf);
