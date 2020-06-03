@@ -43,11 +43,6 @@ var A06_II;
             list[i].div_erstellen("personen", i);
         }
     }
-    function einkaufswagen_Meldung(aktuel) {
-        let aktuelInString = "" + aktuel.toString();
-        console.log("Stabile Ware im wert von:" + aktuelInString + "€ im Warenkorb");
-    }
-    A06_II.einkaufswagen_Meldung = einkaufswagen_Meldung;
     //A06 Teil 2
     let hideI = document.getElementById("hideTechnik");
     if (hideI)

@@ -98,9 +98,7 @@ namespace A06_II {
 
         //A06 Teilaufgabe 1
         hndl_Einkauf(_event: Event): void {
-            console.log(this);
-
-            if (window.confirm("bisch sicher dass " + this.name + " brauchsch?...")) {
+            if (window.confirm("bisch sicher dass '" + this.name + "' brauchsch?...")) {
                 rollband++;
                 let einkaufsWagen: HTMLElement | null = document.getElementById("imEinkaufswagen");
                 let einkaufsWagenII: HTMLElement | null = document.getElementById("imEinkaufswagenII");
@@ -118,13 +116,13 @@ namespace A06_II {
                 window.alert("...na dann");
 
                 einkUms += this.preis;
-                einkaufswagen_Meldung(einkUms);
-
+                console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + einkUms + " €");
             } else {
                 window.alert("besser is es!");
             } 
         }
 
+        //A06 Teilaufgabe 2
         hndl_Hide(ansage: string): void {
             if (ansage == this.kathegorie)
                 this.eigenerKaschten.setAttribute("style", "display: none");

@@ -77,8 +77,7 @@ var A06_II;
         }
         //A06 Teilaufgabe 1
         hndl_Einkauf(_event) {
-            console.log(this);
-            if (window.confirm("bisch sicher dass " + this.name + " brauchsch?...")) {
+            if (window.confirm("bisch sicher dass '" + this.name + "' brauchsch?...")) {
                 A06_II.rollband++;
                 let einkaufsWagen = document.getElementById("imEinkaufswagen");
                 let einkaufsWagenII = document.getElementById("imEinkaufswagenII");
@@ -94,12 +93,13 @@ var A06_II;
                 }
                 window.alert("...na dann");
                 A06_II.einkUms += this.preis;
-                A06_II.einkaufswagen_Meldung(A06_II.einkUms);
+                console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + A06_II.einkUms + " €");
             }
             else {
                 window.alert("besser is es!");
             }
         }
+        //A06 Teilaufgabe 2
         hndl_Hide(ansage) {
             if (ansage == this.kathegorie)
                 this.eigenerKaschten.setAttribute("style", "display: none");
