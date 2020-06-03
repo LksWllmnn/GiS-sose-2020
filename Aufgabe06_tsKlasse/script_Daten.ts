@@ -23,8 +23,7 @@ namespace A06_II {
 
         div_erstellen(kat: string, i: number): void {
             let kasten: HTMLElement = document.createElement("div");
-            let großVater: HTMLElement  = document.getElementById(kat) as HTMLElement;
-            großVater.appendChild(kasten);
+            document.getElementById(kat)?.appendChild(kasten);
             kasten.id = kat + "_" + i;
             kasten.setAttribute("class", "ag");
             this.eigenerKaschten = kasten;
