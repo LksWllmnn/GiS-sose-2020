@@ -46,7 +46,7 @@ namespace A06_II {
     }
 
     export function einkaufswagen_Meldung(aktuel: number): void {
-        let aktuelInString: string = "" + aktuel;
+        let aktuelInString: string = "" + aktuel.toString();
         console.log("Stabile Ware im wert von:" + aktuelInString + "€ im Warenkorb");
     }
 

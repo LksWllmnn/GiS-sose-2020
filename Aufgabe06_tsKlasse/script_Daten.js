@@ -73,10 +73,11 @@ var A06_II;
             let knopf = document.createElement("button");
             knopf.innerHTML = "In den Einkaufswagen";
             vater.appendChild(knopf);
-            knopf.addEventListener("click", this.hndl_Einkauf);
+            knopf.addEventListener("click", this.hndl_Einkauf.bind(this));
         }
         //A06 Teilaufgabe 1
         hndl_Einkauf(_event) {
+            console.log(this);
             if (window.confirm("bisch sicher dass " + this.name + " brauchsch?...")) {
                 A06_II.rollband++;
                 let einkaufsWagen = document.getElementById("imEinkaufswagen");
@@ -92,8 +93,8 @@ var A06_II;
                     }
                 }
                 window.alert("...na dann");
-                A06_II.einkUms = A06_II.einkUms + this.preis;
-                A06_II.einkaufswagen_Meldung();
+                A06_II.einkUms += this.preis;
+                A06_II.einkaufswagen_Meldung(A06_II.einkUms);
             }
             else {
                 window.alert("besser is es!");

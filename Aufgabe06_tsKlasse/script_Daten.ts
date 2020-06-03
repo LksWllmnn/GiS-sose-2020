@@ -93,11 +93,12 @@ namespace A06_II {
             let knopf: HTMLElement = document.createElement("button");
             knopf.innerHTML = "In den Einkaufswagen";
             vater.appendChild(knopf);
-            knopf.addEventListener("click", this.hndl_Einkauf);
+            knopf.addEventListener("click", this.hndl_Einkauf.bind(this));
         }
 
         //A06 Teilaufgabe 1
         hndl_Einkauf(_event: Event): void {
+            console.log(this);
 
             if (window.confirm("bisch sicher dass " + this.name + " brauchsch?...")) {
                 rollband++;
@@ -116,8 +117,8 @@ namespace A06_II {
                 }
                 window.alert("...na dann");
 
-                einkUms = einkUms + this.preis;
-                einkaufswagen_Meldung();
+                einkUms += this.preis;
+                einkaufswagen_Meldung(einkUms);
 
             } else {
                 window.alert("besser is es!");

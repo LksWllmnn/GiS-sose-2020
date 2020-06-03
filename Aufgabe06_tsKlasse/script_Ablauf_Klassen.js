@@ -44,7 +44,7 @@ var A06_II;
         }
     }
     function einkaufswagen_Meldung(aktuel) {
-        let aktuelInString = "" + aktuel;
+        let aktuelInString = "" + aktuel.toString();
         console.log("Stabile Ware im wert von:" + aktuelInString + "€ im Warenkorb");
     }
     A06_II.einkaufswagen_Meldung = einkaufswagen_Meldung;
