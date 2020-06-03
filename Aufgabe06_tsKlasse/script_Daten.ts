@@ -116,8 +116,8 @@ namespace A06_II {
                 }
                 window.alert("...na dann");
 
-                einkUms += this.preis;
-                console.log("Stabile Ware im Wert von: " + einkUms + "€ im Warenkorb");
+                einkUms = einkUms + this.preis;
+                einkaufswagen_Meldung();
 
             } else {
                 window.alert("besser is es!");

@@ -45,6 +45,10 @@ namespace A06_II {
         }
     }
 
+    export function einkaufswagen_Meldung(): void {
+        console.log("Stabile Ware im wert von:" + einkUms + "€ im Warenkorb");
+    }
+
 
     //A06 Teil 2
     let hideI: HTMLElement | null = document.getElementById("hideTechnik");

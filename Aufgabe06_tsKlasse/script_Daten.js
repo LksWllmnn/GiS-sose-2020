@@ -92,8 +92,8 @@ var A06_II;
                     }
                 }
                 window.alert("...na dann");
-                A06_II.einkUms += this.preis;
-                console.log("Stabile Ware im Wert von: " + A06_II.einkUms + "€ im Warenkorb");
+                A06_II.einkUms = A06_II.einkUms + this.preis;
+                A06_II.einkaufswagen_Meldung();
             }
             else {
                 window.alert("besser is es!");
