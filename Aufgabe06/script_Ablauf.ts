@@ -6,19 +6,23 @@ namespace A06_I {
         let kasten: HTMLElement = document.createElement("div");
         kasten.setAttribute("class", "ag");
         if (list[i].kathegorie == "Soziales") {
-            document.getElementById("soziales")?.appendChild(kasten);
+            let großVater: HTMLElement = document.getElementById("soziales") as HTMLElement;
+            großVater.appendChild(kasten);
             kasten.id = "soziales_" + i;
         }
         if (list[i].kathegorie == "Technik") {
-            document.getElementById("technik")?.appendChild(kasten);
+            let großVater: HTMLElement = document.getElementById("technik") as HTMLElement;
+            großVater.appendChild(kasten);
             kasten.id = "technik_" + i;
         }
         if (list[i].kathegorie == "eine Person") {
-            document.getElementById("person")?.appendChild(kasten);
+            let großVater: HTMLElement = document.getElementById("person") as HTMLElement;
+            großVater.appendChild(kasten);
             kasten.id = "person_" + i;
         }
         if (list[i].kathegorie == "mehrere Personen") {
-            document.getElementById("personen")?.appendChild(kasten);
+            let großVater: HTMLElement = document.getElementById("personen") as HTMLElement;
+            großVater.appendChild(kasten);
             kasten.id = "personen_" + i;
         }
 
@@ -65,7 +69,7 @@ namespace A06_I {
     function hndl_Einkauf(_event: Event): void {
         let geklickterKaschten: HTMLElement = <HTMLElement>_event.target;
         let nameMeldung: String = "";
-        if (geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent)
+        if (geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent as string)
         nameMeldung = "" + geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent;
 
         if (window.confirm("bisch sicher dass " + nameMeldung + " brauchsch?...")) {

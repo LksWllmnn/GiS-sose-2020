@@ -7,19 +7,23 @@ var A06_I;
         let kasten = document.createElement("div");
         kasten.setAttribute("class", "ag");
         if (A06_I.list[i].kathegorie == "Soziales") {
-            document.getElementById("soziales")?.appendChild(kasten);
+            let großVater = document.getElementById("soziales");
+            großVater.appendChild(kasten);
             kasten.id = "soziales_" + i;
         }
         if (A06_I.list[i].kathegorie == "Technik") {
-            document.getElementById("technik")?.appendChild(kasten);
+            let großVater = document.getElementById("technik");
+            großVater.appendChild(kasten);
             kasten.id = "technik_" + i;
         }
         if (A06_I.list[i].kathegorie == "eine Person") {
-            document.getElementById("person")?.appendChild(kasten);
+            let großVater = document.getElementById("person");
+            großVater.appendChild(kasten);
             kasten.id = "person_" + i;
         }
         if (A06_I.list[i].kathegorie == "mehrere Personen") {
-            document.getElementById("personen")?.appendChild(kasten);
+            let großVater = document.getElementById("personen");
+            großVater.appendChild(kasten);
             kasten.id = "personen_" + i;
         }
         let bild = document.createElement("img");
