@@ -45,8 +45,9 @@ namespace A06_II {
         }
     }
 
-    export function einkaufswagen_Meldung(): void {
-        console.log("Stabile Ware im wert von:" + einkUms + "€ im Warenkorb");
+    export function einkaufswagen_Meldung(aktuel: number): void {
+        let aktuelInString: string = "" + aktuel;
+        console.log("Stabile Ware im wert von:" + aktuelInString + "€ im Warenkorb");
     }
 
 

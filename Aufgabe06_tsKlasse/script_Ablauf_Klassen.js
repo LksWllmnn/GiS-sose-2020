@@ -43,8 +43,9 @@ var A06_II;
             list[i].div_erstellen("personen", i);
         }
     }
-    function einkaufswagen_Meldung() {
-        console.log("Stabile Ware im wert von:" + A06_II.einkUms + "€ im Warenkorb");
+    function einkaufswagen_Meldung(aktuel) {
+        let aktuelInString = "" + aktuel;
+        console.log("Stabile Ware im wert von:" + aktuelInString + "€ im Warenkorb");
     }
     A06_II.einkaufswagen_Meldung = einkaufswagen_Meldung;
     //A06 Teil 2
