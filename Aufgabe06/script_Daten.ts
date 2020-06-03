@@ -11,7 +11,7 @@ namespace A06_I {
     }
 
     export let list: Artikel[] = [
-        {   kathegorie: "Soziales",         bild: "Sand.PNG",           name: "Sand für Leute in der Wüste", beschreibung: "feinster Qualitätssand", beschreibeung2: "absolut unnötig", beschreibung3: "nicht nur im Alltag sondern auch in der Berufs-Edition", beschreibung4: "mit Sicherheit nicht hilfreich", preis: 50.00 } ,
+        { kathegorie: "Soziales",           bild: "Sand.PNG",           name: "Sand für Leute in der Wüste", beschreibung: "feinster Qualitätssand", beschreibeung2: "absolut unnötig", beschreibung3: "nicht nur im Alltag sondern auch in der Berufs-Edition", beschreibung4: "mit Sicherheit nicht hilfreich", preis: 50.00 } ,
         { kathegorie: "Soziales",           bild: "larry.PNG",          name: "furzender Larry", beschreibung: "ideal für Aufzüge", beschreibeung2: "garantierter Hass bei allen Mitarbeitern", beschreibung3: "mit extra Chilli-Flavour", beschreibung4: "ungeeignet für Leute die Fekal-Humor mögen", preis: 800.00 } ,
         { kathegorie: "Soziales",           bild: "Küche.PNG",          name: "unaufgeräumte Arbeitsküche", beschreibung: "wenn Sie das nicht sowieso schon haben", beschreibeung2: "Alle werden sich davor ekeln...und niemand wird es weg räumen", beschreibung3: "bei jeder Besprechung wird angesprochen warum es eigentlich so unordentlich ist", beschreibung4: "ein Spaß für das ganze Büro", preis: 200.00 },
         { kathegorie: "Soziales",           bild: "Käse.PNG",           name: "stinkender Käse", beschreibung: "ganzer Kühlschrank stinkt", beschreibeung2: "man vergisst es immer wieder bis man vorm Kühlschrank steht", beschreibung3: "man vergisst es nicht wenn der ganze flur stinkt", beschreibung4: "niemand räumt ihn weg", preis: 10.00 },

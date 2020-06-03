@@ -50,14 +50,15 @@ var A06_I;
         let knopf = document.createElement("button");
         knopf.innerHTML = "In den Einkaufswagen";
         kasten.appendChild(knopf);
-        knopf.addEventListener("click", hndl);
+        knopf.addEventListener("click", hndl_Einkauf);
     }
-    function hndl(_event) {
+    //A06 Teil 1
+    function hndl_Einkauf(_event) {
         let geklickterKaschten = _event.target;
-        let prdNm = "";
+        let nameMeldung = "";
         if (geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent)
-            prdNm = "" + geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent;
-        if (window.confirm("bisch sicher dass " + prdNm + " brauchsch?...")) {
+            nameMeldung = "" + geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent;
+        if (window.confirm("bisch sicher dass " + nameMeldung + " brauchsch?...")) {
             rollband++;
             let einkaufsWagen = document.getElementById("imEinkaufswagen");
             let einkaufsWagenII = document.getElementById("imEinkaufswagenII");
@@ -80,6 +81,7 @@ var A06_I;
             window.alert("besser is es!");
         }
     }
+    //A06 Teil 2
     let hideI = document.getElementById("hideTechnik");
     if (hideI)
         hideI.addEventListener("click", hndl_hide);
