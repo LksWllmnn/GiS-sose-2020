@@ -21,9 +21,11 @@ namespace A06_II {
             this.preis = preis;
         }
 
-        div_erstellen(kat: string, i: number): void {
+        div_erstellen(kat: string, i: number, großVater: HTMLElement): void {
             let kasten: HTMLElement = document.createElement("div");
-            document.getElementById(kat)?.appendChild(kasten);
+            
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = kat + "_" + i;
             kasten.setAttribute("class", "ag");
             this.eigenerKaschten = kasten;

@@ -12,9 +12,10 @@ var A06_II;
             this.beschreibung4 = beschreibung4;
             this.preis = preis;
         }
-        div_erstellen(kat, i) {
+        div_erstellen(kat, i, großVater) {
             let kasten = document.createElement("div");
-            document.getElementById(kat)?.appendChild(kasten);
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = kat + "_" + i;
             kasten.setAttribute("class", "ag");
             this.eigenerKaschten = kasten;

@@ -32,16 +32,20 @@ namespace A06_II {
 
     for (let i: number = 0; i < list.length; i++) {
         if (list[i].kathegorie == "Soziales") {
-            list[i].div_erstellen("soziales", i);
+            const großVater: HTMLElement = document.getElementById("soziales") as HTMLElement;
+            list[i].div_erstellen("soziales", i, großVater);
         }
         if (list[i].kathegorie == "Technik") {
-            list[i].div_erstellen("technik", i);
+            const großVater: HTMLElement = document.getElementById("technik") as HTMLElement;
+            list[i].div_erstellen("technik", i, großVater);
         }
         if (list[i].kathegorie == "eine Person") {
-            list[i].div_erstellen("person", i);
+            const großVater: HTMLElement = document.getElementById("person") as HTMLElement;
+            list[i].div_erstellen("person", i, großVater);
         }
         if (list[i].kathegorie == "mehrere Personen") {
-            list[i].div_erstellen("personen", i);
+            const großVater: HTMLElement = document.getElementById("personen") as HTMLElement;
+            list[i].div_erstellen("personen", i, großVater);
         }
     }
 

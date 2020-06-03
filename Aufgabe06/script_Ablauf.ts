@@ -6,23 +6,27 @@ namespace A06_I {
         let kasten: HTMLElement = document.createElement("div");
         kasten.setAttribute("class", "ag");
         if (list[i].kathegorie == "Soziales") {
-            let großVater: HTMLElement = document.getElementById("soziales") as HTMLElement;
-            großVater.appendChild(kasten);
+            const großVater: HTMLElement = document.getElementById("soziales") as HTMLElement;
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = "soziales_" + i;
         }
         if (list[i].kathegorie == "Technik") {
-            let großVater: HTMLElement = document.getElementById("technik") as HTMLElement;
-            großVater.appendChild(kasten);
+            const großVater: HTMLElement = document.getElementById("technik") as HTMLElement;
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = "technik_" + i;
         }
         if (list[i].kathegorie == "eine Person") {
-            let großVater: HTMLElement = document.getElementById("person") as HTMLElement;
-            großVater.appendChild(kasten);
+            const großVater: HTMLElement = document.getElementById("person") as HTMLElement;
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = "person_" + i;
         }
         if (list[i].kathegorie == "mehrere Personen") {
-            let großVater: HTMLElement = document.getElementById("personen") as HTMLElement;
-            großVater.appendChild(kasten);
+            const großVater: HTMLElement = document.getElementById("personen") as HTMLElement;
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = "personen_" + i;
         }
 
@@ -69,8 +73,12 @@ namespace A06_I {
     function hndl_Einkauf(_event: Event): void {
         let geklickterKaschten: HTMLElement = <HTMLElement>_event.target;
         let nameMeldung: String = "";
-        if (geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent as string)
-        nameMeldung = "" + geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent;
+
+        if (geklickterKaschten.previousSibling)
+            if (geklickterKaschten.previousSibling.previousSibling)
+                if (geklickterKaschten.previousSibling.previousSibling.previousSibling)
+                    if (geklickterKaschten.previousSibling.previousSibling.previousSibling.firstChild)
+                        nameMeldung = "" + geklickterKaschten.previousSibling.previousSibling.previousSibling.firstChild.textContent;
 
         if (window.confirm("bisch sicher dass " + nameMeldung + " brauchsch?...")) {
             rollband++;
@@ -89,8 +97,10 @@ namespace A06_I {
             }
             window.alert("...na dann");
             
+            if (geklickterKaschten.previousSibling)
+            if (geklickterKaschten.previousSibling.firstChild)
             if (geklickterKaschten.previousSibling?.firstChild?.nodeValue)
-            einkUms += parseFloat(geklickterKaschten.previousSibling?.firstChild?.nodeValue);
+            einkUms += parseFloat(geklickterKaschten.previousSibling.firstChild.nodeValue);
             console.log("Stabile Ware im Wert von: " + einkUms + "€ im Warenkorb");
 
         } else {
@@ -135,7 +145,8 @@ namespace A06_I {
             kastenId = "soziales_" + i;
             if (document.getElementById(kastenId)) {
                  let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                 technikArt?.setAttribute("style", "display: block");
+                 if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
              }
          }
     }
@@ -146,14 +157,16 @@ namespace A06_I {
            kastenId = "soziales_" + i;
            if (document.getElementById(kastenId)) {
                 let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: none");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i: number = 0; i < list.length; i++) {
             kastenId = "technik_" + i;
             if (document.getElementById(kastenId)) {
                  let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                 technikArt?.setAttribute("style", "display: block");
+                 if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
              }
          }
     }
@@ -164,14 +177,16 @@ namespace A06_I {
            kastenId = "person_" + i;
            if (document.getElementById(kastenId)) {
                 let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: none");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i: number = 0; i < list.length; i++) {
             kastenId = "personen_" + i;
             if (document.getElementById(kastenId)) {
                  let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                 technikArt?.setAttribute("style", "display: block");
+                 if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
              }
          }
     }
@@ -182,14 +197,16 @@ namespace A06_I {
            kastenId = "personen_" + i;
            if (document.getElementById(kastenId)) {
                 let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: none");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i: number = 0; i < list.length; i++) {
             kastenId = "person_" + i;
             if (document.getElementById(kastenId)) {
                  let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                 technikArt?.setAttribute("style", "display: block");
+                 if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
              }
          }
     }
@@ -200,14 +217,16 @@ namespace A06_I {
            kastenId = "personen_" + i;
            if (document.getElementById(kastenId)) {
                 let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
             }
         }
         for (let i: number = 0; i < list.length; i++) {
             kastenId = "person_" + i;
             if (document.getElementById(kastenId)) {
                  let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                 technikArt?.setAttribute("style", "display: block");
+                 if (technikArt)
+                 technikArt.setAttribute("style", "display: block");
              }
         }
 
@@ -215,14 +234,16 @@ namespace A06_I {
             kastenId = "technik_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                technikArt.setAttribute("style", "display: block");
             }
         }
         for (let i: number = 0; i < list.length; i++) {
             kastenId = "soziales_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt: HTMLElement | null = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                technikArt.setAttribute("style", "display: block");
             }
         }
     }

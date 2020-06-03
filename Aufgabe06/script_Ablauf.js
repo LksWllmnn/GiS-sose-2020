@@ -7,23 +7,27 @@ var A06_I;
         let kasten = document.createElement("div");
         kasten.setAttribute("class", "ag");
         if (A06_I.list[i].kathegorie == "Soziales") {
-            let großVater = document.getElementById("soziales");
-            großVater.appendChild(kasten);
+            const großVater = document.getElementById("soziales");
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = "soziales_" + i;
         }
         if (A06_I.list[i].kathegorie == "Technik") {
-            let großVater = document.getElementById("technik");
-            großVater.appendChild(kasten);
+            const großVater = document.getElementById("technik");
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = "technik_" + i;
         }
         if (A06_I.list[i].kathegorie == "eine Person") {
-            let großVater = document.getElementById("person");
-            großVater.appendChild(kasten);
+            const großVater = document.getElementById("person");
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = "person_" + i;
         }
         if (A06_I.list[i].kathegorie == "mehrere Personen") {
-            let großVater = document.getElementById("personen");
-            großVater.appendChild(kasten);
+            const großVater = document.getElementById("personen");
+            if (großVater)
+                großVater.appendChild(kasten);
             kasten.id = "personen_" + i;
         }
         let bild = document.createElement("img");
@@ -60,8 +64,11 @@ var A06_I;
     function hndl_Einkauf(_event) {
         let geklickterKaschten = _event.target;
         let nameMeldung = "";
-        if (geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent)
-            nameMeldung = "" + geklickterKaschten.previousSibling?.previousSibling?.previousSibling?.firstChild?.textContent;
+        if (geklickterKaschten.previousSibling)
+            if (geklickterKaschten.previousSibling.previousSibling)
+                if (geklickterKaschten.previousSibling.previousSibling.previousSibling)
+                    if (geklickterKaschten.previousSibling.previousSibling.previousSibling.firstChild)
+                        nameMeldung = "" + geklickterKaschten.previousSibling.previousSibling.previousSibling.firstChild.textContent;
         if (window.confirm("bisch sicher dass " + nameMeldung + " brauchsch?...")) {
             rollband++;
             let einkaufsWagen = document.getElementById("imEinkaufswagen");
@@ -77,8 +84,10 @@ var A06_I;
                 }
             }
             window.alert("...na dann");
-            if (geklickterKaschten.previousSibling?.firstChild?.nodeValue)
-                einkUms += parseFloat(geklickterKaschten.previousSibling?.firstChild?.nodeValue);
+            if (geklickterKaschten.previousSibling)
+                if (geklickterKaschten.previousSibling.firstChild)
+                    if (geklickterKaschten.previousSibling?.firstChild?.nodeValue)
+                        einkUms += parseFloat(geklickterKaschten.previousSibling.firstChild.nodeValue);
             console.log("Stabile Ware im Wert von: " + einkUms + "€ im Warenkorb");
         }
         else {
@@ -117,7 +126,8 @@ var A06_I;
             kastenId = "soziales_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
             }
         }
     }
@@ -127,14 +137,16 @@ var A06_I;
             kastenId = "soziales_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: none");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "technik_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
             }
         }
     }
@@ -144,14 +156,16 @@ var A06_I;
             kastenId = "person_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: none");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "personen_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
             }
         }
     }
@@ -161,14 +175,16 @@ var A06_I;
             kastenId = "personen_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: none");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "person_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
             }
         }
     }
@@ -178,28 +194,32 @@ var A06_I;
             kastenId = "personen_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "person_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "technik_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "soziales_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: block");
+                if (technikArt)
+                    technikArt.setAttribute("style", "display: block");
             }
         }
     }
