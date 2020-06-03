@@ -22,6 +22,7 @@ var A06_II;
             this.name_erstellen(kasten);
             this.ul_erstellen(kasten);
             this.preis_erstellen(kasten);
+            this.knopf_erstellen(kasten);
         }
         bild_erstellen(vater, i) {
             let bild = document.createElement("img");
