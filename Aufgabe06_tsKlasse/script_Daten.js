@@ -14,7 +14,8 @@ var A06_II;
         }
         div_erstellen(kat, i) {
             let kasten = document.createElement("div");
-            document.getElementById(kat)?.appendChild(kasten);
+            let großVater = document.getElementById(kat);
+            großVater.appendChild(kasten);
             kasten.id = kat + "_" + i;
             kasten.setAttribute("class", "ag");
             this.eigenerKaschten = kasten;
