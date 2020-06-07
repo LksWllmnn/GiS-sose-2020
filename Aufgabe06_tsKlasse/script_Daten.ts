@@ -3,98 +3,86 @@ namespace A06_II {
         kathegorie: string;
         bild: string;
         name: string;
-        beschreibung: string;
+        beschreibung1: string;
         beschreibung2: string;
         beschreibung3: string;
         beschreibung4: string;
         preis: number;
         eigenerKaschten: HTMLElement;
 
-        constructor (kathegorie: string , bild: string, name: string, beschreibung: string, beschreibung2: string, beschreibung3: string, beschreibung4: string, preis: number ) {
-            this.kathegorie = kathegorie;
-            this.bild = bild;
+        constructor (_kathegorie: string , _bild: string, _name: string, _beschreibung: string, _beschreibung2: string, _beschreibung3: string, _beschreibung4: string, _preis: number ) {
+            this.kathegorie = _kathegorie;
+            this.bild = _bild;
             this.name = name;
-            this.beschreibung = beschreibung;
-            this.beschreibung2 = beschreibung2;
-            this.beschreibung3 = beschreibung3;
-            this.beschreibung4 = beschreibung4;
-            this.preis = preis;
+            this.beschreibung1 = _beschreibung;
+            this.beschreibung2 = _beschreibung2;
+            this.beschreibung3 = _beschreibung3;
+            this.beschreibung4 = _beschreibung4;
+            this.preis = _preis;
         }
 
-        div_erstellen(kat: string, i: number, großVater: HTMLElement): void {
-            let kasten: HTMLElement = document.createElement("div");
-            
-            if (großVater)
-                großVater.appendChild(kasten);
-            kasten.id = kat + "_" + i;
+        div_erstellen(_kat: string, _i: number, _großVater: HTMLElement): void {
+            let kasten: HTMLElement = <HTMLElement>document.createElement("div");
+            if (_großVater)
+                _großVater.appendChild(kasten);
+            kasten.id = _kat + "_" + _i;
             kasten.setAttribute("class", "ag");
             this.eigenerKaschten = kasten;
 
-            this.bild_erstellen(kasten, i);
+            this.bild_erstellen(kasten, _i);
             this.name_erstellen(kasten);
             this.ul_erstellen(kasten);
             this.preis_erstellen(kasten);
             this.knopf_erstellen(kasten);
         }
 
-        bild_erstellen (vater: HTMLElement, i: number): void {
+        bild_erstellen (_vater: HTMLElement, i: number): void {
             let bild: HTMLElement = document.createElement("img");
             bild.setAttribute("src", "Bilder/" + this.bild);
             bild.setAttribute("alt", "ag1_" + i);
-            vater.appendChild(bild);
+            _vater.appendChild(bild);
         }
 
-        name_erstellen (vater: HTMLElement): void {
+        name_erstellen (_vater: HTMLElement): void {
             let artName: HTMLElement = document.createElement("h3");
-            vater.appendChild(artName);
+            _vater.appendChild(artName);
             artName.innerHTML = "" + this.name;
         }
 
-        ul_erstellen (vater: HTMLElement): void {
+        ul_erstellen (_vater: HTMLElement): void {
             let liste: HTMLElement = document.createElement("ul");
-            vater.appendChild(liste);
+            _vater.appendChild(liste);
 
-            this.beschreib1_erstellen(liste);
-            this.beschreib2_erstellen(liste);
-            this.beschreib3_erstellen(liste);
-            this.beschreib4_erstellen(liste);
+            for (let i: number = 0; i <= 4; i++)
+                this.beschreib_erstellen(liste, i);
         }
 
-        beschreib1_erstellen (liste: HTMLElement): void {
-            let beschreib1: HTMLElement = document.createElement("li");
-            liste.appendChild(beschreib1);
-            beschreib1.innerHTML = this.beschreibung;
+        beschreib_erstellen (_liste: HTMLElement, _i: number): void {
+            let beschreib: HTMLElement = document.createElement("li");
+            _liste.appendChild(beschreib);
+            switch (_i) {
+                case 1: beschreib.innerHTML = this.beschreibung1;
+                        break;
+                case 2: beschreib.innerHTML = this.beschreibung2;
+                        break;
+                case 3: beschreib.innerHTML = this.beschreibung3;
+                        break;
+                case 4: beschreib.innerHTML = this.beschreibung4;
+                        break;
+            }
         }
 
-        beschreib2_erstellen (liste: HTMLElement): void {
-            let beschreib2: HTMLElement = document.createElement("li");
-            liste.appendChild(beschreib2);
-            beschreib2.innerHTML = this.beschreibung2;
-        }
-
-        beschreib3_erstellen (liste: HTMLElement): void {
-            let beschreib3: HTMLElement = document.createElement("li");
-            liste.appendChild(beschreib3);
-            beschreib3.innerHTML = this.beschreibung3;
-        }
-
-        beschreib4_erstellen (liste: HTMLElement): void {
-            let beschreib4: HTMLElement = document.createElement("li");
-            liste.appendChild(beschreib4);
-            beschreib4.innerHTML = this.beschreibung4;
-        }
-
-        preis_erstellen (vater: HTMLElement): void {
+        preis_erstellen (_vater: HTMLElement): void {
             let price: HTMLElement = document.createElement("p");
             price.setAttribute("class", "Preis");
-            vater.appendChild(price);
+            _vater.appendChild(price);
             price.innerHTML = "" + this.preis + " €";
         }
 
-        knopf_erstellen (vater: HTMLElement): void {
+        knopf_erstellen (_vater: HTMLElement): void {
             let knopf: HTMLElement = document.createElement("button");
             knopf.innerHTML = "In den Einkaufswagen";
-            vater.appendChild(knopf);
+            _vater.appendChild(knopf);
             knopf.addEventListener("click", this.hndl_Einkauf.bind(this));
         }
 
@@ -102,8 +90,8 @@ namespace A06_II {
         hndl_Einkauf(_event: Event): void {
             if (window.confirm("bisch sicher dass '" + this.name + "' brauchsch?...")) {
                 rollband++;
-                let einkaufsWagen: HTMLElement | null = document.getElementById("imEinkaufswagen");
-                let einkaufsWagenII: HTMLElement | null = document.getElementById("imEinkaufswagenII");
+                let einkaufsWagen: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagen");
+                let einkaufsWagenII: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagenII");
             
                 if (rollband != 0) {
                     if (einkaufsWagen) {
@@ -125,13 +113,11 @@ namespace A06_II {
         }
 
         //A06 Teilaufgabe 2
-        hndl_Hide(ansage: string): void {
-            if (ansage == this.kathegorie)
+        hndl_Hide(_ansage: string): void {
+            if (_ansage == this.kathegorie)
                 this.eigenerKaschten.setAttribute("style", "display: none");
             else
                 this.eigenerKaschten.setAttribute("style", "display: block");
         }
-
     }
- 
 }

@@ -1,4 +1,4 @@
-namespace A06_II {
+namespace A07 {
     
     export let rollband: number = 0;
     export let einkUms: number = 0;
@@ -32,46 +32,46 @@ namespace A06_II {
 
     for (let i: number = 0; i < list.length; i++) {
         if (list[i].kathegorie == "Soziales") {
-            const großVater: HTMLElement = <HTMLElement>document.getElementById("soziales");
+            const großVater: HTMLElement = document.getElementById("soziales") as HTMLElement;
             list[i].div_erstellen("soziales", i, großVater);
         }
         if (list[i].kathegorie == "Technik") {
-            const großVater: HTMLElement = <HTMLElement>document.getElementById("technik");
+            const großVater: HTMLElement = document.getElementById("technik") as HTMLElement;
             list[i].div_erstellen("technik", i, großVater);
         }
         if (list[i].kathegorie == "eine Person") {
-            const großVater: HTMLElement = <HTMLElement>document.getElementById("person");
+            const großVater: HTMLElement = document.getElementById("person") as HTMLElement;
             list[i].div_erstellen("person", i, großVater);
         }
         if (list[i].kathegorie == "mehrere Personen") {
-            const großVater: HTMLElement = <HTMLElement>document.getElementById("personen");
+            const großVater: HTMLElement = document.getElementById("personen") as HTMLElement;
             list[i].div_erstellen("personen", i, großVater);
         }
     }
 
     //A06 Teil 2
-    let hideI: HTMLElement = <HTMLElement>document.getElementById("hideTechnik");
+    let hideI: HTMLElement | null = document.getElementById("hideTechnik");
     if (hideI)
-        hideI.addEventListener("click", hndl_hide);
+    hideI.addEventListener("click", hndl_hide);
 
-    let hideII: HTMLElement = <HTMLElement>document.getElementById("hideSoziales");
+    let hideII: HTMLElement | null = document.getElementById("hideSoziales");
     if (hideII)
-        hideII.addEventListener("click", hndlII_hide);
+    hideII.addEventListener("click", hndlII_hide);
 
-    let hideIII: HTMLElement = <HTMLElement>document.getElementById("hidePerson");
+    let hideIII: HTMLElement | null = document.getElementById("hidePerson");
     if (hideIII)
-        hideIII.addEventListener("click", hndlIII_hide);
+    hideIII.addEventListener("click", hndlIII_hide);
 
-    let hideIIII: HTMLElement = <HTMLElement>document.getElementById("hidePersonen");
+    let hideIIII: HTMLElement | null = document.getElementById("hidePersonen");
     if (hideIIII)
-        hideIIII.addEventListener("click", hndlIIII_hide);
+    hideIIII.addEventListener("click", hndlIIII_hide);
 
-    let showAllI: HTMLElement = <HTMLElement>document.getElementById("renew_I");
+    let showAllI: HTMLElement | null = document.getElementById("renew_I");
     if (showAllI)
-        showAllI.addEventListener("click", hndl_showAll);
-    let showAllII: HTMLElement = <HTMLElement>document.getElementById("renew_II");
+    showAllI.addEventListener("click", hndl_showAll);
+    let showAllII: HTMLElement | null = document.getElementById("renew_II");
     if (showAllII)
-        showAllII.addEventListener("click", hndl_showAll);
+    showAllII.addEventListener("click", hndl_showAll);
 
     function hndl_hide(_event: Event): void {
         for (let i: number = 0; i < list.length; i++) 

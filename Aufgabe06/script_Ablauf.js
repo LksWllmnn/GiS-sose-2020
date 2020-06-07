@@ -119,15 +119,14 @@ var A06_I;
             kastenId = "technik_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                technikArt?.setAttribute("style", "display: none");
+                technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "soziales_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: block");
+                technikArt.setAttribute("style", "display: block");
             }
         }
     }
@@ -137,16 +136,14 @@ var A06_I;
             kastenId = "soziales_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: none");
+                technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "technik_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: block");
+                technikArt.setAttribute("style", "display: block");
             }
         }
     }
@@ -156,16 +153,14 @@ var A06_I;
             kastenId = "person_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: none");
+                technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "personen_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: block");
+                technikArt.setAttribute("style", "display: block");
             }
         }
     }
@@ -175,16 +170,14 @@ var A06_I;
             kastenId = "personen_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: none");
+                technikArt.setAttribute("style", "display: none");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "person_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: block");
+                technikArt.setAttribute("style", "display: block");
             }
         }
     }
@@ -194,32 +187,28 @@ var A06_I;
             kastenId = "personen_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: block");
+                technikArt.setAttribute("style", "display: block");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "person_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: block");
+                technikArt.setAttribute("style", "display: block");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "technik_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: block");
+                technikArt.setAttribute("style", "display: block");
             }
         }
         for (let i = 0; i < A06_I.list.length; i++) {
             kastenId = "soziales_" + i;
             if (document.getElementById(kastenId)) {
                 let technikArt = document.getElementById(kastenId);
-                if (technikArt)
-                    technikArt.setAttribute("style", "display: block");
+                technikArt.setAttribute("style", "display: block");
             }
         }
     }
