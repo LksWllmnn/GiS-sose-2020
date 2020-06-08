@@ -1,4 +1,4 @@
-namespace A06_II {
+namespace A07 {
     export class ArtikelClass {
         kathegorie: string;
         bild: string;
@@ -13,7 +13,7 @@ namespace A06_II {
         constructor (_kathegorie: string , _bild: string, _name: string, _beschreibung: string, _beschreibung2: string, _beschreibung3: string, _beschreibung4: string, _preis: number ) {
             this.kathegorie = _kathegorie;
             this.bild = _bild;
-            this.name = _name;
+            this.name = name;
             this.beschreibung1 = _beschreibung;
             this.beschreibung2 = _beschreibung2;
             this.beschreibung3 = _beschreibung3;
@@ -22,7 +22,8 @@ namespace A06_II {
         }
 
         div_erstellen(_kat: string, _i: number, _großVater: HTMLElement): void {
-            let kasten: HTMLElement = <HTMLElement>document.createElement("div");
+            let kasten: HTMLElement = document.createElement("div");
+            
             if (_großVater)
                 _großVater.appendChild(kasten);
             kasten.id = _kat + "_" + _i;
@@ -36,17 +37,17 @@ namespace A06_II {
             this.knopf_erstellen(kasten);
         }
 
-        bild_erstellen (_vater: HTMLElement, i: number): void {
+        bild_erstellen (_vater: HTMLElement, _i: number): void {
             let bild: HTMLElement = document.createElement("img");
             bild.setAttribute("src", "Bilder/" + this.bild);
-            bild.setAttribute("alt", "ag1_" + i);
+            bild.setAttribute("alt", "ag1_" + _i);
             _vater.appendChild(bild);
         }
 
         name_erstellen (_vater: HTMLElement): void {
             let artName: HTMLElement = document.createElement("h3");
             _vater.appendChild(artName);
-            artName.innerHTML = this.name;
+            artName.innerHTML = "" + this.name;
         }
 
         ul_erstellen (_vater: HTMLElement): void {
@@ -89,35 +90,41 @@ namespace A06_II {
         //A06 Teilaufgabe 1
         hndl_Einkauf(_event: Event): void {
             if (window.confirm("bisch sicher dass '" + this.name + "' brauchsch?...")) {
-                rollband++;
+                rollbandOver++;
                 let einkaufsWagen: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagen");
                 let einkaufsWagenII: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagenII");
             
-                if (rollband != 0) {
+                if (rollbandOver != 0) {
                     if (einkaufsWagen) {
                         einkaufsWagen.setAttribute("style", "visibility: visible");
-                        einkaufsWagen.innerHTML = "" + rollband;
+                        einkaufsWagen.innerHTML = "" + rollbandOver;
                     }
                     if (einkaufsWagenII) {
                         einkaufsWagenII.setAttribute("style", "visibility: visible");
-                        einkaufsWagenII.innerHTML = "" + rollband;
+                        einkaufsWagenII.innerHTML = "" + rollbandOver;
                     }
                 }
                 window.alert("...na dann");
 
                 einkUms += this.preis;
                 console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + einkUms + " €");
+                this.einkaufBilden();
             } else {
                 window.alert("besser is es!");
             } 
         }
 
         //A06 Teilaufgabe 2
-        hndl_Hide(_ansage: string): void {
-            if (_ansage == this.kathegorie || _ansage == "alle")
-                this.eigenerKaschten.setAttribute("style", "display: block");
-            else
+        hndl_Hide(ansage: string): void {
+            if (ansage == this.kathegorie)
                 this.eigenerKaschten.setAttribute("style", "display: none");
+            else
+                this.eigenerKaschten.setAttribute("style", "display: block");
+        }
+
+        //A07 Teilaufgabe 2
+        einkaufBilden(): void {
+            einkaufArtikel.push(new ImEinkaufsWagen(this.preis, this.name));
         }
     }
 }

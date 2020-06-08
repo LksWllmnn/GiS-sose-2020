@@ -5,7 +5,7 @@ var A06_II;
         constructor(_kathegorie, _bild, _name, _beschreibung, _beschreibung2, _beschreibung3, _beschreibung4, _preis) {
             this.kathegorie = _kathegorie;
             this.bild = _bild;
-            this.name = name;
+            this.name = _name;
             this.beschreibung1 = _beschreibung;
             this.beschreibung2 = _beschreibung2;
             this.beschreibung3 = _beschreibung3;
@@ -34,7 +34,7 @@ var A06_II;
         name_erstellen(_vater) {
             let artName = document.createElement("h3");
             _vater.appendChild(artName);
-            artName.innerHTML = "" + this.name;
+            artName.innerHTML = this.name;
         }
         ul_erstellen(_vater) {
             let liste = document.createElement("ul");
@@ -98,10 +98,10 @@ var A06_II;
         }
         //A06 Teilaufgabe 2
         hndl_Hide(_ansage) {
-            if (_ansage == this.kathegorie)
-                this.eigenerKaschten.setAttribute("style", "display: none");
-            else
+            if (_ansage == this.kathegorie || _ansage == "alle")
                 this.eigenerKaschten.setAttribute("style", "display: block");
+            else
+                this.eigenerKaschten.setAttribute("style", "display: none");
         }
     }
     A06_II.ArtikelClass = ArtikelClass;

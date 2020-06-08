@@ -1,8 +1,6 @@
 "use strict";
 var A07;
 (function (A07) {
-    A07.rollband = 0;
-    A07.einkUms = 0;
     let list = [
         new A07.ArtikelClass("Soziales", "Sand.PNG", "Sand für Leute in der Wüste", "feinster Qualitätssand", "absolut unnötig", "nicht nur im Alltag sondern auch in der Berufs-Edition", "mit Sicherheit nicht hilfreich", 50.00),
         new A07.ArtikelClass("Soziales", "larry.PNG", "furzender Larry", "ideal für Aufzüge", "garantierter Hass bei allen Mitarbeitern", "mit extra Chilli-Flavour", "ungeeignet für Leute die Fekal-Humor mögen", 800.00),
@@ -29,62 +27,10 @@ var A07;
         new A07.ArtikelClass("mehrere Personen", "linke_Schuhe.PNG", "nurnoch linke schuhe", "alle rechten schuhe werden durch das gleiche modell aber eben der falschen seite ersetzt", "garantiert nervenaufreibend für leute die öfters zuspät kommen", "garantiert nervenaufreibend für eigentlich so ziemlich jeden", "...andererseits...wir haben dann lauter paare mit nurnoch rechten schuhen...", 250.00),
         new A07.ArtikelClass("mehrere Personen", "Handy_Vertrag.PNG", "handy-vertrag kündigen", "wir kündigen für sie irgend wann ihren handyvertrag", "einfach so wenn sie nicht damit rechnen", "am besten morgens vor dem aufstehen", "und melden sie bei aldi talk an...gibts das noch?", 66.00)
     ];
-    for (let i = 0; i < list.length; i++) {
-        if (list[i].kathegorie == "Soziales") {
-            const großVater = document.getElementById("soziales");
-            list[i].div_erstellen("soziales", i, großVater);
-        }
-        if (list[i].kathegorie == "Technik") {
-            const großVater = document.getElementById("technik");
-            list[i].div_erstellen("technik", i, großVater);
-        }
-        if (list[i].kathegorie == "eine Person") {
-            const großVater = document.getElementById("person");
-            list[i].div_erstellen("person", i, großVater);
-        }
-        if (list[i].kathegorie == "mehrere Personen") {
-            const großVater = document.getElementById("personen");
-            list[i].div_erstellen("personen", i, großVater);
-        }
-    }
-    //A06 Teil 2
-    let hideI = document.getElementById("hideTechnik");
-    if (hideI)
-        hideI.addEventListener("click", hndl_hide);
-    let hideII = document.getElementById("hideSoziales");
-    if (hideII)
-        hideII.addEventListener("click", hndlII_hide);
-    let hideIII = document.getElementById("hidePerson");
-    if (hideIII)
-        hideIII.addEventListener("click", hndlIII_hide);
-    let hideIIII = document.getElementById("hidePersonen");
-    if (hideIIII)
-        hideIIII.addEventListener("click", hndlIIII_hide);
-    let showAllI = document.getElementById("renew_I");
-    if (showAllI)
-        showAllI.addEventListener("click", hndl_showAll);
-    let showAllII = document.getElementById("renew_II");
-    if (showAllII)
-        showAllII.addEventListener("click", hndl_showAll);
-    function hndl_hide(_event) {
-        for (let i = 0; i < list.length; i++)
-            list[i].hndl_Hide("Technik");
-    }
-    function hndlII_hide(_event) {
-        for (let i = 0; i < list.length; i++)
-            list[i].hndl_Hide("Soziales");
-    }
-    function hndlIII_hide(_event) {
-        for (let i = 0; i < list.length; i++)
-            list[i].hndl_Hide("eine Person");
-    }
-    function hndlIIII_hide(_event) {
-        for (let i = 0; i < list.length; i++)
-            list[i].hndl_Hide("mehrere Personen");
-    }
-    function hndl_showAll(_event) {
-        for (let i = 0; i < list.length; i++)
-            list[i].hndl_Hide("alle sind da...jipieieieie!!");
-    }
+    let jSONListe = JSON.stringify(list);
+    A07.liste = JSON.parse(jSONListe);
+    A07.einkaufArtikel = [];
+    let jSONListe2 = JSON.stringify(A07.einkaufArtikel);
+    A07.einkaufArtikelAnzeige = JSON.parse(jSONListe2);
 })(A07 || (A07 = {}));
-//# sourceMappingURL=script_Ablauf_Klassen.js.map
+//# sourceMappingURL=script_ArtikelVerwaltung.js.map

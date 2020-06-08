@@ -48,31 +48,31 @@ var A06_II;
         }
     }
     //A06 Teil 2
-    let hideI = document.getElementById("hideTechnik");
+    let hideI = document.getElementById("showSoziales");
     if (hideI)
         hideI.addEventListener("click", hndl_hide);
-    let hideII = document.getElementById("hideSoziales");
+    let hideII = document.getElementById("showTechnik");
     if (hideII)
         hideII.addEventListener("click", hndlII_hide);
-    let hideIII = document.getElementById("hidePerson");
+    let hideIII = document.getElementById("showPersonen");
     if (hideIII)
         hideIII.addEventListener("click", hndlIII_hide);
-    let hideIIII = document.getElementById("hidePersonen");
+    let hideIIII = document.getElementById("showPerson");
     if (hideIIII)
         hideIIII.addEventListener("click", hndlIIII_hide);
     let showAllI = document.getElementById("renew_I");
     if (showAllI)
         showAllI.addEventListener("click", hndl_showAll);
-    let showAllII = document.getElementById("renew_II");
+    let showAllII = document.getElementById("alles");
     if (showAllII)
         showAllII.addEventListener("click", hndl_showAll);
     function hndl_hide(_event) {
         for (let i = 0; i < list.length; i++)
-            list[i].hndl_Hide("Technik");
+            list[i].hndl_Hide("Soziales");
     }
     function hndlII_hide(_event) {
         for (let i = 0; i < list.length; i++)
-            list[i].hndl_Hide("Soziales");
+            list[i].hndl_Hide("Technik");
     }
     function hndlIII_hide(_event) {
         for (let i = 0; i < list.length; i++)
@@ -84,7 +84,7 @@ var A06_II;
     }
     function hndl_showAll(_event) {
         for (let i = 0; i < list.length; i++)
-            list[i].hndl_Hide("alle sind da...jipieieieie!!");
+            list[i].hndl_Hide("alle");
     }
 })(A06_II || (A06_II = {}));
 //# sourceMappingURL=script_Ablauf_Klassen.js.map

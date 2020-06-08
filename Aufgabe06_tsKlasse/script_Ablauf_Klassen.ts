@@ -50,37 +50,37 @@ namespace A06_II {
     }
 
     //A06 Teil 2
-    let hideI: HTMLElement = <HTMLElement>document.getElementById("hideTechnik");
+    let hideI: HTMLElement = <HTMLElement>document.getElementById("showSoziales");
     if (hideI)
         hideI.addEventListener("click", hndl_hide);
 
-    let hideII: HTMLElement = <HTMLElement>document.getElementById("hideSoziales");
+    let hideII: HTMLElement = <HTMLElement>document.getElementById("showTechnik");
     if (hideII)
         hideII.addEventListener("click", hndlII_hide);
 
-    let hideIII: HTMLElement = <HTMLElement>document.getElementById("hidePerson");
+    let hideIII: HTMLElement = <HTMLElement>document.getElementById("showPersonen");
     if (hideIII)
         hideIII.addEventListener("click", hndlIII_hide);
 
-    let hideIIII: HTMLElement = <HTMLElement>document.getElementById("hidePersonen");
+    let hideIIII: HTMLElement = <HTMLElement>document.getElementById("showPerson");
     if (hideIIII)
         hideIIII.addEventListener("click", hndlIIII_hide);
 
     let showAllI: HTMLElement = <HTMLElement>document.getElementById("renew_I");
     if (showAllI)
         showAllI.addEventListener("click", hndl_showAll);
-    let showAllII: HTMLElement = <HTMLElement>document.getElementById("renew_II");
+    let showAllII: HTMLElement = <HTMLElement>document.getElementById("alles");
     if (showAllII)
         showAllII.addEventListener("click", hndl_showAll);
 
     function hndl_hide(_event: Event): void {
         for (let i: number = 0; i < list.length; i++) 
-            list[i].hndl_Hide("Technik");
+            list[i].hndl_Hide("Soziales");
     }
 
     function hndlII_hide(_event: Event): void {
         for (let i: number = 0; i < list.length; i++) 
-            list[i].hndl_Hide("Soziales");
+            list[i].hndl_Hide("Technik");
     }
 
     function hndlIII_hide(_event: Event): void {
@@ -95,6 +95,6 @@ namespace A06_II {
 
     function hndl_showAll(_event: Event): void {
         for (let i: number = 0; i < list.length; i++) 
-            list[i].hndl_Hide("alle sind da...jipieieieie!!");
+            list[i].hndl_Hide("alle");
     }
 }
