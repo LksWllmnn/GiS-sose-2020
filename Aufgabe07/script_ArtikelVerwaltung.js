@@ -1,7 +1,7 @@
 "use strict";
 var A07;
 (function (A07) {
-    let list = [
+    A07.list = [
         new A07.ArtikelClass("Soziales", "Sand.PNG", "Sand für Leute in der Wüste", "feinster Qualitätssand", "absolut unnötig", "nicht nur im Alltag sondern auch in der Berufs-Edition", "mit Sicherheit nicht hilfreich", 50.00),
         new A07.ArtikelClass("Soziales", "larry.PNG", "furzender Larry", "ideal für Aufzüge", "garantierter Hass bei allen Mitarbeitern", "mit extra Chilli-Flavour", "ungeeignet für Leute die Fekal-Humor mögen", 800.00),
         new A07.ArtikelClass("Soziales", "Küche.PNG", "unaufgeräumte Arbeitsküche", "wenn Sie das nicht sowieso schon haben", "Alle werden sich davor ekeln...und niemand wird es weg räumen", "bei jeder Besprechung wird angesprochen warum es eigentlich so unordentlich ist", "ein Spaß für das ganze Büro", 200.00),
@@ -27,8 +27,10 @@ var A07;
         new A07.ArtikelClass("mehrere Personen", "linke_Schuhe.PNG", "nurnoch linke schuhe", "alle rechten schuhe werden durch das gleiche modell aber eben der falschen seite ersetzt", "garantiert nervenaufreibend für leute die öfters zuspät kommen", "garantiert nervenaufreibend für eigentlich so ziemlich jeden", "...andererseits...wir haben dann lauter paare mit nurnoch rechten schuhen...", 250.00),
         new A07.ArtikelClass("mehrere Personen", "Handy_Vertrag.PNG", "handy-vertrag kündigen", "wir kündigen für sie irgend wann ihren handyvertrag", "einfach so wenn sie nicht damit rechnen", "am besten morgens vor dem aufstehen", "und melden sie bei aldi talk an...gibts das noch?", 66.00)
     ];
-    let jSONListe = JSON.stringify(list);
+    let jSONListe = JSON.stringify(A07.list);
+    console.log(jSONListe);
     A07.liste = JSON.parse(jSONListe);
+    console.log(A07.liste);
     A07.einkaufArtikel = [];
     let jSONListe2 = JSON.stringify(A07.einkaufArtikel);
     A07.einkaufArtikelAnzeige = JSON.parse(jSONListe2);
