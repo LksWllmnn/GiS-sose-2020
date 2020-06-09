@@ -1,7 +1,7 @@
 "use strict";
 var A07;
 (function (A07) {
-    A07.list = [
+    A07.listi = [
         new A07.ArtikelClass("Soziales", "Sand.PNG", "Sand für Leute in der Wüste", "feinster Qualitätssand", "absolut unnötig", "nicht nur im Alltag sondern auch in der Berufs-Edition", "mit Sicherheit nicht hilfreich", 50.00),
         new A07.ArtikelClass("Soziales", "larry.PNG", "furzender Larry", "ideal für Aufzüge", "garantierter Hass bei allen Mitarbeitern", "mit extra Chilli-Flavour", "ungeeignet für Leute die Fekal-Humor mögen", 800.00),
         new A07.ArtikelClass("Soziales", "Küche.PNG", "unaufgeräumte Arbeitsküche", "wenn Sie das nicht sowieso schon haben", "Alle werden sich davor ekeln...und niemand wird es weg räumen", "bei jeder Besprechung wird angesprochen warum es eigentlich so unordentlich ist", "ein Spaß für das ganze Büro", 200.00),

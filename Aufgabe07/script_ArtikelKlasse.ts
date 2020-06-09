@@ -13,7 +13,7 @@ namespace A07 {
         constructor (_kathegorie: string , _bild: string, _name: string, _beschreibung: string, _beschreibung2: string, _beschreibung3: string, _beschreibung4: string, _preis: number ) {
             this.kathegorie = _kathegorie;
             this.bild = _bild;
-            this.name = name;
+            this.name = _name;
             this.beschreibung1 = _beschreibung;
             this.beschreibung2 = _beschreibung2;
             this.beschreibung3 = _beschreibung3;

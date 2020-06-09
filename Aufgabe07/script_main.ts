@@ -1,6 +1,6 @@
 namespace A07 {
     
-    /*export let list: ArtikelClass[] = [
+    export let list: ArtikelClass[] = [
         new ArtikelClass ("Soziales", "Sand.PNG", "Sand für Leute in der Wüste",  "feinster Qualitätssand", "absolut unnötig", "nicht nur im Alltag sondern auch in der Berufs-Edition", "mit Sicherheit nicht hilfreich",  50.00 ),
         new ArtikelClass ("Soziales", "larry.PNG", "furzender Larry", "ideal für Aufzüge", "garantierter Hass bei allen Mitarbeitern", "mit extra Chilli-Flavour",  "ungeeignet für Leute die Fekal-Humor mögen", 800.00 ),
         new ArtikelClass ("Soziales", "Küche.PNG", "unaufgeräumte Arbeitsküche", "wenn Sie das nicht sowieso schon haben", "Alle werden sich davor ekeln...und niemand wird es weg räumen",  "bei jeder Besprechung wird angesprochen warum es eigentlich so unordentlich ist",  "ein Spaß für das ganze Büro", 200.00),
@@ -25,8 +25,12 @@ namespace A07 {
         new ArtikelClass ( "mehrere Personen", "Vogel.PNG", "aggressiver Vogel",  "ein trainerter Vogel der eine spezielle person angreift",  "ist aggressiv",  "het schlechte verdauung", "bei aufpreis kann er reden", 2004.00),
         new ArtikelClass ( "mehrere Personen", "linke_Schuhe.PNG", "nurnoch linke schuhe", "alle rechten schuhe werden durch das gleiche modell aber eben der falschen seite ersetzt",  "garantiert nervenaufreibend für leute die öfters zuspät kommen", "garantiert nervenaufreibend für eigentlich so ziemlich jeden",  "...andererseits...wir haben dann lauter paare mit nurnoch rechten schuhen...", 250.00),
         new ArtikelClass ( "mehrere Personen", "Handy_Vertrag.PNG", "handy-vertrag kündigen", "wir kündigen für sie irgend wann ihren handyvertrag", "einfach so wenn sie nicht damit rechnen",  "am besten morgens vor dem aufstehen", "und melden sie bei aldi talk an...gibts das noch?", 66.00)
-    ];*/
+    ];
 
+    let jSONListe: string = JSON.stringify(list);
+    console.log(jSONListe);
+    //export let liste: ArtikelClass[] = JSON.parse(jSONListe); 
+    console.log(liste);
 
     let rollband: number = 0;
     let myJSONRollband: string = JSON.stringify(rollband);
@@ -34,22 +38,24 @@ namespace A07 {
     
     export let einkUms: number = 0;
 
-    for (let i: number = 0; i < list.length; i++) {
-        if (list[i].kathegorie == "Soziales") {
+    let ichkotz: ArtikelClass[] = list;
+
+    for (let i: number = 0; i < ichkotz.length; i++) {
+        if (ichkotz[i].kathegorie == "Soziales") {
             const großVater: HTMLElement = document.getElementById("soziales") as HTMLElement;
-            list[i].div_erstellen("soziales", i, großVater);
+            ichkotz[i].div_erstellen("soziales", i, großVater);
         }
-        if (list[i].kathegorie == "Technik") {
+        if (ichkotz[i].kathegorie == "Technik") {
             const großVater: HTMLElement = document.getElementById("technik") as HTMLElement;
-            list[i].div_erstellen("technik", i, großVater);
+            ichkotz[i].div_erstellen("technik", i, großVater);
         }
-        if (list[i].kathegorie == "eine Person") {
+        if (ichkotz[i].kathegorie == "eine Person") {
             const großVater: HTMLElement = document.getElementById("person") as HTMLElement;
-            list[i].div_erstellen("person", i, großVater);
+            ichkotz[i].div_erstellen("person", i, großVater);
         }
-        if (list[i].kathegorie == "mehrere Personen") {
+        if (ichkotz[i].kathegorie == "mehrere Personen") {
             const großVater: HTMLElement = document.getElementById("personen") as HTMLElement;
-            list[i].div_erstellen("personen", i, großVater);
+            ichkotz[i].div_erstellen("personen", i, großVater);
         }
     }
 
@@ -78,28 +84,28 @@ namespace A07 {
     showAllII.addEventListener("click", hndl_showAll);
 
     function hndl_hide(_event: Event): void {
-        for (let i: number = 0; i < liste.length; i++) 
-            liste[i].hndl_Hide("Technik");
+        for (let i: number = 0; i < ichkotz.length; i++) 
+            ichkotz[i].hndl_Hide("Technik");
     }
 
     function hndlII_hide(_event: Event): void {
-        for (let i: number = 0; i < liste.length; i++) 
-            liste[i].hndl_Hide("Soziales");
+        for (let i: number = 0; i < ichkotz.length; i++) 
+            ichkotz[i].hndl_Hide("Soziales");
     }
 
     function hndlIII_hide(_event: Event): void {
-        for (let i: number = 0; i < liste.length; i++) 
-            liste[i].hndl_Hide("eine Person");
+        for (let i: number = 0; i < ichkotz.length; i++) 
+            ichkotz[i].hndl_Hide("eine Person");
     }
 
     function hndlIIII_hide(_event: Event): void {
-        for (let i: number = 0; i < liste.length; i++) 
-            liste[i].hndl_Hide("mehrere Personen");
+        for (let i: number = 0; i < ichkotz.length; i++) 
+        ichkotz[i].hndl_Hide("mehrere Personen");
     }
 
     function hndl_showAll(_event: Event): void {
-        for (let i: number = 0; i < list.length; i++) 
-            list[i].hndl_Hide("alle sind da...jipieieieie!!");
+        for (let i: number = 0; i < ichkotz.length; i++) 
+            ichkotz[i].hndl_Hide("alle sind da...jipieieieie!!");
     }
 
     //A07 Teilaufgabe 2

@@ -1,6 +1,6 @@
 namespace A07 {
 
-    export let list: ArtikelClass[] = [
+    export let listi: ArtikelClass[] = [
         new ArtikelClass ("Soziales", "Sand.PNG", "Sand für Leute in der Wüste",  "feinster Qualitätssand", "absolut unnötig", "nicht nur im Alltag sondern auch in der Berufs-Edition", "mit Sicherheit nicht hilfreich",  50.00 ),
         new ArtikelClass ("Soziales", "larry.PNG", "furzender Larry", "ideal für Aufzüge", "garantierter Hass bei allen Mitarbeitern", "mit extra Chilli-Flavour",  "ungeeignet für Leute die Fekal-Humor mögen", 800.00 ),
         new ArtikelClass ("Soziales", "Küche.PNG", "unaufgeräumte Arbeitsküche", "wenn Sie das nicht sowieso schon haben", "Alle werden sich davor ekeln...und niemand wird es weg räumen",  "bei jeder Besprechung wird angesprochen warum es eigentlich so unordentlich ist",  "ein Spaß für das ganze Büro", 200.00),
@@ -29,7 +29,21 @@ namespace A07 {
 
     let jSONListe: string = JSON.stringify(list);
     console.log(jSONListe);
-    export let liste: ArtikelClass[] = JSON.parse(jSONListe); 
+
+    interface Artikel {
+        kathegorie: string;
+        bild: string;
+        name: string;
+        beschreibung: string;
+        beschreibeung2: string;
+        beschreibung3: string;
+        beschreibung4: string;
+        preis: number;
+    }
+
+    export let liste: Artikel[] = JSON.parse(jSONListe); 
+
+
     console.log(liste);
     
     export let einkaufArtikel: ImEinkaufsWagen[] = [];

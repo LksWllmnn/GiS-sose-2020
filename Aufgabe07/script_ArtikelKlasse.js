@@ -5,7 +5,7 @@ var A07;
         constructor(_kathegorie, _bild, _name, _beschreibung, _beschreibung2, _beschreibung3, _beschreibung4, _preis) {
             this.kathegorie = _kathegorie;
             this.bild = _bild;
-            this.name = name;
+            this.name = _name;
             this.beschreibung1 = _beschreibung;
             this.beschreibung2 = _beschreibung2;
             this.beschreibung3 = _beschreibung3;
