@@ -1,6 +1,6 @@
 namespace A07 {
 
-    export let listi: ArtikelClass[] = [
+    export let list: ArtikelClass[] = [
         new ArtikelClass ("Soziales", "Sand.PNG", "Sand für Leute in der Wüste",  "feinster Qualitätssand", "absolut unnötig", "nicht nur im Alltag sondern auch in der Berufs-Edition", "mit Sicherheit nicht hilfreich",  50.00 ),
         new ArtikelClass ("Soziales", "larry.PNG", "furzender Larry", "ideal für Aufzüge", "garantierter Hass bei allen Mitarbeitern", "mit extra Chilli-Flavour",  "ungeeignet für Leute die Fekal-Humor mögen", 800.00 ),
         new ArtikelClass ("Soziales", "Küche.PNG", "unaufgeräumte Arbeitsküche", "wenn Sie das nicht sowieso schon haben", "Alle werden sich davor ekeln...und niemand wird es weg räumen",  "bei jeder Besprechung wird angesprochen warum es eigentlich so unordentlich ist",  "ein Spaß für das ganze Büro", 200.00),
@@ -27,10 +27,10 @@ namespace A07 {
         new ArtikelClass ( "mehrere Personen", "Handy_Vertrag.PNG", "handy-vertrag kündigen", "wir kündigen für sie irgend wann ihren handyvertrag", "einfach so wenn sie nicht damit rechnen",  "am besten morgens vor dem aufstehen", "und melden sie bei aldi talk an...gibts das noch?", 66.00)
     ];
 
-    let jSONListe: string = JSON.stringify(list);
-    console.log(jSONListe);
+    //let jSONListe: string = JSON.stringify(list);
+    //console.log(jSONListe);
 
-    interface Artikel {
+    export interface Artikel {
         kathegorie: string;
         bild: string;
         name: string;
@@ -40,13 +40,4 @@ namespace A07 {
         beschreibung4: string;
         preis: number;
     }
-
-    export let liste: Artikel[] = JSON.parse(jSONListe); 
-
-
-    console.log(liste);
-    
-    export let einkaufArtikel: ImEinkaufsWagen[] = [];
-    let jSONListe2: string = JSON.stringify(einkaufArtikel);
-    export let einkaufArtikelAnzeige: ImEinkaufsWagen[] = JSON.parse(jSONListe2); 
 }

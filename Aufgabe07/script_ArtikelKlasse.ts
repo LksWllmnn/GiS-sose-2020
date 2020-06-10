@@ -104,11 +104,12 @@ namespace A07 {
                         einkaufsWagenII.innerHTML = "" + rollbandOver;
                     }
                 }
-                window.alert("...na dann");
 
+                window.alert("...na dann");
                 einkUms += this.preis;
+                localStorageSpeicher(this.name, this.preis, rollbandOver, einkUms);
+
                 console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + einkUms + " €");
-                this.einkaufBilden();
             } else {
                 window.alert("besser is es!");
             } 
@@ -123,8 +124,5 @@ namespace A07 {
         }
 
         //A07 Teilaufgabe 2
-        einkaufBilden(): void {
-            einkaufArtikel.push(new ImEinkaufsWagen(this.preis, this.name));
-        }
     }
 }

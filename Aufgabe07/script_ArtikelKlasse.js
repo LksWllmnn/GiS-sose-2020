@@ -90,8 +90,8 @@ var A07;
                 }
                 window.alert("...na dann");
                 A07.einkUms += this.preis;
+                A07.localStorageSpeicher(this.name, this.preis, A07.rollbandOver, A07.einkUms);
                 console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + A07.einkUms + " €");
-                this.einkaufBilden();
             }
             else {
                 window.alert("besser is es!");
@@ -103,10 +103,6 @@ var A07;
                 this.eigenerKaschten.setAttribute("style", "display: none");
             else
                 this.eigenerKaschten.setAttribute("style", "display: block");
-        }
-        //A07 Teilaufgabe 2
-        einkaufBilden() {
-            A07.einkaufArtikel.push(new A07.ImEinkaufsWagen(this.preis, this.name));
         }
     }
     A07.ArtikelClass = ArtikelClass;

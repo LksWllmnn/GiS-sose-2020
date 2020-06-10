@@ -38,5 +38,5 @@ namespace A07_I {
     ];
 
     export let jSONListe: string = JSON.stringify(list);
-    console.log(jSONListe);
+    //console.log(jSONListe);
 }

@@ -28,6 +28,6 @@ var A07_I;
         { kathegorie: "mehrere Personen", bild: "Handy_Vertrag.PNG", name: "handy-vertrag kündigen", beschreibung: "wir kündigen für sie irgend wann ihren handyvertrag", beschreibeung2: "einfach so wenn sie nicht damit rechnen", beschreibung3: "am besten morgens vor dem aufstehen", beschreibung4: "und melden sie bei aldi talk an...gibts das noch?", preis: 66.00 }
     ];
     A07_I.jSONListe = JSON.stringify(A07_I.list);
-    console.log(A07_I.jSONListe);
+    //console.log(jSONListe);
 })(A07_I || (A07_I = {}));
 //# sourceMappingURL=script_Daten.js.map
