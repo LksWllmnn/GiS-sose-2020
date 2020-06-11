@@ -90,7 +90,7 @@ var A07;
                 }
                 window.alert("...na dann");
                 A07.einkUms += this.preis;
-                A07.localStorageSpeicher(this.name, this.preis, A07.rollbandOver, A07.einkUms);
+                A07.localStorageSpeicher(this.name, this.preis, this.bild);
                 console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + A07.einkUms + " €");
             }
             else {

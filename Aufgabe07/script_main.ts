@@ -92,11 +92,9 @@ namespace A07 {
             listFinal[i].hndl_Hide("alle sind da...jipieieieie!!");
     }
 
-    export function localStorageSpeicher(_name: string, _preis: number, _position: number, _umsatz: number): void {
-        localStorage.setItem("Artikel" + _position, _name);
-        localStorage.setItem("Preis" + _position, "" + _preis);
-        localStorage.setItem("Einkaufswagen" + _position, "" + _position);
-        localStorage.setItem("Gesamtpreis", "" + _umsatz);
+    
+    export function localStorageSpeicher(_name: string, _preis: number, _bild: string): void {
+        localStorage.setItem("" + _preis, "" + _name + "," + _bild);
+        console.log(localStorage.length);
     }
-
 }

@@ -1,11 +1,29 @@
 namespace A07 {
-    export let aufzählung: number = Number(localStorage.getItem("Einkaufswagen"));
-    export let gesamtpreis: number = Number(localStorage.getItem("Gesamtpreis"));
+    export let gesamtpreis: number = 0;
     export let aufgezählt: ImEinkaufsWagen[] = [];
     
+    console.log(localStorage.length);
+
     //Ablauf
     listeBeginnen();
     auflisten();
+
+    function auflisten(): void {
+        for (let i: number = 0; i < localStorage.length; i++) {
+            //if (<string>localStorage.getItem(<string>localStorage.key(i))
+            let aufbau: string = <string>localStorage.getItem(<string>localStorage.key(i));
+            let aufbauString: string[] = aufbau.split(",");
+            let name: string = aufbauString[0];
+            let bild: string = aufbauString[1];
+            let a: ImEinkaufsWagen = new ImEinkaufsWagen (Number(localStorage.key(i)), name, bild );
+            gesamtpreis += a.preis;
+            console.log(a.name);
+            console.log(a.preis);
+            aufgezählt.push(a);
+            a.einTrag(i);
+        }
+        listeBeenden(gesamtpreis);
+    }
     
 
     function listeBeginnen(): void {
@@ -16,7 +34,10 @@ namespace A07 {
         großvater.appendChild(ersteZeile);
         let stornoÜberschrift: HTMLElement = document.createElement("th");
         stornoÜberschrift.innerHTML = "Storno";
-            
+        
+        let bild: HTMLElement = document.createElement("th");
+        bild.innerHTML = "Bild";
+
         let name: HTMLElement = document.createElement("th");
         name.innerHTML = "Artikel";
             
@@ -24,18 +45,9 @@ namespace A07 {
         preis.innerHTML = "Preis";
 
         ersteZeile.appendChild(stornoÜberschrift);
+        ersteZeile.appendChild(bild);
         ersteZeile.appendChild(name);
         ersteZeile.appendChild(preis);
-    }
-    
-    function auflisten(): void {
-        for (let i: number = 1; i <= aufzählung; i++) {
-            let a: ImEinkaufsWagen = new ImEinkaufsWagen(Number(localStorage.getItem("Preis" + i )), <string>localStorage.getItem("Artikel" + i ), i);
-            a.einTrag(i);
-            aufgezählt.push(a);
-            console.log(aufgezählt);
-        }
-        listeBeenden(gesamtpreis);
     }
 
     export function listeBeenden(_gesamtpreis: number): void {
@@ -51,6 +63,9 @@ namespace A07 {
         stornoButton.addEventListener("click", hndl_entfernenAlle);
         stornoButton.innerHTML = "ALLE STORNOOOO!!";
             
+        let platzhalter: HTMLElement = document.createElement("td");
+        platzhalter.innerHTML = "";
+
         let name: HTMLElement = document.createElement("th");
         name.innerHTML = "Gesamtpreis:";
             
@@ -59,28 +74,16 @@ namespace A07 {
         preis.innerHTML = "" + _gesamtpreis;
 
         letzteZeile.appendChild(stornoAlle);
+        letzteZeile.appendChild(platzhalter);
         letzteZeile.appendChild(name);
         letzteZeile.appendChild(preis);
+        
     }
 
     function hndl_entfernenAlle(_event: Event): void {
-        for (let i: number = 0; i <= aufzählung; i++) {
-            localStorage.removeItem("Gesamtpreis");
-            localStorage.removeItem("Artikel" + i);
-            localStorage.removeItem("Preis" + i);
-            localStorage.removeItem("Einkaufswagen" + i);
-
-            let listeLöschen: HTMLElement = <HTMLElement> document.getElementById("" + i);
-            if (listeLöschen)
-                listeLöschen.remove();
-        }
-        let ende: HTMLElement = <HTMLElement> document.getElementById("ende");
-        if  (ende)
-            ende.remove();
-        let anfang: HTMLElement = <HTMLElement> document.getElementById("anfang");
-        if (anfang)
-            anfang.remove();
+        localStorage.clear();
         listeBeginnen();
         listeBeenden(0);
+        location.reload();
     }
 }

@@ -78,11 +78,9 @@ var A07;
         for (let i = 0; i < listFinal.length; i++)
             listFinal[i].hndl_Hide("alle sind da...jipieieieie!!");
     }
-    function localStorageSpeicher(_name, _preis, _position, _umsatz) {
-        localStorage.setItem("Artikel" + _position, _name);
-        localStorage.setItem("Preis" + _position, "" + _preis);
-        localStorage.setItem("Einkaufswagen" + _position, "" + _position);
-        localStorage.setItem("Gesamtpreis", "" + _umsatz);
+    function localStorageSpeicher(_name, _preis, _bild) {
+        localStorage.setItem("" + _preis, "" + _name + "," + _bild);
+        console.log(localStorage.length);
     }
     A07.localStorageSpeicher = localStorageSpeicher;
 })(A07 || (A07 = {}));

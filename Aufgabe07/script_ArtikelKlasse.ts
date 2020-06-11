@@ -107,8 +107,7 @@ namespace A07 {
 
                 window.alert("...na dann");
                 einkUms += this.preis;
-                localStorageSpeicher(this.name, this.preis, rollbandOver, einkUms);
-
+                localStorageSpeicher(this.name, this.preis, this.bild);
                 console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + einkUms + " €");
             } else {
                 window.alert("besser is es!");
@@ -124,5 +123,6 @@ namespace A07 {
         }
 
         //A07 Teilaufgabe 2
+        
     }
 }

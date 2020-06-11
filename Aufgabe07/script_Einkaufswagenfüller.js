@@ -1,12 +1,28 @@
 "use strict";
 var A07;
 (function (A07) {
-    A07.aufzählung = Number(localStorage.getItem("Einkaufswagen"));
-    A07.gesamtpreis = Number(localStorage.getItem("Gesamtpreis"));
+    A07.gesamtpreis = 0;
     A07.aufgezählt = [];
+    console.log(localStorage.length);
     //Ablauf
     listeBeginnen();
     auflisten();
+    function auflisten() {
+        for (let i = 0; i < localStorage.length; i++) {
+            //if (<string>localStorage.getItem(<string>localStorage.key(i))
+            let aufbau = localStorage.getItem(localStorage.key(i));
+            let aufbauString = aufbau.split(",");
+            let name = aufbauString[0];
+            let bild = aufbauString[1];
+            let a = new A07.ImEinkaufsWagen(Number(localStorage.key(i)), name, bild);
+            A07.gesamtpreis += a.preis;
+            console.log(a.name);
+            console.log(a.preis);
+            A07.aufgezählt.push(a);
+            a.einTrag(i);
+        }
+        listeBeenden(A07.gesamtpreis);
+    }
     function listeBeginnen() {
         let ersteZeile = document.createElement("tr");
         ersteZeile.id = "anfang";
@@ -15,22 +31,16 @@ var A07;
             großvater.appendChild(ersteZeile);
         let stornoÜberschrift = document.createElement("th");
         stornoÜberschrift.innerHTML = "Storno";
+        let bild = document.createElement("th");
+        bild.innerHTML = "Bild";
         let name = document.createElement("th");
         name.innerHTML = "Artikel";
         let preis = document.createElement("th");
         preis.innerHTML = "Preis";
         ersteZeile.appendChild(stornoÜberschrift);
+        ersteZeile.appendChild(bild);
         ersteZeile.appendChild(name);
         ersteZeile.appendChild(preis);
-    }
-    function auflisten() {
-        for (let i = 1; i <= A07.aufzählung; i++) {
-            let a = new A07.ImEinkaufsWagen(Number(localStorage.getItem("Preis" + i)), localStorage.getItem("Artikel" + i), i);
-            a.einTrag(i);
-            A07.aufgezählt.push(a);
-            console.log(A07.aufgezählt);
-        }
-        listeBeenden(A07.gesamtpreis);
     }
     function listeBeenden(_gesamtpreis) {
         let letzteZeile = document.createElement("tr");
@@ -43,33 +53,23 @@ var A07;
         stornoAlle.appendChild(stornoButton);
         stornoButton.addEventListener("click", hndl_entfernenAlle);
         stornoButton.innerHTML = "ALLE STORNOOOO!!";
+        let platzhalter = document.createElement("td");
+        platzhalter.innerHTML = "";
         let name = document.createElement("th");
         name.innerHTML = "Gesamtpreis:";
         let preis = document.createElement("th");
         preis.innerHTML = "" + _gesamtpreis;
         letzteZeile.appendChild(stornoAlle);
+        letzteZeile.appendChild(platzhalter);
         letzteZeile.appendChild(name);
         letzteZeile.appendChild(preis);
     }
     A07.listeBeenden = listeBeenden;
     function hndl_entfernenAlle(_event) {
-        for (let i = 0; i <= A07.aufzählung; i++) {
-            localStorage.removeItem("Gesamtpreis");
-            localStorage.removeItem("Artikel" + i);
-            localStorage.removeItem("Preis" + i);
-            localStorage.removeItem("Einkaufswagen" + i);
-            let listeLöschen = document.getElementById("" + i);
-            if (listeLöschen)
-                listeLöschen.remove();
-        }
-        let ende = document.getElementById("ende");
-        if (ende)
-            ende.remove();
-        let anfang = document.getElementById("anfang");
-        if (anfang)
-            anfang.remove();
+        localStorage.clear();
         listeBeginnen();
         listeBeenden(0);
+        location.reload();
     }
 })(A07 || (A07 = {}));
 //# sourceMappingURL=script_Einkaufswagenfüller.js.map

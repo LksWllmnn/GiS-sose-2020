@@ -128,6 +128,14 @@ header a{
     visibility: hidden;
   }
 
+  .einkaufBild{
+      width: 40%;
+      margin: 0px;
+  }
+
+  .einkaufBildRahmen{
+      width: 35%;
+  }
 /*alles im main*/
 main{
     min-height: 600px;
