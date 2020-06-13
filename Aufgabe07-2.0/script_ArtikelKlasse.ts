@@ -97,12 +97,6 @@ namespace A07_III {
                 einkUms += this.preis;
                 this.anzahl++;
                 localStorage.setItem("" + this.position, "" + this.anzahl);
-                /*console.log("Anzahl " + this.anzahl);
-                console.log("Storage " + localStorage.getItem("" + this.position));
-                console.log(localStorage.key(0));
-                console.log(localStorage.key(1));
-                console.log(localStorage.length);
-                //localStorage.clear();*/
                 let einkaufsWagenII: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagenII");
             
                 if (localStorage.length != 0) {
@@ -111,7 +105,10 @@ namespace A07_III {
                         einkaufsWagenII.innerHTML = "" + localStorage.length;
                     }
                 }
-                window.alert("...na dann");
+                if (this.anzahl == 1)
+                    window.alert("...na dann, 1-mal in Warenkorb");
+                else
+                    window.alert("... ok..." + this.anzahl + "-mal im Warenkorb");
                 console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + einkUms + " €");
             } else {
                 window.alert("besser is es!");
