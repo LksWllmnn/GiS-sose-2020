@@ -75,22 +75,21 @@ var A07;
         //A06 Teilaufgabe 1
         hndl_Einkauf(_event) {
             if (window.confirm("bisch sicher dass '" + this.name + "' brauchsch?...")) {
-                A07.rollbandOver++;
+                A07.einkUms += this.preis;
+                A07.localStorageSpeicher(this.name, this.preis, this.bild);
                 let einkaufsWagen = document.getElementById("imEinkaufswagen");
                 let einkaufsWagenII = document.getElementById("imEinkaufswagenII");
-                if (A07.rollbandOver != 0) {
+                if (localStorage.length != 0) {
                     if (einkaufsWagen) {
                         einkaufsWagen.setAttribute("style", "visibility: visible");
-                        einkaufsWagen.innerHTML = "" + A07.rollbandOver;
+                        einkaufsWagen.innerHTML = "" + localStorage.length;
                     }
                     if (einkaufsWagenII) {
                         einkaufsWagenII.setAttribute("style", "visibility: visible");
-                        einkaufsWagenII.innerHTML = "" + A07.rollbandOver;
+                        einkaufsWagenII.innerHTML = "" + localStorage.length;
                     }
                 }
                 window.alert("...na dann");
-                A07.einkUms += this.preis;
-                A07.localStorageSpeicher(this.name, this.preis, this.bild);
                 console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + A07.einkUms + " €");
             }
             else {

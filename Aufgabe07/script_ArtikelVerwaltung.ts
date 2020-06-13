@@ -26,7 +26,6 @@ namespace A07 {
         new ArtikelClass ( "mehrere Personen", "linke_Schuhe.PNG", "nurnoch linke schuhe", "alle rechten schuhe werden durch das gleiche modell aber eben der falschen seite ersetzt",  "garantiert nervenaufreibend für leute die öfters zuspät kommen", "garantiert nervenaufreibend für eigentlich so ziemlich jeden",  "...andererseits...wir haben dann lauter paare mit nurnoch rechten schuhen...", 250.00),
         new ArtikelClass ( "mehrere Personen", "Handy_Vertrag.PNG", "handy-vertrag kündigen", "wir kündigen für sie irgend wann ihren handyvertrag", "einfach so wenn sie nicht damit rechnen",  "am besten morgens vor dem aufstehen", "und melden sie bei aldi talk an...gibts das noch?", 66.00)
     ];
-
     //let jSONListe: string = JSON.stringify(list);
     //console.log(jSONListe);
 

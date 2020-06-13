@@ -1,25 +1,24 @@
 namespace A07 {
-    export let rollband: number = 0;
     export let einkUms: number = 0;
-    export let rollbandOver: number = 0;
     let liste: Artikel[] = [];
     let listFinal: ArtikelClass[] = [];
 
     communicate("Liste.json");
-
     async function communicate(_url: RequestInfo): Promise<void> {
         let response: Response = await fetch(_url);
         liste = await response.json();
+        befindetSichBereitsWasImEinkaufswagen();
+        befindetSichBereitsWasImEinkaufswagenfürAlleAnderen();
         converter(liste);
     }
 
     function converter(_liste: Artikel[]): void {
-        
         for (let i: number = 0; i < liste.length; i++) {
             let a: ArtikelClass = new ArtikelClass (_liste[i].kathegorie, _liste[i].bild, _liste[i].name, _liste[i].beschreibung , _liste[i].beschreibeung2, _liste[i].beschreibung3, _liste[i].beschreibung4, _liste[i].preis);
             listFinal.push(a);
         }
         aufbau(listFinal);
+        
     }
 
     function aufbau(_liste: ArtikelClass[]): void {
@@ -92,9 +91,41 @@ namespace A07 {
             listFinal[i].hndl_Hide("alle sind da...jipieieieie!!");
     }
 
-    
     export function localStorageSpeicher(_name: string, _preis: number, _bild: string): void {
         localStorage.setItem("" + _preis, "" + _name + "," + _bild);
-        console.log(localStorage.length);
+    }
+
+    function befindetSichBereitsWasImEinkaufswagen(): void {
+        if (localStorage.length > 0) {
+            let einkaufsWagenII: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagenII");
+            if (einkaufsWagenII) {
+                einkaufsWagenII.setAttribute("style", "visibility: visible");
+                einkaufsWagenII.innerHTML = "" + localStorage.length;
+            }
+        } else {
+            let einkaufsWagenII: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagenII");
+            if (einkaufsWagenII) {
+                einkaufsWagenII.setAttribute("style", "visibility: hidden");
+            }
+        }
+    }
+
+    function befindetSichBereitsWasImEinkaufswagenfürAlleAnderen(): void {
+        if (localStorage.length > 0) {
+            let elementListe: HTMLDivElement[] = <HTMLDivElement[]><unknown>document.getElementsByClassName("EinkaufswagenAnzeige");
+            for (let i: number = 0; i < elementListe.length; i++) {
+                if (elementListe[i]) {
+                    elementListe[i].setAttribute("style", "visibility: visible");
+                    elementListe[i].innerHTML = "" + localStorage.length;
+                }
+            }
+        } else {
+            let elementListe: HTMLDivElement[] = <HTMLDivElement[]><unknown>document.getElementsByClassName("EinkaufswagenAnzeige");
+            for (let i: number = 0; i < elementListe.length; i++) {
+                if (elementListe[i]) {
+                    elementListe[i].setAttribute("style", "visibility: hidden");
+                }
+            }
+        }
     }
 }

@@ -1,8 +1,6 @@
 namespace A07 {
     export let gesamtpreis: number = 0;
     export let aufgezählt: ImEinkaufsWagen[] = [];
-    
-    console.log(localStorage.length);
 
     //Ablauf
     listeBeginnen();
@@ -10,19 +8,17 @@ namespace A07 {
 
     function auflisten(): void {
         for (let i: number = 0; i < localStorage.length; i++) {
-            //if (<string>localStorage.getItem(<string>localStorage.key(i))
             let aufbau: string = <string>localStorage.getItem(<string>localStorage.key(i));
             let aufbauString: string[] = aufbau.split(",");
             let name: string = aufbauString[0];
             let bild: string = aufbauString[1];
             let a: ImEinkaufsWagen = new ImEinkaufsWagen (Number(localStorage.key(i)), name, bild );
             gesamtpreis += a.preis;
-            console.log(a.name);
-            console.log(a.preis);
             aufgezählt.push(a);
             a.einTrag(i);
         }
         listeBeenden(gesamtpreis);
+        befindetSichBereitsWasImEinkaufswagenfürAlleAnderen()
     }
     
 
@@ -71,13 +67,12 @@ namespace A07 {
             
         let preis: HTMLElement = document.createElement("th");
 
-        preis.innerHTML = "" + _gesamtpreis;
+        preis.innerHTML = "" + _gesamtpreis + " €";
 
         letzteZeile.appendChild(stornoAlle);
         letzteZeile.appendChild(platzhalter);
         letzteZeile.appendChild(name);
         letzteZeile.appendChild(preis);
-        
     }
 
     function hndl_entfernenAlle(_event: Event): void {
@@ -85,5 +80,24 @@ namespace A07 {
         listeBeginnen();
         listeBeenden(0);
         location.reload();
+    }
+
+    function befindetSichBereitsWasImEinkaufswagenfürAlleAnderen(): void {
+        if (localStorage.length > 0) {
+            let elementListe: HTMLDivElement[] = <HTMLDivElement[]><unknown>document.getElementsByClassName("EinkaufswagenAnzeige");
+            for (let i: number = 0; i < elementListe.length; i++) {
+                if (elementListe[i]) {
+                    elementListe[i].setAttribute("style", "visibility: visible");
+                    elementListe[i].innerHTML = "" + localStorage.length;
+                }
+            }
+        } else {
+            let elementListe: HTMLDivElement[] = <HTMLDivElement[]><unknown>document.getElementsByClassName("EinkaufswagenAnzeige");
+            for (let i: number = 0; i < elementListe.length; i++) {
+                if (elementListe[i]) {
+                    elementListe[i].setAttribute("style", "visibility: hidden");
+                }
+            }
+        }
     }
 }

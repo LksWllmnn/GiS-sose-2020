@@ -3,25 +3,22 @@ var A07;
 (function (A07) {
     A07.gesamtpreis = 0;
     A07.aufgezählt = [];
-    console.log(localStorage.length);
     //Ablauf
     listeBeginnen();
     auflisten();
     function auflisten() {
         for (let i = 0; i < localStorage.length; i++) {
-            //if (<string>localStorage.getItem(<string>localStorage.key(i))
             let aufbau = localStorage.getItem(localStorage.key(i));
             let aufbauString = aufbau.split(",");
             let name = aufbauString[0];
             let bild = aufbauString[1];
             let a = new A07.ImEinkaufsWagen(Number(localStorage.key(i)), name, bild);
             A07.gesamtpreis += a.preis;
-            console.log(a.name);
-            console.log(a.preis);
             A07.aufgezählt.push(a);
             a.einTrag(i);
         }
         listeBeenden(A07.gesamtpreis);
+        befindetSichBereitsWasImEinkaufswagenfürAlleAnderen();
     }
     function listeBeginnen() {
         let ersteZeile = document.createElement("tr");
@@ -58,7 +55,7 @@ var A07;
         let name = document.createElement("th");
         name.innerHTML = "Gesamtpreis:";
         let preis = document.createElement("th");
-        preis.innerHTML = "" + _gesamtpreis;
+        preis.innerHTML = "" + _gesamtpreis + " €";
         letzteZeile.appendChild(stornoAlle);
         letzteZeile.appendChild(platzhalter);
         letzteZeile.appendChild(name);
@@ -70,6 +67,25 @@ var A07;
         listeBeginnen();
         listeBeenden(0);
         location.reload();
+    }
+    function befindetSichBereitsWasImEinkaufswagenfürAlleAnderen() {
+        if (localStorage.length > 0) {
+            let elementListe = document.getElementsByClassName("EinkaufswagenAnzeige");
+            for (let i = 0; i < elementListe.length; i++) {
+                if (elementListe[i]) {
+                    elementListe[i].setAttribute("style", "visibility: visible");
+                    elementListe[i].innerHTML = "" + localStorage.length;
+                }
+            }
+        }
+        else {
+            let elementListe = document.getElementsByClassName("EinkaufswagenAnzeige");
+            for (let i = 0; i < elementListe.length; i++) {
+                if (elementListe[i]) {
+                    elementListe[i].setAttribute("style", "visibility: hidden");
+                }
+            }
+        }
     }
 })(A07 || (A07 = {}));
 //# sourceMappingURL=script_Einkaufswagenfüller.js.map

@@ -90,24 +90,22 @@ namespace A07 {
         //A06 Teilaufgabe 1
         hndl_Einkauf(_event: Event): void {
             if (window.confirm("bisch sicher dass '" + this.name + "' brauchsch?...")) {
-                rollbandOver++;
+                einkUms += this.preis;
+                localStorageSpeicher(this.name, this.preis, this.bild);
                 let einkaufsWagen: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagen");
                 let einkaufsWagenII: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagenII");
             
-                if (rollbandOver != 0) {
+                if (localStorage.length != 0) {
                     if (einkaufsWagen) {
                         einkaufsWagen.setAttribute("style", "visibility: visible");
-                        einkaufsWagen.innerHTML = "" + rollbandOver;
+                        einkaufsWagen.innerHTML = "" + localStorage.length;
                     }
                     if (einkaufsWagenII) {
                         einkaufsWagenII.setAttribute("style", "visibility: visible");
-                        einkaufsWagenII.innerHTML = "" + rollbandOver;
+                        einkaufsWagenII.innerHTML = "" + localStorage.length;
                     }
                 }
-
                 window.alert("...na dann");
-                einkUms += this.preis;
-                localStorageSpeicher(this.name, this.preis, this.bild);
                 console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + einkUms + " €");
             } else {
                 window.alert("besser is es!");
@@ -121,8 +119,5 @@ namespace A07 {
             else
                 this.eigenerKaschten.setAttribute("style", "display: block");
         }
-
-        //A07 Teilaufgabe 2
-        
     }
 }

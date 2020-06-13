@@ -1,15 +1,15 @@
 "use strict";
 var A07;
 (function (A07) {
-    A07.rollband = 0;
     A07.einkUms = 0;
-    A07.rollbandOver = 0;
     let liste = [];
     let listFinal = [];
     communicate("Liste.json");
     async function communicate(_url) {
         let response = await fetch(_url);
         liste = await response.json();
+        befindetSichBereitsWasImEinkaufswagen();
+        befindetSichBereitsWasImEinkaufswagenfürAlleAnderen();
         converter(liste);
     }
     function converter(_liste) {
@@ -80,8 +80,41 @@ var A07;
     }
     function localStorageSpeicher(_name, _preis, _bild) {
         localStorage.setItem("" + _preis, "" + _name + "," + _bild);
-        console.log(localStorage.length);
     }
     A07.localStorageSpeicher = localStorageSpeicher;
+    function befindetSichBereitsWasImEinkaufswagen() {
+        if (localStorage.length > 0) {
+            let einkaufsWagenII = document.getElementById("imEinkaufswagenII");
+            if (einkaufsWagenII) {
+                einkaufsWagenII.setAttribute("style", "visibility: visible");
+                einkaufsWagenII.innerHTML = "" + localStorage.length;
+            }
+        }
+        else {
+            let einkaufsWagenII = document.getElementById("imEinkaufswagenII");
+            if (einkaufsWagenII) {
+                einkaufsWagenII.setAttribute("style", "visibility: hidden");
+            }
+        }
+    }
+    function befindetSichBereitsWasImEinkaufswagenfürAlleAnderen() {
+        if (localStorage.length > 0) {
+            let elementListe = document.getElementsByClassName("EinkaufswagenAnzeige");
+            for (let i = 0; i < elementListe.length; i++) {
+                if (elementListe[i]) {
+                    elementListe[i].setAttribute("style", "visibility: visible");
+                    elementListe[i].innerHTML = "" + localStorage.length;
+                }
+            }
+        }
+        else {
+            let elementListe = document.getElementsByClassName("EinkaufswagenAnzeige");
+            for (let i = 0; i < elementListe.length; i++) {
+                if (elementListe[i]) {
+                    elementListe[i].setAttribute("style", "visibility: hidden");
+                }
+            }
+        }
+    }
 })(A07 || (A07 = {}));
 //# sourceMappingURL=script_main.js.map
