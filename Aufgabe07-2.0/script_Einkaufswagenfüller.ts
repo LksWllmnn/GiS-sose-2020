@@ -1,24 +1,29 @@
-namespace A07 {
+namespace A07_III {
     export let gesamtpreis: number = 0;
     export let aufgezählt: ImEinkaufsWagen[] = [];
+    let liste: Artikel[] = [];
+    
 
     //Ablauf
     listeBeginnen();
-    auflisten();
 
-    function auflisten(): void {
+    communicate("Liste.json");
+    async function communicate(_url: RequestInfo): Promise<void> {
+        let response: Response = await fetch(_url);
+        liste = await response.json();
+        befindetSichBereitsWasImEinkaufswagenfürAlleAnderen();
+        converter(liste);
+    }
+
+    function converter(_liste: Artikel[]): void {
         for (let i: number = 0; i < localStorage.length; i++) {
-            let aufbau: string = <string>localStorage.getItem(<string>localStorage.key(i));
-            let aufbauString: string[] = aufbau.split(",");
-            let name: string = aufbauString[0];
-            let bild: string = aufbauString[1];
-            let a: ImEinkaufsWagen = new ImEinkaufsWagen (Number(localStorage.key(i)), name, bild );
+            let number: number = Number(localStorage.key(i));
+            let a: ImEinkaufsWagen = new ImEinkaufsWagen (_liste[number].preis, _liste[number].name, _liste[number].bild, Number(localStorage.getItem(<string>localStorage.key(i))), number );
             gesamtpreis += a.preis;
-            aufgezählt.push(a);
             a.einTrag(i);
+            aufgezählt.push(a);
         }
         listeBeenden(gesamtpreis);
-        befindetSichBereitsWasImEinkaufswagenfürAlleAnderen();
     }
     
 

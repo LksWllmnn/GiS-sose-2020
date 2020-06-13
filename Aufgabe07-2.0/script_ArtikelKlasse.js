@@ -1,8 +1,8 @@
 "use strict";
-var A07;
-(function (A07) {
+var A07_III;
+(function (A07_III) {
     class ArtikelClass {
-        constructor(_kathegorie, _bild, _name, _beschreibung, _beschreibung2, _beschreibung3, _beschreibung4, _preis) {
+        constructor(_kathegorie, _bild, _name, _beschreibung, _beschreibung2, _beschreibung3, _beschreibung4, _preis, _position) {
             this.kathegorie = _kathegorie;
             this.bild = _bild;
             this.name = _name;
@@ -11,6 +11,8 @@ var A07;
             this.beschreibung3 = _beschreibung3;
             this.beschreibung4 = _beschreibung4;
             this.preis = _preis;
+            this.anzahl = 0;
+            this.position = _position;
         }
         div_erstellen(_kat, _i, _großVater) {
             let kasten = document.createElement("div");
@@ -75,8 +77,15 @@ var A07;
         //A06 Teilaufgabe 1
         hndl_Einkauf(_event) {
             if (window.confirm("bisch sicher dass '" + this.name + "' brauchsch?...")) {
-                A07.einkUms += this.preis;
-                A07.localStorageSpeicher(this.name, this.preis, this.bild);
+                A07_III.einkUms += this.preis;
+                this.anzahl++;
+                localStorage.setItem("" + this.position, "" + this.anzahl);
+                /*console.log("Anzahl " + this.anzahl);
+                console.log("Storage " + localStorage.getItem("" + this.position));
+                console.log(localStorage.key(0));
+                console.log(localStorage.key(1));
+                console.log(localStorage.length);
+                //localStorage.clear();*/
                 let einkaufsWagenII = document.getElementById("imEinkaufswagenII");
                 if (localStorage.length != 0) {
                     if (einkaufsWagenII) {
@@ -85,7 +94,7 @@ var A07;
                     }
                 }
                 window.alert("...na dann");
-                console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + A07.einkUms + " €");
+                console.log("im Warenkorb befinden sich Artike im stabilen Wert von: " + A07_III.einkUms + " €");
             }
             else {
                 window.alert("besser is es!");
@@ -99,6 +108,6 @@ var A07;
                 this.eigenerKaschten.setAttribute("style", "display: none");
         }
     }
-    A07.ArtikelClass = ArtikelClass;
-})(A07 || (A07 = {}));
+    A07_III.ArtikelClass = ArtikelClass;
+})(A07_III || (A07_III = {}));
 //# sourceMappingURL=script_ArtikelKlasse.js.map

@@ -1,24 +1,27 @@
 "use strict";
-var A07;
-(function (A07) {
-    A07.gesamtpreis = 0;
-    A07.aufgezählt = [];
+var A07_III;
+(function (A07_III) {
+    A07_III.gesamtpreis = 0;
+    A07_III.aufgezählt = [];
+    let liste = [];
     //Ablauf
     listeBeginnen();
-    auflisten();
-    function auflisten() {
-        for (let i = 0; i < localStorage.length; i++) {
-            let aufbau = localStorage.getItem(localStorage.key(i));
-            let aufbauString = aufbau.split(",");
-            let name = aufbauString[0];
-            let bild = aufbauString[1];
-            let a = new A07.ImEinkaufsWagen(Number(localStorage.key(i)), name, bild);
-            A07.gesamtpreis += a.preis;
-            A07.aufgezählt.push(a);
-            a.einTrag(i);
-        }
-        listeBeenden(A07.gesamtpreis);
+    communicate("Liste.json");
+    async function communicate(_url) {
+        let response = await fetch(_url);
+        liste = await response.json();
         befindetSichBereitsWasImEinkaufswagenfürAlleAnderen();
+        converter(liste);
+    }
+    function converter(_liste) {
+        for (let i = 0; i < localStorage.length; i++) {
+            let number = Number(localStorage.key(i));
+            let a = new A07_III.ImEinkaufsWagen(_liste[number].preis, _liste[number].name, _liste[number].bild, Number(localStorage.getItem(localStorage.key(i))), number);
+            A07_III.gesamtpreis += a.preis;
+            a.einTrag(i);
+            A07_III.aufgezählt.push(a);
+        }
+        listeBeenden(A07_III.gesamtpreis);
     }
     function listeBeginnen() {
         let ersteZeile = document.createElement("tr");
@@ -67,7 +70,7 @@ var A07;
         letzteZeile.appendChild(name);
         letzteZeile.appendChild(preis);
     }
-    A07.listeBeenden = listeBeenden;
+    A07_III.listeBeenden = listeBeenden;
     function hndl_entfernenAlle(_event) {
         localStorage.clear();
         listeBeginnen();
@@ -93,5 +96,5 @@ var A07;
             }
         }
     }
-})(A07 || (A07 = {}));
+})(A07_III || (A07_III = {}));
 //# sourceMappingURL=script_Einkaufswagenfüller.js.map

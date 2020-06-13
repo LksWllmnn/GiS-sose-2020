@@ -1,16 +1,18 @@
-namespace A07 {
+namespace A07_III {
     export class ImEinkaufsWagen {
         preis: number;
         name: string;
         position: number;
         bild: string;
         anzahl: number;
+        kennnummer: number;
         
-        constructor(_preis: number, _name: string, _bild: string) {
-            this.preis = _preis;
+        constructor(_preis: number, _name: string, _bild: string, _anzahl: number, _kennnummer: number) {
+            this.preis = _preis * _anzahl;
             this.name = _name;
             this.bild = _bild;
-            this.anzahl = 1;
+            this.anzahl = _anzahl;
+            this.kennnummer = _kennnummer;
         }
 
         einTrag(_position: number): void {
@@ -35,7 +37,7 @@ namespace A07 {
             stückinp.id = "value" + _position; 
             stück.appendChild(stückinp);
             stückinp.setAttribute("placeholder", "" + this.anzahl);
-            stückinp.addEventListener("input", this.hndl_anzahlVerändern.bind(this));
+            stückinp.addEventListener("change", this.hndl_anzahlVerändern.bind(this));
 
             let bildRahmen: HTMLElement = document.createElement("td");
             bildRahmen.setAttribute("class", "einkaufBildRahmen");
@@ -50,14 +52,14 @@ namespace A07 {
             name.innerHTML = this.name;
             
             let preis: HTMLElement = document.createElement("td");
-            preis.innerHTML = "" + this.preis * this.anzahl + "€";
+            preis.innerHTML = "" + this.preis + "€";
 
             einkauf.appendChild(name);
             einkauf.appendChild(preis);
         }
 
         hndl_entfernen(_event: Event): void {
-            localStorage.removeItem("" + this.preis);
+            localStorage.removeItem("" + this.kennnummer);
             let liElem: HTMLElement = <HTMLElement> document.getElementById("" + this.position);
             liElem.remove();
             gesamtpreis -= Number(this.preis.toFixed(2));
@@ -66,11 +68,12 @@ namespace A07 {
         }
 
         hndl_anzahlVerändern(_event: Event): void {
-            let newAnzahlContainer: HTMLElement = <HTMLElement> document.getElementById("value" + this.position);
+            let newAnzahlContainer: HTMLInputElement = <HTMLInputElement> _event.currentTarget;
             if (newAnzahlContainer) {
-                let newAnzahl: number = Number(newAnzahlContainer.nodeValue);
+                let newAnzahl: number = Number(newAnzahlContainer.value);
                 if (newAnzahl)
-                this.anzahl = newAnzahl;
+                    localStorage.setItem("" + this.kennnummer, "" + newAnzahl);
+                location.reload();
             }
         }
     }

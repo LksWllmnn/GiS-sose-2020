@@ -1,4 +1,4 @@
-namespace A07 {
+namespace A07_III {
     export class ArtikelClass {
         kathegorie: string;
         bild: string;
@@ -9,8 +9,10 @@ namespace A07 {
         beschreibung4: string;
         preis: number;
         eigenerKaschten: HTMLElement;
+        anzahl: number;
+        position: number;
 
-        constructor (_kathegorie: string , _bild: string, _name: string, _beschreibung: string, _beschreibung2: string, _beschreibung3: string, _beschreibung4: string, _preis: number ) {
+        constructor (_kathegorie: string , _bild: string, _name: string, _beschreibung: string, _beschreibung2: string, _beschreibung3: string, _beschreibung4: string, _preis: number, _position: number ) {
             this.kathegorie = _kathegorie;
             this.bild = _bild;
             this.name = _name;
@@ -19,6 +21,8 @@ namespace A07 {
             this.beschreibung3 = _beschreibung3;
             this.beschreibung4 = _beschreibung4;
             this.preis = _preis;
+            this.anzahl = 0;
+            this.position = _position;
         }
 
         div_erstellen(_kat: string, _i: number, _großVater: HTMLElement): void {
@@ -91,7 +95,14 @@ namespace A07 {
         hndl_Einkauf(_event: Event): void {
             if (window.confirm("bisch sicher dass '" + this.name + "' brauchsch?...")) {
                 einkUms += this.preis;
-                localStorageSpeicher(this.name, this.preis, this.bild);
+                this.anzahl++;
+                localStorage.setItem("" + this.position, "" + this.anzahl);
+                /*console.log("Anzahl " + this.anzahl);
+                console.log("Storage " + localStorage.getItem("" + this.position));
+                console.log(localStorage.key(0));
+                console.log(localStorage.key(1));
+                console.log(localStorage.length);
+                //localStorage.clear();*/
                 let einkaufsWagenII: HTMLElement = <HTMLElement>document.getElementById("imEinkaufswagenII");
             
                 if (localStorage.length != 0) {

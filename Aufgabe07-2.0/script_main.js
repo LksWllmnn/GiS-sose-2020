@@ -1,9 +1,9 @@
 "use strict";
-var A07;
-(function (A07) {
-    A07.einkUms = 0;
+var A07_III;
+(function (A07_III) {
+    A07_III.einkUms = 0;
     let liste = [];
-    let listFinal = [];
+    A07_III.listFinal = [];
     communicate("Liste.json");
     async function communicate(_url) {
         let response = await fetch(_url);
@@ -13,10 +13,10 @@ var A07;
     }
     function converter(_liste) {
         for (let i = 0; i < liste.length; i++) {
-            let a = new A07.ArtikelClass(_liste[i].kathegorie, _liste[i].bild, _liste[i].name, _liste[i].beschreibung, _liste[i].beschreibeung2, _liste[i].beschreibung3, _liste[i].beschreibung4, _liste[i].preis);
-            listFinal.push(a);
+            let a = new A07_III.ArtikelClass(_liste[i].kathegorie, _liste[i].bild, _liste[i].name, _liste[i].beschreibung, _liste[i].beschreibeung2, _liste[i].beschreibung3, _liste[i].beschreibung4, _liste[i].preis, i);
+            A07_III.listFinal.push(a);
         }
-        aufbau(listFinal);
+        aufbau(A07_III.listFinal);
     }
     function aufbau(_liste) {
         for (let i = 0; i < _liste.length; i++) {
@@ -58,29 +58,25 @@ var A07;
     if (showAllII)
         showAllII.addEventListener("click", hndl_showAll);
     function hndl_hide(_event) {
-        for (let i = 0; i < listFinal.length; i++)
-            listFinal[i].hndl_Hide("Soziales");
+        for (let i = 0; i < A07_III.listFinal.length; i++)
+            A07_III.listFinal[i].hndl_Hide("Soziales");
     }
     function hndlII_hide(_event) {
-        for (let i = 0; i < listFinal.length; i++)
-            listFinal[i].hndl_Hide("Technik");
+        for (let i = 0; i < A07_III.listFinal.length; i++)
+            A07_III.listFinal[i].hndl_Hide("Technik");
     }
     function hndlIII_hide(_event) {
-        for (let i = 0; i < listFinal.length; i++)
-            listFinal[i].hndl_Hide("eine Person");
+        for (let i = 0; i < A07_III.listFinal.length; i++)
+            A07_III.listFinal[i].hndl_Hide("eine Person");
     }
     function hndlIIII_hide(_event) {
-        for (let i = 0; i < listFinal.length; i++)
-            listFinal[i].hndl_Hide("mehrere Personen");
+        for (let i = 0; i < A07_III.listFinal.length; i++)
+            A07_III.listFinal[i].hndl_Hide("mehrere Personen");
     }
     function hndl_showAll(_event) {
-        for (let i = 0; i < listFinal.length; i++)
-            listFinal[i].hndl_Hide("alle");
+        for (let i = 0; i < A07_III.listFinal.length; i++)
+            A07_III.listFinal[i].hndl_Hide("alle");
     }
-    function localStorageSpeicher(_name, _preis, _bild) {
-        localStorage.setItem("" + _preis, "" + _name + "," + _bild);
-    }
-    A07.localStorageSpeicher = localStorageSpeicher;
     function befindetSichBereitsWasImEinkaufswagen() {
         if (localStorage.length > 0) {
             let elementListe = document.getElementsByClassName("EinkaufswagenAnzeige");
@@ -100,5 +96,5 @@ var A07;
             }
         }
     }
-})(A07 || (A07 = {}));
+})(A07_III || (A07_III = {}));
 //# sourceMappingURL=script_main.js.map

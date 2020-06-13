@@ -1,7 +1,7 @@
-namespace A07 {
+namespace A07_III {
     export let einkUms: number = 0;
     let liste: Artikel[] = [];
-    let listFinal: ArtikelClass[] = [];
+    export let listFinal: ArtikelClass[] = [];
 
     communicate("Liste.json");
     async function communicate(_url: RequestInfo): Promise<void> {
@@ -13,7 +13,7 @@ namespace A07 {
 
     function converter(_liste: Artikel[]): void {
         for (let i: number = 0; i < liste.length; i++) {
-            let a: ArtikelClass = new ArtikelClass (_liste[i].kathegorie, _liste[i].bild, _liste[i].name, _liste[i].beschreibung , _liste[i].beschreibeung2, _liste[i].beschreibung3, _liste[i].beschreibung4, _liste[i].preis);
+            let a: ArtikelClass = new ArtikelClass (_liste[i].kathegorie, _liste[i].bild, _liste[i].name, _liste[i].beschreibung , _liste[i].beschreibeung2, _liste[i].beschreibung3, _liste[i].beschreibung4, _liste[i].preis, i);
             listFinal.push(a);
         }
         aufbau(listFinal);
@@ -87,10 +87,6 @@ namespace A07 {
     function hndl_showAll(_event: Event): void {
         for (let i: number = 0; i < listFinal.length; i++) 
             listFinal[i].hndl_Hide("alle");
-    }
-
-    export function localStorageSpeicher(_name: string, _preis: number, _bild: string): void {
-        localStorage.setItem("" + _preis, "" + _name + "," + _bild);
     }
 
     function befindetSichBereitsWasImEinkaufswagen(): void {

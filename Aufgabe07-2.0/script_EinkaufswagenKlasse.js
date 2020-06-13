@@ -1,12 +1,13 @@
 "use strict";
-var A07;
-(function (A07) {
+var A07_III;
+(function (A07_III) {
     class ImEinkaufsWagen {
-        constructor(_preis, _name, _bild) {
-            this.preis = _preis;
+        constructor(_preis, _name, _bild, _anzahl, _kennnummer) {
+            this.preis = _preis * _anzahl;
             this.name = _name;
             this.bild = _bild;
-            this.anzahl = 1;
+            this.anzahl = _anzahl;
+            this.kennnummer = _kennnummer;
         }
         einTrag(_position) {
             this.position = _position;
@@ -28,7 +29,7 @@ var A07;
             stückinp.id = "value" + _position;
             stück.appendChild(stückinp);
             stückinp.setAttribute("placeholder", "" + this.anzahl);
-            stückinp.addEventListener("input", this.hndl_anzahlVerändern.bind(this));
+            stückinp.addEventListener("change", this.hndl_anzahlVerändern.bind(this));
             let bildRahmen = document.createElement("td");
             bildRahmen.setAttribute("class", "einkaufBildRahmen");
             einkauf.appendChild(bildRahmen);
@@ -40,27 +41,28 @@ var A07;
             let name = document.createElement("td");
             name.innerHTML = this.name;
             let preis = document.createElement("td");
-            preis.innerHTML = "" + this.preis * this.anzahl + "€";
+            preis.innerHTML = "" + this.preis + "€";
             einkauf.appendChild(name);
             einkauf.appendChild(preis);
         }
         hndl_entfernen(_event) {
-            localStorage.removeItem("" + this.preis);
+            localStorage.removeItem("" + this.kennnummer);
             let liElem = document.getElementById("" + this.position);
             liElem.remove();
-            A07.gesamtpreis -= Number(this.preis.toFixed(2));
-            A07.listeBeenden(A07.gesamtpreis);
+            A07_III.gesamtpreis -= Number(this.preis.toFixed(2));
+            A07_III.listeBeenden(A07_III.gesamtpreis);
             location.reload();
         }
         hndl_anzahlVerändern(_event) {
-            let newAnzahlContainer = document.getElementById("value" + this.position);
+            let newAnzahlContainer = _event.currentTarget;
             if (newAnzahlContainer) {
-                let newAnzahl = Number(newAnzahlContainer.nodeValue);
+                let newAnzahl = Number(newAnzahlContainer.value);
                 if (newAnzahl)
-                    this.anzahl = newAnzahl;
+                    localStorage.setItem("" + this.kennnummer, "" + newAnzahl);
+                location.reload();
             }
         }
     }
-    A07.ImEinkaufsWagen = ImEinkaufsWagen;
-})(A07 || (A07 = {}));
+    A07_III.ImEinkaufsWagen = ImEinkaufsWagen;
+})(A07_III || (A07_III = {}));
 //# sourceMappingURL=script_EinkaufswagenKlasse.js.map
