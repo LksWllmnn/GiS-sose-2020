@@ -1,0 +1,21 @@
+{
+  "name": "gis-sose-2020",
+  "version": "1.0.0",
+  "description": "testgissose2020lw",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node 01Vorlesungstest/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LksWllmnn/GiS-sose-2020.git"
+  },
+  "author": "lukasw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LksWllmnn/GiS-sose-2020/issues"
+  },
+  "homepage": "https://github.com/LksWllmnn/GiS-sose-2020#readme"
+}
