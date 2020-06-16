@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="communication.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Sprechen Sie mit mir...lel</h1>
+
+    </header>
+    <main>
+        <form id="einsFormular">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Anmeldeformular</th>
+                    </tr>
+                    <tr>
+                        <td>Anrede</td>
+                        <td>
+                            <select name="Anrede" id="AnredeSelect">
+                                <option name="Herr" value="Herr">Herr</option>
+                                <option name="Frau" value="Frau">Frau</option>
+                                <option name="Divers" value="Divers">*</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td><input name="Name" placeholder="Nachname"></td>
+                    </tr>
+                    <tr>
+                        <td>Vorname</td>
+                        <td><input name="VorName"placeholder="Vorname"></td>
+                    </tr>
+                    <tr>
+                        <td>Ihre Nachricht:</td>
+                        <td><input type="text" name="Nachricht" placeholder="Ihre Nachricht"></td>
+                    </tr>
+                    <tr>
+                        <td>Kontakt Email:</td>
+                        <td><input type="email" name="Kontakt" placeholder="Musterperson@email.com"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <button type="submit" id="NachrichtSenden">Senden!</button>
+
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
