@@ -1,5 +1,4 @@
 import * as Http from "http";
-//import * as Url from "url";
 
 export namespace A08Server {
   console.log("Starting server");
@@ -10,9 +9,11 @@ export namespace A08Server {
   server.addListener("request", handleRequest);
   server.addListener("listening", handleListen);
   server.listen(port);
+
   function handleListen(): void {
     console.log("Listening");
   }
+
   function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
     console.log("I hear voices!");
     _response.setHeader("content-type", "text/html; charset=utf-8");
