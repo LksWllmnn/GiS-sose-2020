@@ -5,10 +5,10 @@ namespace A08 {
     versenden.addEventListener("click", hndl_senden);
 
     function hndl_senden(): void {
-        console.log(serverf("https://testgissose2020lw.herokuapp.com/"));
+        serverf("https://testgissose2020lw.herokuapp.com/");
     }
-    
-    async function serverf(_url: RequestInfo): Promise<String> {
+
+    async function serverf(_url: RequestInfo): Promise<void> {
         formData = new FormData(document.forms[0]);
         let url: string = "" + _url;
         // tslint:disable-next-line: no-any
@@ -16,6 +16,6 @@ namespace A08 {
         url += url + "?" + query.toString();
         let antwort: Response = await fetch(url);
         let antwortanUser: String = await antwort.text();
-        return (antwortanUser);
+        console.log(antwortanUser);
     }
-}
+} 

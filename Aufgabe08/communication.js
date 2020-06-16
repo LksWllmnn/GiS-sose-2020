@@ -5,7 +5,7 @@ var A08;
     let versenden = document.getElementById("NachrichtSenden");
     versenden.addEventListener("click", hndl_senden);
     function hndl_senden() {
-        console.log(serverf("https://testgissose2020lw.herokuapp.com/"));
+        serverf("https://testgissose2020lw.herokuapp.com/");
     }
     async function serverf(_url) {
         formData = new FormData(document.forms[0]);
@@ -15,7 +15,7 @@ var A08;
         url += url + "?" + query.toString();
         let antwort = await fetch(url);
         let antwortanUser = await antwort.text();
-        return (antwortanUser);
+        console.log(antwortanUser);
     }
 })(A08 || (A08 = {}));
 //# sourceMappingURL=communication.js.map
