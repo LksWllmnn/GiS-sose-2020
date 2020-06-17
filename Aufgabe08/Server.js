@@ -14,6 +14,7 @@ var A08Server;
     server.listen(port);
     function handleListen() {
         console.log("Listening");
+        console.log("...still Listening");
     }
     function handleRequest(_request, _response) {
         console.log("I hear voices!");
@@ -21,11 +22,6 @@ var A08Server;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         _response.write(_request.url);
         _response.end();
-        /*for (let entry of _response) {
-                console.log(entry);
-                console.log("name: " + entry[0]);
-                console.log("value: " + entry[1]);
-            }*/
     }
 })(A08Server = exports.A08Server || (exports.A08Server = {}));
 //# sourceMappingURL=Server.js.map
