@@ -3,14 +3,12 @@ var A08;
 (function (A08) {
     //https://testgissose2020lw.herokuapp.com/
     //https://gis-example.herokuapp.com/
-    //Server.js
-    //localhost:8100
-    //C:\Users\Lukas\Desktop\Studium\2. Semester\03Grundlagen Interaktiver Systeme\Praktikum\GiS-sose-2020> node Aufgabe08/Server.js
+    //http://localhost:8100
     let formData;
     let versenden = document.getElementById("NachrichtSenden");
     versenden.addEventListener("click", hndl_senden);
     function hndl_senden() {
-        serverf("localhost:8100");
+        serverf("https://testgissose2020lw.herokuapp.com/");
     }
     async function serverf(_url) {
         formData = new FormData(document.forms[0]);
