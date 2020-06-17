@@ -21,6 +21,11 @@ var A08Server;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         _response.write(_request.url);
         _response.end();
+        /*for (let entry of _response) {
+                console.log(entry);
+                console.log("name: " + entry[0]);
+                console.log("value: " + entry[1]);
+            }*/
     }
 })(A08Server = exports.A08Server || (exports.A08Server = {}));
 //# sourceMappingURL=Server.js.map

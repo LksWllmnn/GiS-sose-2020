@@ -1,5 +1,7 @@
 namespace A08 {
-
+    //https://testgissose2020lw.herokuapp.com/
+    //https://gis-example.herokuapp.com/
+    //Server.js
     let formData: FormData;
     let versenden: HTMLElement = <HTMLButtonElement>document.getElementById("NachrichtSenden");
     versenden.addEventListener("click", hndl_senden);
@@ -17,5 +19,9 @@ namespace A08 {
         let antwort: Response = await fetch(url);
         let antwortanUser: String = await antwort.text();
         console.log(antwortanUser);
+    
+        
     }
+
+    
 } 

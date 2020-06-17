@@ -1,6 +1,9 @@
 "use strict";
 var A08;
 (function (A08) {
+    //https://testgissose2020lw.herokuapp.com/
+    //https://gis-example.herokuapp.com/
+    //Server.js
     let formData;
     let versenden = document.getElementById("NachrichtSenden");
     versenden.addEventListener("click", hndl_senden);
