@@ -27,6 +27,10 @@ var A09;
                 }
                 _response.end();
             }
+            if (path == "/Aufgabe08") {
+                _response.write(_request.url);
+                _response.end();
+            }
             if (path == "/json") {
                 let jsonString = JSON.stringify(url.query);
                 _response.write(jsonString);
