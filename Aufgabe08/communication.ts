@@ -13,7 +13,7 @@ namespace A08 {
     async function serverf(_url: RequestInfo): Promise<void> {
         formData = new FormData(document.forms[0]);
         let url: string = "" + _url;
-        url += "/Aufgabe08";
+        url += "Aufgabe08";
         // tslint:disable-next-line: no-any
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         url += "?" + query.toString();

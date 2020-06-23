@@ -39,7 +39,7 @@ var A09;
     async function serverg(_url) {
         formData = new FormData(document.forms[0]);
         let url = "" + _url;
-        url += "/html";
+        url += "html";
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
         url += "?" + query.toString();
@@ -53,7 +53,7 @@ var A09;
     async function serverh(_url) {
         formData = new FormData(document.forms[0]);
         let url = "" + _url;
-        url += "/json";
+        url += "json";
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
         url += "?" + query.toString();
