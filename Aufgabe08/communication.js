@@ -13,7 +13,7 @@ var A08;
     async function serverf(_url) {
         formData = new FormData(document.forms[0]);
         let url = "" + _url;
-        url += "Aufgabe08";
+        url += "/Aufgabe08";
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
         url += "?" + query.toString();
