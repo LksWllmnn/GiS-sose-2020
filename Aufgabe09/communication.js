@@ -12,13 +12,13 @@ var A09;
     let versenden3 = document.getElementById("NachrichtSenden3");
     versenden3.addEventListener("click", hndl_senden_url);
     function hndl_senden() {
-        serverf("http://localhost:8101");
+        serverf("https://testgissose2020lw.herokuapp.com/");
     }
     function hndl_senden_html() {
-        serverg("http://localhost:8101");
+        serverg("https://testgissose2020lw.herokuapp.com/");
     }
     function hndl_senden_url() {
-        serverh("http://localhost:8101");
+        serverh("https://testgissose2020lw.herokuapp.com/");
     }
     async function serverf(_url) {
         formData = new FormData(document.forms[0]);

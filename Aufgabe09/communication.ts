@@ -13,15 +13,15 @@ namespace A09 {
     versenden3.addEventListener("click", hndl_senden_url);
 
     function hndl_senden(): void {
-        serverf("http://localhost:8101");
+        serverf("https://testgissose2020lw.herokuapp.com/");
     }
 
     function hndl_senden_html(): void {
-        serverg("http://localhost:8101");
+        serverg("https://testgissose2020lw.herokuapp.com/");
     }
 
     function hndl_senden_url(): void {
-        serverh("http://localhost:8101");
+        serverh("https://testgissose2020lw.herokuapp.com/");
     }
 
     interface Formular {
