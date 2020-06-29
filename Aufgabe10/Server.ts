@@ -9,8 +9,8 @@ export namespace A10 {
         port = 8101;
 
     //server.addListener("listening", handleListen);
-    //mongodb+srv://lukasichlwmann:<auJbZYGmsCCePLSm>@lukas-gis-cluster-k6xk7.mongodb.net/<Lukas-Gis-Cluster>?retryWrites=true&w=majority
-    //https://mongodbnetbrowser.herokuapp.com/?u=lukasichlwmann&p=auJbZYGmsCCePLSm&a=lukas-gis-cluster-k6xk7.mongodb.net/%3CLukas-Gis-Cluster%3E?retryWrites=true&w=majority&n=Test&c=Students
+    //mongodb+srv://username:<passwort>@lukas-gis-cluster-k6xk7.mongodb.net/<Lukas-Gis-Cluster>?retryWrites=true&w=majority
+    //https://mongodbnetbrowser.herokuapp.com/?u=testuser&p=123456_testuser&a=lukas-gis-cluster-k6xk7.mongodb.net/%3CLukas-Gis-Cluster%3E?retryWrites=true&w=majority&n=Test&c=Students
 
 
     console.log("i'm alive!");
