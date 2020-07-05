@@ -1,15 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.A09 = void 0;
+exports.A10 = void 0;
 const Http = require("http");
 const Url = require("url");
-var A09;
-(function (A09) {
+var A10;
+(function (A10) {
     let server = Http.createServer();
     let port = Number(process.env.PORT);
     if (!port)
         port = 8101;
     //server.addListener("listening", handleListen);
+    //mongodb+srv://username:<passwort>@lukas-gis-cluster-k6xk7.mongodb.net/<Lukas-Gis-Cluster>?retryWrites=true&w=majority
+    //https://mongodbnetbrowser.herokuapp.com/?u=testuser&p=123456_testuser&a=lukas-gis-cluster-k6xk7.mongodb.net/%3CLukas-Gis-Cluster%3E?retryWrites=true&w=majority&n=Test&c=Students
     console.log("i'm alive!");
     server.listen(port);
     server.addListener("request", handleRequest);
@@ -48,5 +50,5 @@ var A09;
         //_response.write("Fuck OFF!!!");
         _response.end();
     }
-})(A09 = exports.A09 || (exports.A09 = {}));
+})(A10 = exports.A10 || (exports.A10 = {}));
 //# sourceMappingURL=Server.js.map

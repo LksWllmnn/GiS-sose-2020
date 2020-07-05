@@ -1,0 +1,81 @@
+body{
+    background-color: rgb(226, 234, 240);
+}
+
+header{
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: auto;
+}
+
+/* Fix-Nav*/
+#fixnav{
+    border-style: solid;
+    border-width: 1px;
+    position: fixed;
+    top: -5px;
+    right: -1px;
+    background-color: rgb(90, 84, 84);
+    border-color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1;
+    margin: 0px;
+}
+
+.drop-inhalt {
+    display: none;
+    position: absolute;
+    background-color: rgb(90, 84, 84);
+    width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+  }
+
+.drop-inhalt a {
+    float: none;
+    color: white;
+    padding: 5px 5px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+.drop-inhalt a:hover {
+    background-color: white;
+  }
+  
+#Eis-drop:hover .drop-inhalt {
+    display: block;
+  }
+#Soßen-drop:hover .drop-inhalt {
+    display: block;
+  }
+
+.fixnav a{
+    padding: 10px 10px;
+}
+.fixnav a:hover{
+    background-color: white;
+    color: rgb(90, 84, 84);
+}
+
+article{
+    width: 60%;
+    border-style: dashed;
+}
+
+aside{
+    width: 35%;
+    float: right;
+    border-style: dashed;
+}
+
+footer{
+    background-color: rgb(90, 84, 84);
+}

@@ -1,6 +1,6 @@
 "use strict";
-var A09;
-(function (A09) {
+var A10;
+(function (A10) {
     //https://testgissose2020lw.herokuapp.com/
     //https://gis-example.herokuapp.com/
     //http://localhost:8100
@@ -117,5 +117,5 @@ var A09;
         emailRückm.innerHTML = "" + _antwort.Kontakt;
         zeile5.appendChild(emailRückm);
     }
-})(A09 || (A09 = {}));
+})(A10 || (A10 = {}));
 //# sourceMappingURL=communication.js.map
