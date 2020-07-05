@@ -29,19 +29,19 @@ namespace A11 {
         let url: string = "" + _url;
         switch (_path) {
             case "store":
-                url += "/store";
+                url += "store";
                 console.log(1);
                 break;
             case "retrive":
-                url += "/retrive";
+                url += "retrive";
                 console.log(2);
                 break;
             case "terminieren":
-                url += "/terminieren";
+                url += "terminieren";
                 console.log(3);
                 break;
             default:
-                url += "/store";
+                url += "store";
                 break;
         }
 
