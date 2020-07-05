@@ -61,7 +61,7 @@ export namespace A11 {
             let speicherString: string = "";
             
             switch (path) {
-                case "//retrive":
+                case "/retrive":
                     console.log("im case");
                     nachrichten.find().toArray( function(err: Mongo.MongoError, speicher: string[]): void {
                         if (err)
@@ -83,14 +83,14 @@ export namespace A11 {
                     console.log("aus dem case");
                     break;
 
-                case "//store":
+                case "/store":
                     nachrichten.insertOne(url.query);
                     console.log("gespeichert");
                     _response.write("gespeichert");
                     _response.end();
                     break;
 
-                case "//terminieren":
+                case "/terminieren":
                     nachrichten.find().toArray(function(err: Mongo.MongoError, speicher: String[]): void {
                         if (err)
                         throw err;
