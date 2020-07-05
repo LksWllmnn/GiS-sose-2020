@@ -55,7 +55,7 @@ var A11;
             console.log(path);
             let speicherString = "";
             switch (path) {
-                case "/retrive":
+                case "//retrive":
                     console.log("im case");
                     A11.nachrichten.find().toArray(function (err, speicher) {
                         if (err)
@@ -75,13 +75,13 @@ var A11;
                     variableMain = speicherString;
                     console.log("aus dem case");
                     break;
-                case "/store":
+                case "//store":
                     A11.nachrichten.insertOne(url.query);
                     console.log("gespeichert");
                     _response.write("gespeichert");
                     _response.end();
                     break;
-                case "/terminieren":
+                case "//terminieren":
                     A11.nachrichten.find().toArray(function (err, speicher) {
                         if (err)
                             throw err;
