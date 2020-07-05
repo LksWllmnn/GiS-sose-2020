@@ -56,6 +56,8 @@ namespace A11 {
             console.log(antwort);
             console.log(antwortString);
             let ausgabeDiv: HTMLDivElement = <HTMLDivElement> document.getElementById("Ausgabe");
+            let renew: HTMLFormElement = <HTMLFormElement> document.getElementById("Sprich");
+            renew.reset();
             if (ausgabeDiv)
                 ausgabeDiv.innerHTML = antwortString;
 

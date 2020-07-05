@@ -50,6 +50,8 @@ var A11;
             console.log(antwort);
             console.log(antwortString);
             let ausgabeDiv = document.getElementById("Ausgabe");
+            let renew = document.getElementById("Sprich");
+            renew.reset();
             if (ausgabeDiv)
                 ausgabeDiv.innerHTML = antwortString;
         }
