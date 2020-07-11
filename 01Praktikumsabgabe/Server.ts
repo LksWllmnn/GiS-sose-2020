@@ -99,10 +99,10 @@ export namespace P01 {
                         _response.end();
                     });
                     break;
-                case "/send":
+                case "/send/1":
                     chatNachrichten.insertOne(url.query);
                     console.log("gespeichert");
-                case "/load":
+                case "/load/1":
                     console.log("im case");
                     chatNachrichten.find().toArray( function(err: Mongo.MongoError, speicher: string[]): void {
                         if (err)
@@ -121,7 +121,10 @@ export namespace P01 {
                     });
                     console.log(speicherString);
                     break;
-                    case "/load/Chat2":
+                    case "/send/2":
+                        chatNachrichten2.insertOne(url.query);
+                        console.log("gespeichert");
+                    case "/load/2":
                     console.log("im case");
                     chatNachrichten2.find().toArray( function(err: Mongo.MongoError, speicher: string[]): void {
                         if (err)
@@ -134,7 +137,7 @@ export namespace P01 {
                             speicherString += ",";
                         }
                         speicherString += "]";
-                        console.log(speicherString);
+                        //console.log(speicherString);
                         _response.write(speicherString);
                         _response.end();
                     });

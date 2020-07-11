@@ -16,15 +16,22 @@ namespace P01 {
 
     let abmeldenKnopf: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abmelden");
     abmeldenKnopf.addEventListener("click", hndl_abmelden);
+
     let senden: HTMLButtonElement = <HTMLButtonElement>document.getElementById("Senden");
     senden.addEventListener("click", hndl_senden);
+
+    let chatroom1: HTMLDivElement = <HTMLDivElement>document.getElementById("Chatroom1Change");
+    chatroom1.addEventListener("click", hndl_changeRoomto1);
+
+    let chatroom2: HTMLDivElement = <HTMLDivElement>document.getElementById("Chatroom2Change");
+    chatroom2.addEventListener("click", hndl_changeRoomto2);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Ablauf
 ///////////////////////////////////////////////////////////////////////////////////////////////
     main();
     function main(): void {
-        if (localStorage.length == 0) {
+        if (localStorage.getItem("login") == null) {
             let anfang: boolean = window.confirm("bist du neu hier?");
             if (anfang)
                 if (anmelden() )
@@ -41,8 +48,12 @@ namespace P01 {
                     location.reload();
                 }
         }
-        load();
-        setTimeout(load, 15000);
+        if (localStorage.getItem("room") == null)
+            localStorage.setItem("room", "1");
+        load(localStorage.getItem("room"));
+        console.log(localStorage.getItem("login"));
+        console.log(localStorage.getItem("room"));
+        //setTimeout(load, 15000);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +73,16 @@ namespace P01 {
                 }
             }
     }*/
+
+    function hndl_changeRoomto1(): void {
+        localStorage.setItem("room", "1");
+        location.reload();
+    }
+
+    function hndl_changeRoomto2(): void {
+        localStorage.setItem("room", "2");
+        location.reload();
+    }
 
     function anmelden(): boolean {
         let einloggenGeklappt: boolean = true;
@@ -117,7 +138,7 @@ namespace P01 {
 
         
     function hndl_abmelden(): void {
-        localStorage.clear();
+        localStorage.removeItem("login");
         location.reload();
     }
 
@@ -129,13 +150,13 @@ namespace P01 {
         let zuverschicken: HTMLInputElement = <HTMLInputElement>document.getElementById("input");
         let aktuelleNachricht: string | null = zuverschicken.value;
         if (aktuelleNachricht != null ) {
-            send(aktuelleNachricht, localStorage.getItem("login"));
+            send(aktuelleNachricht, localStorage.getItem("login"), localStorage.getItem("room"));
             console.log(aktuelleNachricht, localStorage.getItem("login"));
         }
     }
 
-    async function send(_aktuelleNachricht: string, _login: string | null): Promise<void> {
-        let url: string = "http://localhost:8101/send";
+    async function send(_aktuelleNachricht: string, _login: string | null, _chatroom: string|null): Promise<void> {
+        let url: string = "http://localhost:8101/send/" + _chatroom;
         url += "?login=" + "" + _login + "&nachricht=" + "" + _aktuelleNachricht ;
         //console.log("es wird geladen");
             //console.log("ich bin am warten...");
@@ -151,8 +172,8 @@ namespace P01 {
         }
     }
 
-    async function load(): Promise<void> {
-        let url: string = "http://localhost:8101/load";
+    async function load(_chatroom: string | null): Promise<void> {
+        let url: string = "http://localhost:8101/load/" + _chatroom;
         console.log("es wird geladen");
 
         let antwort: Response = await fetch(url);

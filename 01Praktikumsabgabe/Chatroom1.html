@@ -13,25 +13,33 @@
 
     <body>
         <header>
+            <div id="überschrift"><h1>HFU-Chat</h1></div>
+            <div id="überschrift2"><h2 id="aktuellerChatroom"></h2></div>
             <button id="abmelden">abmelden!</button>
-
-            <button id="Chatroom1Change">Chatroom 1</button>
-            <button id="Chatroom2Change">Chatroom 2</button>
-        </header>
-        <div>
-            <h2>Chat</h2>
-            <div id="ChatVerlauf">
-
-            </div>
-        </div>
-        <form  method="GET" action="">
-            <div id="absende-flex">
-                <input id="input"  type="text" placeholder="Dein Chat">
-                <button id="Senden">Senden!</button>
+            <div id="drop">
+                Chatrooms
+                <div id="dropinhalt">
+                    <div id="Chatroom1Change">Chatroom 1</div>
+                    <div id="Chatroom2Change">Chatroom 2</div>
+                </div>
             </div>
             
-        </form>
-        
+        </header>
+        <main>
+            <div>
+                
+                <div id="ChatVerlauf">
+
+                </div>
+            </div>
+            <form  method="GET" action="">
+                <div id="absende-flex">
+                    <input id="input"  type="text" placeholder="Dein Chat">
+                    <button id="Senden">Senden!</button>
+                </div>
+                
+            </form>
+        </main>
 
     </body>
 </html>
