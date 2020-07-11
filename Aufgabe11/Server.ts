@@ -4,7 +4,6 @@ import * as Mongo from "mongodb";
 
 export namespace A11 {
     //let gespeicherteNachrichten: Nachrichten;
-    let variableMain: String;
     let databaseUrl: string;
     
     //local oder remote
@@ -49,7 +48,7 @@ export namespace A11 {
     }
 
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
-        variableMain = "";
+        
         console.log("'ssss geeeht?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
@@ -79,7 +78,7 @@ export namespace A11 {
                         _response.end();
                     });
                     console.log(speicherString);
-                    variableMain = speicherString;
+                    
                     console.log("aus dem case");
                     break;
 

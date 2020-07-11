@@ -7,7 +7,6 @@ const Mongo = require("mongodb");
 var A11;
 (function (A11) {
     //let gespeicherteNachrichten: Nachrichten;
-    let variableMain;
     let databaseUrl;
     //local oder remote
     let args = process.argv.slice(2);
@@ -45,7 +44,6 @@ var A11;
     }
     A11.connectToDatabase = connectToDatabase;
     function handleRequest(_request, _response) {
-        variableMain = "";
         console.log("'ssss geeeht?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
@@ -72,7 +70,6 @@ var A11;
                         _response.end();
                     });
                     console.log(speicherString);
-                    variableMain = speicherString;
                     console.log("aus dem case");
                     break;
                 case "/store":
