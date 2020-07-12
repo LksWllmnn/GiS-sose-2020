@@ -2,6 +2,7 @@
 var P01;
 (function (P01) {
     P01.person = "";
+    //let aktuellerChatverlauf: Chatting[];
     let abmeldenKnopf = document.getElementById("abmelden");
     abmeldenKnopf.addEventListener("click", hndl_abmelden);
     let senden = document.getElementById("Senden");
@@ -33,10 +34,12 @@ var P01;
         }
         if (localStorage.getItem("room") == null)
             localStorage.setItem("room", "1");
-        load(localStorage.getItem("room"));
+        communicate("load", "");
+        //load(localStorage.getItem("room"));
+        //load(localStorage.getItem("room"));
         console.log(localStorage.getItem("login"));
         console.log(localStorage.getItem("room"));
-        //setTimeout(load, 15000);
+        //window.setTimeout(location.reload, 5000);
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //Funktionen
@@ -44,17 +47,6 @@ var P01;
     ///////////////////////////////////////////////////////////////////////////////////////
     //Funktionseinheiten
     ///////////////////////////////////////////////////////////////////////////////////////
-    /*function erkennung (): void {
-            while (person == "") {
-                person = prompt("gib deinen Namen ein");
-                if (person != "") {
-                    window.alert("Heelloo " + person);
-                    localStorage.setItem("login", "" + person);
-                } else {
-                    window.alert("geben Sie einen Namen ein um zu chatten!");
-                }
-            }
-    }*/
     function hndl_changeRoomto1() {
         localStorage.setItem("room", "1");
         location.reload();
@@ -124,37 +116,21 @@ var P01;
         let zuverschicken = document.getElementById("input");
         let aktuelleNachricht = zuverschicken.value;
         if (aktuelleNachricht != null) {
-            send(aktuelleNachricht, localStorage.getItem("login"), localStorage.getItem("room"));
+            communicate("send", aktuelleNachricht);
             console.log(aktuelleNachricht, localStorage.getItem("login"));
         }
     }
-    async function send(_aktuelleNachricht, _login, _chatroom) {
-        let url = "http://localhost:8101/send/" + _chatroom;
-        url += "?login=" + "" + _login + "&nachricht=" + "" + _aktuelleNachricht;
-        //console.log("es wird geladen");
-        //console.log("ich bin am warten...");
-        let antwort = await fetch(url);
-        let antwortString = await antwort.text();
-        console.log(antwortString);
-        let antwortanUser = await JSON.parse(antwortString);
-        console.log(antwort);
-        if (antwortString == "[]") {
-            converterPlatzhalter([{ "id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben" }]);
-        }
-        else {
-            converter(antwortanUser);
-        }
+    async function send(_url) {
+        //let url: string = "http://localhost:8101/send/" + _chatroom;
+        //url += "?login=" + "" + _login + "&nachricht=" + "" + _aktuelleNachricht ;
+        await fetch(_url);
     }
-    async function load(_chatroom) {
-        let url = "http://localhost:8101/load/" + _chatroom;
+    async function load(_url) {
         console.log("es wird geladen");
-        let antwort = await fetch(url);
+        let antwort = await fetch(_url);
         let antwortString = await antwort.text();
-        //console.log(antwortString);
         let antwortanUser = await JSON.parse(antwortString);
-        //console.log(antwort);
         if (antwortString == "[]") {
-            //platzhalter();
             converterPlatzhalter([{ "id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben" }]);
         }
         else {
@@ -162,7 +138,6 @@ var P01;
         }
     }
     async function comunicate_anmelden(_neuerBenutzer, _neuesPasswort) {
-        //window.alert("Hallo " + _neuerBenutzer + " dein Passwort ist" +  _neuesPasswort);
         let benutzerVorhanden = false;
         let url = "http://localhost:8101/signIn";
         console.log("es wird angemeldet");
@@ -179,7 +154,6 @@ var P01;
         return benutzerVorhanden;
     }
     async function comunicate_einloggen(_alterBenutzer, _altesPasswort) {
-        //window.alert("Wilkommen zurück " + _alterBenutzer + " dein Passwort ist " +  _altesPasswort);
         let validierung = false;
         let url = "http://localhost:8101/verifizieren";
         console.log("es wird verifiziert");
@@ -187,7 +161,6 @@ var P01;
         let antwort = await fetch(url);
         let antwortString = await antwort.text();
         let antwortanUser = await JSON.parse(antwortString);
-        console.log(antwort);
         for (let i = 0; i < antwortanUser.length; i++) {
             if (antwortanUser[i].login == _alterBenutzer && antwortanUser[i].passwort != _altesPasswort)
                 validierung = false;
@@ -209,6 +182,28 @@ var P01;
         let antwort = await fetch(url);
         let antwortString = await antwort.text();
         console.log(antwortString);
+    }
+    function communicate(_function, _chatroomNachricht) {
+        let url = "http://localhost:8101";
+        url += "/" + _function;
+        switch (_function) {
+            case "load":
+                url += "/" + localStorage.getItem("room");
+                load(url);
+                break;
+            case "send":
+                url += "/" + localStorage.getItem("room");
+                url += "?login=" + "" + localStorage.getItem("login") + "&nachricht=" + "" + _chatroomNachricht;
+                send(url);
+                break;
+            case "einloggen":
+                break;
+            case "anmelden":
+                break;
+            default:
+                console.log("diese kommunikations-funktion gibt es nicht");
+                break;
+        }
     }
 })(P01 || (P01 = {}));
 //# sourceMappingURL=start_chatroom.js.map

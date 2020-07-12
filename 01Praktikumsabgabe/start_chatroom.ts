@@ -14,6 +14,8 @@ namespace P01 {
     }
     export let person: string|null = "";
 
+    //let aktuellerChatverlauf: Chatting[];
+
     let abmeldenKnopf: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abmelden");
     abmeldenKnopf.addEventListener("click", hndl_abmelden);
 
@@ -36,6 +38,7 @@ namespace P01 {
             if (anfang)
                 if (anmelden() )
                     window.alert("Sei gegrüßt im HFU Chat!");
+                    
                 else {
                     window.alert("Das Passwort oder der Benutzername existiert bereits");
                     location.reload();
@@ -50,10 +53,13 @@ namespace P01 {
         }
         if (localStorage.getItem("room") == null)
             localStorage.setItem("room", "1");
-        load(localStorage.getItem("room"));
+        communicate("load", "");
+        //load(localStorage.getItem("room"));
+        //load(localStorage.getItem("room"));
         console.log(localStorage.getItem("login"));
         console.log(localStorage.getItem("room"));
-        //setTimeout(load, 15000);
+        
+        //window.setTimeout(location.reload, 5000);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,17 +68,6 @@ namespace P01 {
         ///////////////////////////////////////////////////////////////////////////////////////
         //Funktionseinheiten
         ///////////////////////////////////////////////////////////////////////////////////////
-    /*function erkennung (): void {
-            while (person == "") {
-                person = prompt("gib deinen Namen ein");
-                if (person != "") {
-                    window.alert("Heelloo " + person);
-                    localStorage.setItem("login", "" + person);
-                } else {
-                    window.alert("geben Sie einen Namen ein um zu chatten!");
-                }
-            }
-    }*/
 
     function hndl_changeRoomto1(): void {
         localStorage.setItem("room", "1");
@@ -100,8 +95,8 @@ namespace P01 {
         if (comunicate_anmelden(neuerBenutzername, neuespasswort)) {
             einloggenGeklappt = false;
         } else {
-        member_einschreiben(neuerBenutzername, neuespasswort);
-        localStorage.setItem("login", "" + neuerBenutzername);
+            member_einschreiben(neuerBenutzername, neuespasswort);
+            localStorage.setItem("login", "" + neuerBenutzername);
         }
         return einloggenGeklappt;
     }
@@ -150,40 +145,23 @@ namespace P01 {
         let zuverschicken: HTMLInputElement = <HTMLInputElement>document.getElementById("input");
         let aktuelleNachricht: string | null = zuverschicken.value;
         if (aktuelleNachricht != null ) {
-            send(aktuelleNachricht, localStorage.getItem("login"), localStorage.getItem("room"));
+            communicate("send", aktuelleNachricht);
             console.log(aktuelleNachricht, localStorage.getItem("login"));
         }
     }
 
-    async function send(_aktuelleNachricht: string, _login: string | null, _chatroom: string|null): Promise<void> {
-        let url: string = "http://localhost:8101/send/" + _chatroom;
-        url += "?login=" + "" + _login + "&nachricht=" + "" + _aktuelleNachricht ;
-        //console.log("es wird geladen");
-            //console.log("ich bin am warten...");
-        let antwort: Response = await fetch(url);
-        let antwortString: string = await antwort.text();
-        console.log(antwortString);
-        let antwortanUser: Chatting[] = await JSON.parse(antwortString);
-        console.log(antwort);
-        if (antwortString == "[]") {
-            converterPlatzhalter([{"id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
-        } else {
-            converter(antwortanUser);
-        }
+    async function send(_url: string): Promise<void> {
+        //let url: string = "http://localhost:8101/send/" + _chatroom;
+        //url += "?login=" + "" + _login + "&nachricht=" + "" + _aktuelleNachricht ;
+        await fetch(_url);
     }
 
-    async function load(_chatroom: string | null): Promise<void> {
-        let url: string = "http://localhost:8101/load/" + _chatroom;
+    async function load(_url: string): Promise<void> {
         console.log("es wird geladen");
-
-        let antwort: Response = await fetch(url);
+        let antwort: Response = await fetch(_url);
         let antwortString: string = await antwort.text();
-        //console.log(antwortString);
         let antwortanUser: Chatting[] = await JSON.parse(antwortString);
-        //console.log(antwort);
-            
         if (antwortString == "[]") {
-            //platzhalter();
             converterPlatzhalter([{"id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
         } else {
             converter(antwortanUser);
@@ -191,12 +169,10 @@ namespace P01 {
     }
 
     async function comunicate_anmelden(_neuerBenutzer: string | null, _neuesPasswort: string | null): Promise <boolean> {
-        //window.alert("Hallo " + _neuerBenutzer + " dein Passwort ist" +  _neuesPasswort);
         let benutzerVorhanden: boolean = false;
         let url: string = "http://localhost:8101/signIn";
         console.log("es wird angemeldet");
         url += "?login=" + "" + _neuerBenutzer + "&passwort=" + "" + _neuesPasswort ;
-
         let antwort: Response = await fetch(url);
         let antwortString: string = await antwort.text();
         let antwortanUser: Members[] = await JSON.parse(antwortString);
@@ -211,7 +187,6 @@ namespace P01 {
     }
         
     async function comunicate_einloggen(_alterBenutzer: string | null, _altesPasswort: string | null): Promise <boolean>  {
-        //window.alert("Wilkommen zurück " + _alterBenutzer + " dein Passwort ist " +  _altesPasswort);
         let validierung: boolean = false;
         let url: string = "http://localhost:8101/verifizieren";
         console.log("es wird verifiziert");
@@ -220,7 +195,6 @@ namespace P01 {
         let antwort: Response = await fetch(url);
         let antwortString: string = await antwort.text();
         let antwortanUser: Members[] = await JSON.parse(antwortString);
-        console.log(antwort);
         for (let i: number = 0; i < antwortanUser.length; i++) {
             if (antwortanUser[i].login == _alterBenutzer && antwortanUser[i].passwort != _altesPasswort)
                 validierung = false;
@@ -243,5 +217,30 @@ namespace P01 {
         let antwort: Response = await fetch(url);
         let antwortString: string = await antwort.text();
         console.log(antwortString);
+    }
+
+    function communicate (_function: string, _chatroomNachricht: string): void {
+        let url: string = "http://localhost:8101";
+        url += "/" + _function;
+
+        switch (_function) {
+            case "load":
+                url += "/" + localStorage.getItem("room");
+                load(url);
+                break;
+            case "send":
+                url += "/" + localStorage.getItem("room");
+                url += "?login=" + "" + localStorage.getItem("login") + "&nachricht=" + "" + _chatroomNachricht ;
+                send(url);
+                break;
+            case "einloggen":
+                break;
+            case "anmelden":
+                break;
+            default:
+                console.log("diese kommunikations-funktion gibt es nicht");
+                break;
+        }
+
     }
 }
