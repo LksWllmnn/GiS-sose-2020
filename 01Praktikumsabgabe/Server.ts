@@ -2,6 +2,12 @@ import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
 
+export interface Members {
+    id: string;
+    login: string;
+    passwort: string;
+}
+
 export namespace P01 {
     let databaseUrl: string;
 
@@ -65,6 +71,8 @@ export namespace P01 {
                     membersData.find().toArray( function(err: Mongo.MongoError, speicher: string[]): void {
                         if (err)
                           throw err; 
+                        let neuerName: string|string[]|undefined = "";
+                        let neuesPasswort: string|string[]|undefined = "";
                         speicherString += "[";
                         for (let i: number = 0; i < speicher.length; i++) {
 
@@ -73,19 +81,28 @@ export namespace P01 {
                             speicherString += ",";
                         }
                         speicherString += "]";
-                        //console.log(speicherString);
-                        _response.write(speicherString);
+                        for (let key in url.query ) {
+                            if (key == "login")
+                                neuerName = url.query[key];
+                            if (key == "passwort")
+                                neuesPasswort = url.query[key];
+                        }
+                        if (anmeldenAbgleichen(speicherString, neuerName, neuesPasswort))
+                            _response.write("Name schon vergeben");
+                        else {
+                            _response.write("Anmeldung akzeptiert");
+                            membersData.insertOne(url.query);
+                            console.log("Neuer Member angelegt");
+                        }
                         _response.end();
                     });
-                    break;
-                case "/einschreiben":
-                    membersData.insertOne(url.query);
-                    console.log("Neuer Member angelegt");
                     break;
                 case "/verifizieren":
                     membersData.find().toArray( function(err: Mongo.MongoError, speicher: string[]): void {
                         if (err)
-                          throw err; 
+                          throw err;
+                        let alterName: string|string[]|undefined = "";
+                        let altesPasswort: string|string[]|undefined = "";
                         speicherString += "[";
                         for (let i: number = 0; i < speicher.length; i++) {
 
@@ -94,8 +111,18 @@ export namespace P01 {
                             speicherString += ",";
                         }
                         speicherString += "]";
-                        //console.log(speicherString);
-                        _response.write(speicherString);
+
+                        for (let key in url.query ) {
+                            if (key == "login")
+                                alterName = url.query[key];
+                            if (key == "passwort")
+                                altesPasswort = url.query[key];
+                        }
+                        if (!einloggenAbgleich(speicherString, alterName, altesPasswort))
+                            _response.write("da passt was nicht");
+                        else {
+                            _response.write("Erfolgreich eingeloggt");
+                        }
                         _response.end();
                     });
                     break;
@@ -148,5 +175,29 @@ export namespace P01 {
                     break;
             }
         }
+    }
+
+    function anmeldenAbgleichen(_inDatenbankvorhanden: string, _nameClient: string|string[]|undefined, _passwortClient: string|string[]|undefined): boolean {
+        let vorhanden: boolean = false;
+        console.log(_nameClient);
+        let abgleich: Members[] = JSON.parse(_inDatenbankvorhanden);
+        for (let i: number = 0; i < abgleich.length - 1 ; i++) {
+            if (abgleich[i].login == _nameClient && _nameClient != "") {
+                vorhanden = true;
+            }
+        }
+        return vorhanden;
+    }
+
+    function einloggenAbgleich(_inDatenbankvorhanden: string, _nameClient: string|string[]|undefined, _passwortClient: string|string[]|undefined): boolean {
+        let passt: boolean = false;
+        let abgleich: Members[] = JSON.parse(_inDatenbankvorhanden);
+        for (let i: number = 0; i < abgleich.length - 1 ; i++) {
+            if (abgleich[i].login == _nameClient && abgleich[i].passwort == _passwortClient) {
+                passt = true;
+                break;
+            }
+        }
+        return passt;
     }
 }

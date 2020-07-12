@@ -60,6 +60,8 @@ var P01;
                     membersData.find().toArray(function (err, speicher) {
                         if (err)
                             throw err;
+                        let neuerName = "";
+                        let neuesPasswort = "";
                         speicherString += "[";
                         for (let i = 0; i < speicher.length; i++) {
                             speicherString += JSON.stringify(speicher[i]);
@@ -67,19 +69,28 @@ var P01;
                                 speicherString += ",";
                         }
                         speicherString += "]";
-                        //console.log(speicherString);
-                        _response.write(speicherString);
+                        for (let key in url.query) {
+                            if (key == "login")
+                                neuerName = url.query[key];
+                            if (key == "passwort")
+                                neuesPasswort = url.query[key];
+                        }
+                        if (anmeldenAbgleichen(speicherString, neuerName, neuesPasswort))
+                            _response.write("Name schon vergeben");
+                        else {
+                            _response.write("Anmeldung akzeptiert");
+                            membersData.insertOne(url.query);
+                            console.log("Neuer Member angelegt");
+                        }
                         _response.end();
                     });
-                    break;
-                case "/einschreiben":
-                    membersData.insertOne(url.query);
-                    console.log("Neuer Member angelegt");
                     break;
                 case "/verifizieren":
                     membersData.find().toArray(function (err, speicher) {
                         if (err)
                             throw err;
+                        let alterName = "";
+                        let altesPasswort = "";
                         speicherString += "[";
                         for (let i = 0; i < speicher.length; i++) {
                             speicherString += JSON.stringify(speicher[i]);
@@ -87,8 +98,17 @@ var P01;
                                 speicherString += ",";
                         }
                         speicherString += "]";
-                        //console.log(speicherString);
-                        _response.write(speicherString);
+                        for (let key in url.query) {
+                            if (key == "login")
+                                alterName = url.query[key];
+                            if (key == "passwort")
+                                altesPasswort = url.query[key];
+                        }
+                        if (!einloggenAbgleich(speicherString, alterName, altesPasswort))
+                            _response.write("da passt was nicht");
+                        else {
+                            _response.write("Erfolgreich eingeloggt");
+                        }
                         _response.end();
                     });
                     break;
@@ -139,6 +159,28 @@ var P01;
                     break;
             }
         }
+    }
+    function anmeldenAbgleichen(_inDatenbankvorhanden, _nameClient, _passwortClient) {
+        let vorhanden = false;
+        console.log(_nameClient);
+        let abgleich = JSON.parse(_inDatenbankvorhanden);
+        for (let i = 0; i < abgleich.length - 1; i++) {
+            if (abgleich[i].login == _nameClient && _nameClient != "") {
+                vorhanden = true;
+            }
+        }
+        return vorhanden;
+    }
+    function einloggenAbgleich(_inDatenbankvorhanden, _nameClient, _passwortClient) {
+        let passt = false;
+        let abgleich = JSON.parse(_inDatenbankvorhanden);
+        for (let i = 0; i < abgleich.length - 1; i++) {
+            if (abgleich[i].login == _nameClient && abgleich[i].passwort == _passwortClient) {
+                passt = true;
+                break;
+            }
+        }
+        return passt;
     }
 })(P01 = exports.P01 || (exports.P01 = {}));
 //# sourceMappingURL=Server.js.map

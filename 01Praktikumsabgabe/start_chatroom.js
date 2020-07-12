@@ -1,7 +1,6 @@
 "use strict";
 var P01;
 (function (P01) {
-    P01.person = "";
     //let aktuellerChatverlauf: Chatting[];
     let abmeldenKnopf = document.getElementById("abmelden");
     abmeldenKnopf.addEventListener("click", hndl_abmelden);
@@ -11,6 +10,8 @@ var P01;
     chatroom1.addEventListener("click", hndl_changeRoomto1);
     let chatroom2 = document.getElementById("Chatroom2Change");
     chatroom2.addEventListener("click", hndl_changeRoomto2);
+    /*let chatroomDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("drop");
+    chatroomDiv.addEventListener("click", handle_drop);*/
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //Ablauf
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,24 +20,14 @@ var P01;
         if (localStorage.getItem("login") == null) {
             let anfang = window.confirm("bist du neu hier?");
             if (anfang)
-                if (anmelden())
-                    window.alert("Sei gegrüßt im HFU Chat!");
-                else {
-                    window.alert("Das Passwort oder der Benutzername existiert bereits");
-                    location.reload();
-                }
-            else if (einloggen())
-                window.alert("Wilkommen zurück!");
-            else {
-                window.alert("Das Passwort oder dein Benutzername stimmt nicht");
-                location.reload();
-            }
+                anmelden();
+            else
+                einloggen();
         }
         if (localStorage.getItem("room") == null)
             localStorage.setItem("room", "1");
-        communicate("load", "");
-        //load(localStorage.getItem("room"));
-        //load(localStorage.getItem("room"));
+        if (localStorage.getItem("login") != null && localStorage.getItem("login") != "")
+            communicate("load", "");
         console.log(localStorage.getItem("login"));
         console.log(localStorage.getItem("room"));
         //window.setTimeout(location.reload, 5000);
@@ -47,6 +38,10 @@ var P01;
     ///////////////////////////////////////////////////////////////////////////////////////
     //Funktionseinheiten
     ///////////////////////////////////////////////////////////////////////////////////////
+    /*function handle_drop(): void {
+        let dropeinheit: HTMLDivElement = <HTMLDivElement>document.getElementById("dropinhalt");
+        if
+    }*/
     function hndl_changeRoomto1() {
         localStorage.setItem("room", "1");
         location.reload();
@@ -56,30 +51,26 @@ var P01;
         location.reload();
     }
     function anmelden() {
-        let einloggenGeklappt = true;
+        //let einloggenGeklappt: boolean = true;
         let neuerBenutzername = window.prompt("Wie soll dein Chatname sein?");
         let neuespasswort = "";
-        if (neuerBenutzername == null) {
+        if (neuerBenutzername == "") {
             window.alert("du musst einen Benutzernamen eingeben!");
             anmelden();
         }
         else {
             neuespasswort = window.prompt("gebe dir ein Passwort welches du dir merken kannst!");
-            while (neuespasswort == null) {
+            while (neuespasswort == "") {
                 neuespasswort = window.prompt("Gib dir ein Passwort! Mensch!!");
             }
         }
-        if (comunicate_anmelden(neuerBenutzername, neuespasswort)) {
-            einloggenGeklappt = false;
-        }
-        else {
-            member_einschreiben(neuerBenutzername, neuespasswort);
-            localStorage.setItem("login", "" + neuerBenutzername);
-        }
-        return einloggenGeklappt;
+        comunicate_anmelden(neuerBenutzername, neuespasswort);
+        //member_einschreiben(neuerBenutzername, neuespasswort);
+        //
+        //return einloggenGeklappt;
     }
     function einloggen() {
-        let einloggenGeklappt = true;
+        //let einloggenGeklappt: boolean | Promise<boolean> = true;
         let alterBenutzername = window.prompt("Wie ist dein Chatname?");
         let altespasswort;
         while (alterBenutzername == null) {
@@ -89,14 +80,15 @@ var P01;
         while (altespasswort == null) {
             altespasswort = window.prompt("Wo ist dein Passwort? Des war es sicher nicht...gib mir dein Passwort jetzt!");
         }
-        if (!comunicate_einloggen(alterBenutzername, altespasswort)) {
-            einloggenGeklappt = false;
-        }
-        localStorage.setItem("login", "" + alterBenutzername);
-        return einloggenGeklappt;
+        comunicate_einloggen(alterBenutzername, altespasswort);
+        //if (!einloggenGeklappt) {
+        //einloggenGeklappt = false;
+        //}
+        //localStorage.setItem("login", "" + alterBenutzername);
+        //return einloggenGeklappt;
     }
     function converter(_nachricht) {
-        for (let i = _nachricht.length - 1; i > 0; i--) {
+        for (let i = _nachricht.length - 1; i >= 0; i--) {
             let a = new P01.Nachricht(_nachricht[i].id, _nachricht[i].login, _nachricht[i].nachricht);
             a.anzeigen(i);
         }
@@ -115,14 +107,12 @@ var P01;
     function hndl_senden() {
         let zuverschicken = document.getElementById("input");
         let aktuelleNachricht = zuverschicken.value;
-        if (aktuelleNachricht != null) {
+        if (aktuelleNachricht != null && aktuelleNachricht != "") {
             communicate("send", aktuelleNachricht);
             console.log(aktuelleNachricht, localStorage.getItem("login"));
         }
     }
     async function send(_url) {
-        //let url: string = "http://localhost:8101/send/" + _chatroom;
-        //url += "?login=" + "" + _login + "&nachricht=" + "" + _aktuelleNachricht ;
         await fetch(_url);
     }
     async function load(_url) {
@@ -138,50 +128,39 @@ var P01;
         }
     }
     async function comunicate_anmelden(_neuerBenutzer, _neuesPasswort) {
-        let benutzerVorhanden = false;
         let url = "http://localhost:8101/signIn";
         console.log("es wird angemeldet");
         url += "?login=" + "" + _neuerBenutzer + "&passwort=" + "" + _neuesPasswort;
         let antwort = await fetch(url);
         let antwortString = await antwort.text();
-        let antwortanUser = await JSON.parse(antwortString);
-        console.log(antwort);
-        for (let i = 0; i < antwortanUser.length; i++) {
-            if (antwortanUser[i].login == _neuerBenutzer && antwortanUser[i].passwort == _neuesPasswort)
-                benutzerVorhanden = true;
+        if (antwortString == "Anmeldung akzeptiert") {
+            console.log("wir sind drin");
+            localStorage.setItem("login", "" + _neuerBenutzer);
+            communicate("load", "");
         }
-        console.log(benutzerVorhanden);
-        return benutzerVorhanden;
+        else {
+            console.log("nichtgeklappt");
+            window.alert("versuche einen anderen Nutzernamen");
+            location.reload();
+        }
+        console.log(antwort);
     }
     async function comunicate_einloggen(_alterBenutzer, _altesPasswort) {
-        let validierung = false;
         let url = "http://localhost:8101/verifizieren";
         console.log("es wird verifiziert");
         url += "?login=" + "" + _alterBenutzer + "&passwort=" + "" + _altesPasswort;
         let antwort = await fetch(url);
         let antwortString = await antwort.text();
-        let antwortanUser = await JSON.parse(antwortString);
-        for (let i = 0; i < antwortanUser.length; i++) {
-            if (antwortanUser[i].login == _alterBenutzer && antwortanUser[i].passwort != _altesPasswort)
-                validierung = false;
-            else if (antwortanUser[i].login == _alterBenutzer && antwortanUser[i].passwort == _altesPasswort) {
-                validierung = true;
-                break;
-            }
-            else {
-                validierung = false;
-            }
+        if (antwortString == "Erfolgreich eingeloggt") {
+            console.log("wir sind drin");
+            localStorage.setItem("login", "" + _alterBenutzer);
+            communicate("load", "");
         }
-        return validierung;
-    }
-    async function member_einschreiben(_alterBenutzer, _altesPasswort) {
-        //window.alert("Wilkommen zurück " + _alterBenutzer + " dein Passwort ist " +  _altesPasswort);
-        let url = "http://localhost:8101/einschreiben";
-        console.log("es wird verifiziert");
-        url += "?login=" + "" + _alterBenutzer + "&passwort=" + "" + _altesPasswort;
-        let antwort = await fetch(url);
-        let antwortString = await antwort.text();
-        console.log(antwortString);
+        else {
+            console.log("Einloggen nicht geklappt");
+            window.alert("schau nochmal deinen benutzernamen und dein passwort nach");
+            location.reload();
+        }
     }
     function communicate(_function, _chatroomNachricht) {
         let url = "http://localhost:8101";
