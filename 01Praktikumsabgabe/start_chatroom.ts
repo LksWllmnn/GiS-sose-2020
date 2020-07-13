@@ -99,7 +99,7 @@ namespace P01 {
                 neuespasswort = window.prompt("Gib dir ein Passwort! Mensch!!");
             }
         }
-        communicate("anmelden", "", neuerBenutzername, neuespasswort);
+        communicate("signIn", "", neuerBenutzername, neuespasswort);
     }
 
     function einloggen(): void {
@@ -113,7 +113,7 @@ namespace P01 {
         while (altespasswort == null) {
             altespasswort = window.prompt("Wo ist dein Passwort? Des war es sicher nicht...gib mir dein Passwort jetzt!");
         }
-        comunicate_einloggen(alterBenutzername, altespasswort);
+        communicate("verifizieren", "", alterBenutzername, altespasswort);
         //if (!einloggenGeklappt) {
             //einloggenGeklappt = false;
         //}
@@ -204,7 +204,7 @@ namespace P01 {
 
     function communicate (_function: string, _chatroomNachricht: string, _benutzer: string | null, _passwort: string | null): void {
         //http://localhost:8101
-        let url: string = "https://testgissose2020lw.herokuapp.com/";
+        let url: string = "https://testgissose2020lw.herokuapp.com";
         url += "/" + _function;
 
         switch (_function) {
@@ -217,11 +217,11 @@ namespace P01 {
                 url += "?login=" + "" + localStorage.getItem("login") + "&nachricht=" + "" + _chatroomNachricht ;
                 send(url);
                 break;
-            case "einloggen":
+            case "verifizieren":
                 url += "/verifizieren?login=" + _benutzer + "&passwort" + _passwort;
                 comunicate_einloggen(url, _benutzer);
                 break;
-            case "anmelden":
+            case "signIn":
                 url += "/signIn?login=" + _benutzer + "&passwort" + _passwort;
                 comunicate_anmelden(url, _benutzer);
                 break;

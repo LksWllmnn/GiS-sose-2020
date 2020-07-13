@@ -74,7 +74,7 @@ var P01;
                 neuespasswort = window.prompt("Gib dir ein Passwort! Mensch!!");
             }
         }
-        communicate("anmelden", "", neuerBenutzername, neuespasswort);
+        communicate("signIn", "", neuerBenutzername, neuespasswort);
     }
     function einloggen() {
         //let einloggenGeklappt: boolean | Promise<boolean> = true;
@@ -87,7 +87,7 @@ var P01;
         while (altespasswort == null) {
             altespasswort = window.prompt("Wo ist dein Passwort? Des war es sicher nicht...gib mir dein Passwort jetzt!");
         }
-        comunicate_einloggen(alterBenutzername, altespasswort);
+        communicate("verifizieren", "", alterBenutzername, altespasswort);
         //if (!einloggenGeklappt) {
         //einloggenGeklappt = false;
         //}
@@ -169,7 +169,7 @@ var P01;
     }
     function communicate(_function, _chatroomNachricht, _benutzer, _passwort) {
         //http://localhost:8101
-        let url = "https://testgissose2020lw.herokuapp.com/";
+        let url = "https://testgissose2020lw.herokuapp.com";
         url += "/" + _function;
         switch (_function) {
             case "load":
@@ -181,11 +181,11 @@ var P01;
                 url += "?login=" + "" + localStorage.getItem("login") + "&nachricht=" + "" + _chatroomNachricht;
                 send(url);
                 break;
-            case "einloggen":
+            case "verifizieren":
                 url += "/verifizieren?login=" + _benutzer + "&passwort" + _passwort;
                 comunicate_einloggen(url, _benutzer);
                 break;
-            case "anmelden":
+            case "signIn":
                 url += "/signIn?login=" + _benutzer + "&passwort" + _passwort;
                 comunicate_anmelden(url, _benutzer);
                 break;
