@@ -164,7 +164,7 @@ var P01;
         let vorhanden = false;
         console.log(_nameClient);
         let abgleich = JSON.parse(_inDatenbankvorhanden);
-        for (let i = 0; i < abgleich.length - 1; i++) {
+        for (let i = 0; i < abgleich.length; i++) {
             if (abgleich[i].login == _nameClient && _nameClient != "") {
                 vorhanden = true;
             }
@@ -174,7 +174,7 @@ var P01;
     function einloggenAbgleich(_inDatenbankvorhanden, _nameClient, _passwortClient) {
         let passt = false;
         let abgleich = JSON.parse(_inDatenbankvorhanden);
-        for (let i = 0; i < abgleich.length - 1; i++) {
+        for (let i = 0; i < abgleich.length; i++) {
             if (abgleich[i].login == _nameClient && abgleich[i].passwort == _passwortClient) {
                 passt = true;
                 break;

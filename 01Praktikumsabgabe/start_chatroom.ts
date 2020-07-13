@@ -13,7 +13,8 @@ namespace P01 {
         passwort: string;
     }
     
-    //let aktuellerChatverlauf: Chatting[];
+    let angezeigteNachrichten: Chatting[] = [];
+
 
     let abmeldenKnopf: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abmelden");
     abmeldenKnopf.addEventListener("click", hndl_abmelden);
@@ -22,10 +23,18 @@ namespace P01 {
     senden.addEventListener("click", hndl_senden);
 
     let chatroom1: HTMLDivElement = <HTMLDivElement>document.getElementById("Chatroom1Change");
+    if (localStorage.getItem("room") == "1")
+        chatroom1.setAttribute("class", "activ");
     chatroom1.addEventListener("click", hndl_changeRoomto1);
 
     let chatroom2: HTMLDivElement = <HTMLDivElement>document.getElementById("Chatroom2Change");
+    if (localStorage.getItem("room") == "2")
+        chatroom2.setAttribute("class", "activ");
     chatroom2.addEventListener("click", hndl_changeRoomto2);
+
+    let zweiteÜberschrift: HTMLElement = <HTMLElement>document.getElementById("aktuellerChatroom");
+    //if (zweiteÜberschrift)
+    zweiteÜberschrift.innerHTML = "Chatroom " + localStorage.getItem("room");
 
     /*let chatroomDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("drop");
     chatroomDiv.addEventListener("click", handle_drop);*/
@@ -44,12 +53,14 @@ namespace P01 {
         }
         if (localStorage.getItem("room") == null)
             localStorage.setItem("room", "1");
-        if (localStorage.getItem("login") != null && localStorage.getItem("login") != "" )
+        if (localStorage.getItem("login") != null && localStorage.getItem("login") != "" ) {
             communicate("load", "");
+            communicate("load", "");
+        }
         console.log(localStorage.getItem("login"));
         console.log(localStorage.getItem("room"));
         
-        //window.setTimeout(location.reload, 5000);
+        //setInterval(aktualisieren, 5000);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,6 +74,10 @@ namespace P01 {
         if
     }*/
 
+    function aktualisieren(): void {
+        communicate("load", "");
+    }
+
     function hndl_changeRoomto1(): void {
         localStorage.setItem("room", "1");
         location.reload();
@@ -74,7 +89,6 @@ namespace P01 {
     }
 
     function anmelden(): void {
-        //let einloggenGeklappt: boolean = true;
         let neuerBenutzername: string | null = window.prompt("Wie soll dein Chatname sein?");
         let neuespasswort: string | null = "";
         if (neuerBenutzername == "") {
@@ -87,9 +101,6 @@ namespace P01 {
             }
         }
         comunicate_anmelden(neuerBenutzername, neuespasswort);
-        //member_einschreiben(neuerBenutzername, neuespasswort);
-        //
-        //return einloggenGeklappt;
     }
 
     function einloggen(): void {
@@ -112,10 +123,15 @@ namespace P01 {
     }
 
     function converter(_nachricht: Chatting[]): void {
-        for (let i: number = _nachricht.length - 1; i >= 0; i--) {
-            let a: Nachricht = new Nachricht (_nachricht[i].id, _nachricht[i].login, _nachricht[i].nachricht);
-            a.anzeigen(i);
+        if (_nachricht.length > angezeigteNachrichten.length) {
+            for (let i: number = angezeigteNachrichten.length; i < _nachricht.length; i++)
+                angezeigteNachrichten.push(_nachricht[i]);
+            for (let i: number = angezeigteNachrichten.length - 1; i >= 0; i--) {
+                let a: Nachricht = new Nachricht (angezeigteNachrichten[i].id, angezeigteNachrichten[i].login, angezeigteNachrichten[i].nachricht);
+                a.anzeigen(i);
+            }
         }
+        
     }
 
     function converterPlatzhalter(_nachricht: Chatting[]): void {

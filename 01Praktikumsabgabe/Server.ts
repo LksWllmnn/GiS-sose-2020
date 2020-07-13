@@ -181,7 +181,7 @@ export namespace P01 {
         let vorhanden: boolean = false;
         console.log(_nameClient);
         let abgleich: Members[] = JSON.parse(_inDatenbankvorhanden);
-        for (let i: number = 0; i < abgleich.length - 1 ; i++) {
+        for (let i: number = 0; i < abgleich.length; i++) {
             if (abgleich[i].login == _nameClient && _nameClient != "") {
                 vorhanden = true;
             }
@@ -192,7 +192,7 @@ export namespace P01 {
     function einloggenAbgleich(_inDatenbankvorhanden: string, _nameClient: string|string[]|undefined, _passwortClient: string|string[]|undefined): boolean {
         let passt: boolean = false;
         let abgleich: Members[] = JSON.parse(_inDatenbankvorhanden);
-        for (let i: number = 0; i < abgleich.length - 1 ; i++) {
+        for (let i: number = 0; i < abgleich.length ; i++) {
             if (abgleich[i].login == _nameClient && abgleich[i].passwort == _passwortClient) {
                 passt = true;
                 break;

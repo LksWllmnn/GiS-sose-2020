@@ -1,15 +1,22 @@
 "use strict";
 var P01;
 (function (P01) {
-    //let aktuellerChatverlauf: Chatting[];
+    let angezeigteNachrichten = [];
     let abmeldenKnopf = document.getElementById("abmelden");
     abmeldenKnopf.addEventListener("click", hndl_abmelden);
     let senden = document.getElementById("Senden");
     senden.addEventListener("click", hndl_senden);
     let chatroom1 = document.getElementById("Chatroom1Change");
+    if (localStorage.getItem("room") == "1")
+        chatroom1.setAttribute("class", "activ");
     chatroom1.addEventListener("click", hndl_changeRoomto1);
     let chatroom2 = document.getElementById("Chatroom2Change");
+    if (localStorage.getItem("room") == "2")
+        chatroom2.setAttribute("class", "activ");
     chatroom2.addEventListener("click", hndl_changeRoomto2);
+    let zweiteÜberschrift = document.getElementById("aktuellerChatroom");
+    //if (zweiteÜberschrift)
+    zweiteÜberschrift.innerHTML = "Chatroom " + localStorage.getItem("room");
     /*let chatroomDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("drop");
     chatroomDiv.addEventListener("click", handle_drop);*/
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,11 +33,13 @@ var P01;
         }
         if (localStorage.getItem("room") == null)
             localStorage.setItem("room", "1");
-        if (localStorage.getItem("login") != null && localStorage.getItem("login") != "")
+        if (localStorage.getItem("login") != null && localStorage.getItem("login") != "") {
             communicate("load", "");
+            communicate("load", "");
+        }
         console.log(localStorage.getItem("login"));
         console.log(localStorage.getItem("room"));
-        //window.setTimeout(location.reload, 5000);
+        //setInterval(aktualisieren, 5000);
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //Funktionen
@@ -42,6 +51,9 @@ var P01;
         let dropeinheit: HTMLDivElement = <HTMLDivElement>document.getElementById("dropinhalt");
         if
     }*/
+    function aktualisieren() {
+        communicate("load", "");
+    }
     function hndl_changeRoomto1() {
         localStorage.setItem("room", "1");
         location.reload();
@@ -51,7 +63,6 @@ var P01;
         location.reload();
     }
     function anmelden() {
-        //let einloggenGeklappt: boolean = true;
         let neuerBenutzername = window.prompt("Wie soll dein Chatname sein?");
         let neuespasswort = "";
         if (neuerBenutzername == "") {
@@ -65,9 +76,6 @@ var P01;
             }
         }
         comunicate_anmelden(neuerBenutzername, neuespasswort);
-        //member_einschreiben(neuerBenutzername, neuespasswort);
-        //
-        //return einloggenGeklappt;
     }
     function einloggen() {
         //let einloggenGeklappt: boolean | Promise<boolean> = true;
@@ -88,9 +96,13 @@ var P01;
         //return einloggenGeklappt;
     }
     function converter(_nachricht) {
-        for (let i = _nachricht.length - 1; i >= 0; i--) {
-            let a = new P01.Nachricht(_nachricht[i].id, _nachricht[i].login, _nachricht[i].nachricht);
-            a.anzeigen(i);
+        if (_nachricht.length > angezeigteNachrichten.length) {
+            for (let i = angezeigteNachrichten.length; i < _nachricht.length; i++)
+                angezeigteNachrichten.push(_nachricht[i]);
+            for (let i = angezeigteNachrichten.length - 1; i >= 0; i--) {
+                let a = new P01.Nachricht(angezeigteNachrichten[i].id, angezeigteNachrichten[i].login, angezeigteNachrichten[i].nachricht);
+                a.anzeigen(i);
+            }
         }
     }
     function converterPlatzhalter(_nachricht) {
