@@ -182,11 +182,11 @@ var P01;
                 send(url);
                 break;
             case "verifizieren":
-                url += "?login=" + _benutzer + "&passwort" + _passwort;
+                url += "?login=" + _benutzer + "&passwort=" + _passwort;
                 comunicate_einloggen(url, _benutzer);
                 break;
             case "signIn":
-                url += "?login=" + _benutzer + "&passwort" + _passwort;
+                url += "?login=" + _benutzer + "&passwort=" + _passwort;
                 comunicate_anmelden(url, _benutzer);
                 break;
             default:
