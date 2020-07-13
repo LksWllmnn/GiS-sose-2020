@@ -170,7 +170,7 @@ var P01;
     function communicate(_function, _chatroomNachricht, _benutzer, _passwort) {
         //http://localhost:8101
         let url = "https://testgissose2020lw.herokuapp.com";
-        url += "" + _function;
+        url += "/" + _function;
         switch (_function) {
             case "load":
                 url += "/" + localStorage.getItem("room");

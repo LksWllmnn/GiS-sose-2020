@@ -67,7 +67,7 @@ export namespace P01 {
             let speicherString: string = "";
         
             switch (path) {
-                case "//signIn":
+                case "/signIn":
                     membersData.find().toArray( function(err: Mongo.MongoError, speicher: string[]): void {
                         if (err)
                           throw err; 
@@ -97,7 +97,7 @@ export namespace P01 {
                         _response.end();
                     });
                     break;
-                case "//verifizieren":
+                case "/verifizieren":
                     membersData.find().toArray( function(err: Mongo.MongoError, speicher: string[]): void {
                         if (err)
                           throw err;
@@ -126,10 +126,10 @@ export namespace P01 {
                         _response.end();
                     });
                     break;
-                case "//send/1":
+                case "/send/1":
                     chatNachrichten.insertOne(url.query);
                     console.log("gespeichert");
-                case "//load/1":
+                case "/load/1":
                     console.log("im case");
                     chatNachrichten.find().toArray( function(err: Mongo.MongoError, speicher: string[]): void {
                         if (err)
@@ -148,10 +148,10 @@ export namespace P01 {
                     });
                     console.log(speicherString);
                     break;
-                    case "//send/2":
+                    case "/send/2":
                         chatNachrichten2.insertOne(url.query);
                         console.log("gespeichert");
-                    case "//load/2":
+                    case "/load/2":
                     console.log("im case");
                     chatNachrichten2.find().toArray( function(err: Mongo.MongoError, speicher: string[]): void {
                         if (err)
