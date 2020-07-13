@@ -205,7 +205,7 @@ namespace P01 {
     function communicate (_function: string, _chatroomNachricht: string, _benutzer: string | null, _passwort: string | null): void {
         //http://localhost:8101
         let url: string = "https://testgissose2020lw.herokuapp.com";
-        url += "/" + _function;
+        url += "" + _function;
 
         switch (_function) {
             case "load":
@@ -218,11 +218,11 @@ namespace P01 {
                 send(url);
                 break;
             case "verifizieren":
-                url += "/verifizieren?login=" + _benutzer + "&passwort" + _passwort;
+                url += "?login=" + _benutzer + "&passwort" + _passwort;
                 comunicate_einloggen(url, _benutzer);
                 break;
             case "signIn":
-                url += "/signIn?login=" + _benutzer + "&passwort" + _passwort;
+                url += "?login=" + _benutzer + "&passwort" + _passwort;
                 comunicate_anmelden(url, _benutzer);
                 break;
             default:
