@@ -203,7 +203,8 @@ namespace P01 {
     }
 
     function communicate (_function: string, _chatroomNachricht: string, _benutzer: string | null, _passwort: string | null): void {
-        let url: string = "http://localhost:8101";
+        //http://localhost:8101
+        let url: string = "https://testgissose2020lw.herokuapp.com/";
         url += "/" + _function;
 
         switch (_function) {
