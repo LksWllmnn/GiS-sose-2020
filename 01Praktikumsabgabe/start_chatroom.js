@@ -15,10 +15,7 @@ var P01;
         chatroom2.setAttribute("class", "activ");
     chatroom2.addEventListener("click", hndl_changeRoomto2);
     let zweiteÜberschrift = document.getElementById("aktuellerChatroom");
-    //if (zweiteÜberschrift)
     zweiteÜberschrift.innerHTML = "Chatroom " + localStorage.getItem("room");
-    /*let chatroomDiv: HTMLDivElement = <HTMLDivElement>document.getElementById("drop");
-    chatroomDiv.addEventListener("click", handle_drop);*/
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //Ablauf
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,10 +43,6 @@ var P01;
     ///////////////////////////////////////////////////////////////////////////////////////
     //Funktionseinheiten
     ///////////////////////////////////////////////////////////////////////////////////////
-    /*function handle_drop(): void {
-        let dropeinheit: HTMLDivElement = <HTMLDivElement>document.getElementById("dropinhalt");
-        if
-    }*/
     function aktualisieren() {
         communicate("load", "", "", "");
     }
@@ -64,35 +57,26 @@ var P01;
     function anmelden() {
         let neuerBenutzername = window.prompt("Wie soll dein Chatname sein?");
         let neuespasswort = "";
-        if (neuerBenutzername == "") {
-            window.alert("du musst einen Benutzernamen eingeben!");
-            anmelden();
+        while (neuerBenutzername == "" || neuerBenutzername == null) {
+            neuerBenutzername = window.prompt("Diesen >>Namen<< kannst du nicht verwenden. Gib einen neuen ein!");
         }
-        else {
-            neuespasswort = window.prompt("gebe dir ein Passwort welches du dir merken kannst!");
-            while (neuespasswort == "") {
-                neuespasswort = window.prompt("Gib dir ein Passwort! Mensch!!");
-            }
+        neuespasswort = window.prompt("gebe dir ein Passwort welches du dir merken kannst!");
+        while (neuespasswort == "" || neuespasswort == null) {
+            neuespasswort = window.prompt("Gib dir ein gescheites Passwort! Mensch!!");
         }
         communicate("signIn", "", neuerBenutzername, neuespasswort);
     }
     function einloggen() {
-        //let einloggenGeklappt: boolean | Promise<boolean> = true;
         let alterBenutzername = window.prompt("Wie ist dein Chatname?");
         let altespasswort;
-        while (alterBenutzername == null) {
+        while (alterBenutzername == null || alterBenutzername == "") {
             alterBenutzername = window.prompt("Safe nicht dein Benutzername...gib dein Benutzername ein!");
         }
         altespasswort = window.prompt("passwort!");
-        while (altespasswort == null) {
+        while (altespasswort == null || altespasswort == "") {
             altespasswort = window.prompt("Wo ist dein Passwort? Des war es sicher nicht...gib mir dein Passwort jetzt!");
         }
         communicate("verifizieren", "", alterBenutzername, altespasswort);
-        //if (!einloggenGeklappt) {
-        //einloggenGeklappt = false;
-        //}
-        //localStorage.setItem("login", "" + alterBenutzername);
-        //return einloggenGeklappt;
     }
     function converter(_nachricht) {
         if (_nachricht.length > angezeigteNachrichten.length) {
@@ -168,7 +152,7 @@ var P01;
         }
     }
     function communicate(_function, _chatroomNachricht, _benutzer, _passwort) {
-        //http://localhost:8101
+        //http://localhost:8101 | https://testgissose2020lw.herokuapp.com
         let url = "https://testgissose2020lw.herokuapp.com";
         url += "/" + _function;
         switch (_function) {
