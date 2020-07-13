@@ -25,7 +25,7 @@ var P01;
     main();
     function main() {
         if (localStorage.getItem("login") == null) {
-            let anfang = window.confirm("bist du neu hier?");
+            let anfang = window.confirm("bist du neu hier? \n >OK< zum anmelden \n >abbrechen< um dich einzuloggen, wenn du schonmal da warst");
             if (anfang)
                 anmelden();
             else
@@ -34,12 +34,11 @@ var P01;
         if (localStorage.getItem("room") == null)
             localStorage.setItem("room", "1");
         if (localStorage.getItem("login") != null && localStorage.getItem("login") != "") {
-            communicate("load", "");
-            communicate("load", "");
+            communicate("load", "", "", "");
         }
         console.log(localStorage.getItem("login"));
         console.log(localStorage.getItem("room"));
-        //setInterval(aktualisieren, 5000);
+        setInterval(aktualisieren, 5000);
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //Funktionen
@@ -52,7 +51,7 @@ var P01;
         if
     }*/
     function aktualisieren() {
-        communicate("load", "");
+        communicate("load", "", "", "");
     }
     function hndl_changeRoomto1() {
         localStorage.setItem("room", "1");
@@ -75,7 +74,7 @@ var P01;
                 neuespasswort = window.prompt("Gib dir ein Passwort! Mensch!!");
             }
         }
-        comunicate_anmelden(neuerBenutzername, neuespasswort);
+        communicate("anmelden", "", neuerBenutzername, neuespasswort);
     }
     function einloggen() {
         //let einloggenGeklappt: boolean | Promise<boolean> = true;
@@ -120,7 +119,7 @@ var P01;
         let zuverschicken = document.getElementById("input");
         let aktuelleNachricht = zuverschicken.value;
         if (aktuelleNachricht != null && aktuelleNachricht != "") {
-            communicate("send", aktuelleNachricht);
+            communicate("send", aktuelleNachricht, "", "");
             console.log(aktuelleNachricht, localStorage.getItem("login"));
         }
     }
@@ -139,16 +138,13 @@ var P01;
             converter(antwortanUser);
         }
     }
-    async function comunicate_anmelden(_neuerBenutzer, _neuesPasswort) {
-        let url = "http://localhost:8101/signIn";
-        console.log("es wird angemeldet");
-        url += "?login=" + "" + _neuerBenutzer + "&passwort=" + "" + _neuesPasswort;
-        let antwort = await fetch(url);
+    async function comunicate_anmelden(_url, _benutzer) {
+        let antwort = await fetch(_url);
         let antwortString = await antwort.text();
         if (antwortString == "Anmeldung akzeptiert") {
             console.log("wir sind drin");
-            localStorage.setItem("login", "" + _neuerBenutzer);
-            communicate("load", "");
+            localStorage.setItem("login", "" + _benutzer);
+            communicate("load", "", "", "");
         }
         else {
             console.log("nichtgeklappt");
@@ -157,16 +153,13 @@ var P01;
         }
         console.log(antwort);
     }
-    async function comunicate_einloggen(_alterBenutzer, _altesPasswort) {
-        let url = "http://localhost:8101/verifizieren";
-        console.log("es wird verifiziert");
-        url += "?login=" + "" + _alterBenutzer + "&passwort=" + "" + _altesPasswort;
-        let antwort = await fetch(url);
+    async function comunicate_einloggen(_url, _benutzer) {
+        let antwort = await fetch(_url);
         let antwortString = await antwort.text();
         if (antwortString == "Erfolgreich eingeloggt") {
             console.log("wir sind drin");
-            localStorage.setItem("login", "" + _alterBenutzer);
-            communicate("load", "");
+            localStorage.setItem("login", "" + _benutzer);
+            communicate("load", "", "", "");
         }
         else {
             console.log("Einloggen nicht geklappt");
@@ -174,7 +167,7 @@ var P01;
             location.reload();
         }
     }
-    function communicate(_function, _chatroomNachricht) {
+    function communicate(_function, _chatroomNachricht, _benutzer, _passwort) {
         let url = "http://localhost:8101";
         url += "/" + _function;
         switch (_function) {
@@ -188,8 +181,12 @@ var P01;
                 send(url);
                 break;
             case "einloggen":
+                url += "/verifizieren?login=" + _benutzer + "&passwort" + _passwort;
+                comunicate_einloggen(url, _benutzer);
                 break;
             case "anmelden":
+                url += "/signIn?login=" + _benutzer + "&passwort" + _passwort;
+                comunicate_anmelden(url, _benutzer);
                 break;
             default:
                 console.log("diese kommunikations-funktion gibt es nicht");

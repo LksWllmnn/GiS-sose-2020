@@ -45,7 +45,7 @@ namespace P01 {
     main();
     function main(): void {
         if (localStorage.getItem("login") == null) {
-            let anfang: boolean = window.confirm("bist du neu hier?");
+            let anfang: boolean = window.confirm("bist du neu hier? \n >OK< zum anmelden \n >abbrechen< um dich einzuloggen, wenn du schonmal da warst");
             if (anfang)
                 anmelden();
             else
@@ -54,13 +54,12 @@ namespace P01 {
         if (localStorage.getItem("room") == null)
             localStorage.setItem("room", "1");
         if (localStorage.getItem("login") != null && localStorage.getItem("login") != "" ) {
-            communicate("load", "");
-            communicate("load", "");
+            communicate("load", "", "", "");
         }
         console.log(localStorage.getItem("login"));
         console.log(localStorage.getItem("room"));
         
-        //setInterval(aktualisieren, 5000);
+        setInterval(aktualisieren, 5000);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,7 +74,7 @@ namespace P01 {
     }*/
 
     function aktualisieren(): void {
-        communicate("load", "");
+        communicate("load", "", "", "");
     }
 
     function hndl_changeRoomto1(): void {
@@ -100,7 +99,7 @@ namespace P01 {
                 neuespasswort = window.prompt("Gib dir ein Passwort! Mensch!!");
             }
         }
-        comunicate_anmelden(neuerBenutzername, neuespasswort);
+        communicate("anmelden", "", neuerBenutzername, neuespasswort);
     }
 
     function einloggen(): void {
@@ -131,7 +130,6 @@ namespace P01 {
                 a.anzeigen(i);
             }
         }
-        
     }
 
     function converterPlatzhalter(_nachricht: Chatting[]): void {
@@ -152,7 +150,7 @@ namespace P01 {
         let zuverschicken: HTMLInputElement = <HTMLInputElement>document.getElementById("input");
         let aktuelleNachricht: string | null = zuverschicken.value;
         if (aktuelleNachricht != null && aktuelleNachricht != "" ) {
-            communicate("send", aktuelleNachricht);
+            communicate("send", aktuelleNachricht, "", "");
             console.log(aktuelleNachricht, localStorage.getItem("login"));
         }
     }
@@ -173,16 +171,13 @@ namespace P01 {
         }
     }
 
-    async function comunicate_anmelden(_neuerBenutzer: string | null, _neuesPasswort: string | null): Promise <void> {
-        let url: string = "http://localhost:8101/signIn";
-        console.log("es wird angemeldet");
-        url += "?login=" + "" + _neuerBenutzer + "&passwort=" + "" + _neuesPasswort ;
-        let antwort: Response = await fetch(url);
+    async function comunicate_anmelden(_url: string, _benutzer: string | null): Promise <void> {
+        let antwort: Response = await fetch(_url);
         let antwortString: string = await antwort.text();
         if (antwortString == "Anmeldung akzeptiert") {
             console.log("wir sind drin");
-            localStorage.setItem("login", "" + _neuerBenutzer);
-            communicate("load", "");
+            localStorage.setItem("login", "" + _benutzer);
+            communicate("load", "", "", "");
         }
         else {
             console.log("nichtgeklappt");
@@ -192,18 +187,14 @@ namespace P01 {
         console.log(antwort);
     }
         
-    async function comunicate_einloggen(_alterBenutzer: string | null, _altesPasswort: string | null): Promise <void>  {
-        let url: string = "http://localhost:8101/verifizieren";
-        console.log("es wird verifiziert");
-        url += "?login=" + "" + _alterBenutzer + "&passwort=" + "" + _altesPasswort;
-
-        let antwort: Response = await fetch(url);
+    async function comunicate_einloggen(_url: string, _benutzer: string | null): Promise <void>  {
+        let antwort: Response = await fetch(_url);
         let antwortString: string = await antwort.text();
         
         if (antwortString == "Erfolgreich eingeloggt") {
             console.log("wir sind drin");
-            localStorage.setItem("login", "" + _alterBenutzer);
-            communicate("load", "");
+            localStorage.setItem("login", "" + _benutzer);
+            communicate("load", "", "", "");
         } else {
             console.log("Einloggen nicht geklappt");
             window.alert("schau nochmal deinen benutzernamen und dein passwort nach");
@@ -211,7 +202,7 @@ namespace P01 {
         }
     }
 
-    function communicate (_function: string, _chatroomNachricht: string): void {
+    function communicate (_function: string, _chatroomNachricht: string, _benutzer: string | null, _passwort: string | null): void {
         let url: string = "http://localhost:8101";
         url += "/" + _function;
 
@@ -226,13 +217,16 @@ namespace P01 {
                 send(url);
                 break;
             case "einloggen":
+                url += "/verifizieren?login=" + _benutzer + "&passwort" + _passwort;
+                comunicate_einloggen(url, _benutzer);
                 break;
             case "anmelden":
+                url += "/signIn?login=" + _benutzer + "&passwort" + _passwort;
+                comunicate_anmelden(url, _benutzer);
                 break;
             default:
                 console.log("diese kommunikations-funktion gibt es nicht");
                 break;
         }
-
     }
 }
