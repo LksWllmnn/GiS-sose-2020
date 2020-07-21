@@ -78,18 +78,19 @@ var P01;
         }
         communicate("verifizieren", "", alterBenutzername, altespasswort);
     }
-    function converter(_nachricht) {
+    /*function converter(_nachricht: Chatting[]): void {
+        console.log("es wird convertiert");
         if (_nachricht.length > angezeigteNachrichten.length) {
-            for (let i = angezeigteNachrichten.length; i < _nachricht.length; i++)
+            for (let i: number = angezeigteNachrichten.length; i < _nachricht.length; i++)
                 angezeigteNachrichten.push(_nachricht[i]);
-            for (let i = angezeigteNachrichten.length - 1; i >= 0; i--) {
-                let a = new P01.Nachricht(angezeigteNachrichten[i].id, angezeigteNachrichten[i].login, angezeigteNachrichten[i].nachricht);
+            for (let i: number = angezeigteNachrichten.length - 1; i >= 0; i--) {
+                let a: Nachricht = new Nachricht (angezeigteNachrichten[i]._id, angezeigteNachrichten[i].login, angezeigteNachrichten[i].nachricht);
                 a.anzeigen(i);
             }
         }
-    }
+    }*/
     function converterPlatzhalter(_nachricht) {
-        let a = new P01.Nachricht(_nachricht[0].id, _nachricht[0].login, _nachricht[0].nachricht);
+        let a = new P01.Nachricht(_nachricht[0]._id, _nachricht[0].login, _nachricht[0].nachricht);
         a.anzeigen(0);
     }
     function hndl_abmelden() {
@@ -116,10 +117,19 @@ var P01;
         let antwortString = await antwort.text();
         let antwortanUser = await JSON.parse(antwortString);
         if (antwortString == "[]") {
-            converterPlatzhalter([{ "id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben" }]);
+            converterPlatzhalter([{ "_id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben" }]);
         }
         else {
-            converter(antwortanUser);
+            console.log("es wird convertiert");
+            if (antwortanUser.length > angezeigteNachrichten.length) {
+                let altelänge = angezeigteNachrichten.length;
+                for (let i = angezeigteNachrichten.length; i < antwortanUser.length; i++)
+                    angezeigteNachrichten.push(antwortanUser[i]);
+                for (let i = altelänge; i <= antwortanUser.length; i++) { //let i: number = angezeigteNachrichten.length - 1; i >= angezeigteNachrichten.length - dazukommend; i--
+                    let a = new P01.Nachricht(angezeigteNachrichten[i]._id, angezeigteNachrichten[i].login, angezeigteNachrichten[i].nachricht);
+                    a.anzeigen(i);
+                }
+            }
         }
     }
     async function comunicate_anmelden(_url, _benutzer) {

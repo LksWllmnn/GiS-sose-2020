@@ -3,7 +3,7 @@ var P01;
 (function (P01) {
     class Nachricht {
         constructor(_id, _absender, _nachricht) {
-            this.id = _id;
+            this._id = _id;
             this.absender = _absender;
             this.nachricht = _nachricht;
         }
@@ -21,6 +21,7 @@ var P01;
             platzhalterNachricht.innerHTML = " " + this.nachricht;
             if (einsChat)
                 einsChat.appendChild(platzhalterNachricht);
+            einsChat.insertBefore(platzhalterNachricht, einsChat.childNodes[0]);
             platzhalterNachricht.appendChild(memberName);
         }
     }

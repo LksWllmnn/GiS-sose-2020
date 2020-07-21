@@ -3,12 +3,12 @@ namespace P01 {
 //globale Variabeln
 ///////////////////////////////////////////////////////////////////////////////////////////////
     export interface Chatting {
-        id: string;
+        _id: string;
         login: string|null;
         nachricht: string;
     }
     export interface Members {
-        id: string;
+        _id: string;
         login: string;
         passwort: string;
     }
@@ -105,19 +105,20 @@ namespace P01 {
         communicate("verifizieren", "", alterBenutzername, altespasswort);
     }
 
-    function converter(_nachricht: Chatting[]): void {
+    /*function converter(_nachricht: Chatting[]): void {
+        console.log("es wird convertiert");
         if (_nachricht.length > angezeigteNachrichten.length) {
             for (let i: number = angezeigteNachrichten.length; i < _nachricht.length; i++)
                 angezeigteNachrichten.push(_nachricht[i]);
             for (let i: number = angezeigteNachrichten.length - 1; i >= 0; i--) {
-                let a: Nachricht = new Nachricht (angezeigteNachrichten[i].id, angezeigteNachrichten[i].login, angezeigteNachrichten[i].nachricht);
+                let a: Nachricht = new Nachricht (angezeigteNachrichten[i]._id, angezeigteNachrichten[i].login, angezeigteNachrichten[i].nachricht);
                 a.anzeigen(i);
             }
         }
-    }
+    }*/
 
     function converterPlatzhalter(_nachricht: Chatting[]): void {
-        let a: Nachricht = new Nachricht (_nachricht[0].id, _nachricht[0].login, _nachricht[0].nachricht);
+        let a: Nachricht = new Nachricht (_nachricht[0]._id, _nachricht[0].login, _nachricht[0].nachricht);
         a.anzeigen(0);
     }
      
@@ -149,9 +150,18 @@ namespace P01 {
         let antwortString: string = await antwort.text();
         let antwortanUser: Chatting[] = await JSON.parse(antwortString);
         if (antwortString == "[]") {
-            converterPlatzhalter([{"id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
+            converterPlatzhalter([{"_id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
         } else {
-            converter(antwortanUser);
+            console.log("es wird convertiert");
+            if (antwortanUser.length > angezeigteNachrichten.length) {
+                let altelänge: number = angezeigteNachrichten.length;
+                for (let i: number = angezeigteNachrichten.length; i < antwortanUser.length; i++)
+                    angezeigteNachrichten.push(antwortanUser[i]);
+                for (let i: number = altelänge; i <= antwortanUser.length; i++) {      //let i: number = angezeigteNachrichten.length - 1; i >= angezeigteNachrichten.length - dazukommend; i--
+                    let a: Nachricht = new Nachricht (angezeigteNachrichten[i]._id, angezeigteNachrichten[i].login, angezeigteNachrichten[i].nachricht);
+                    a.anzeigen(i);
+                }
+            }
         }
     }
 
