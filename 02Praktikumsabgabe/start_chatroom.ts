@@ -8,7 +8,7 @@ namespace P02 {
         nachricht: string;
     }
     export interface Members {
-        _id: string;
+        id: string;
         login: string;
         passwort: string;
     }
@@ -43,14 +43,9 @@ namespace P02 {
     main();
     function main(): void {
         if (localStorage.getItem("login") == null) {
-            /*let anfang: boolean = window.confirm("bist du neu hier? \n >OK< zum anmelden \n >abbrechen< um dich einzuloggen, wenn du schonmal da warst");
-            if (anfang)
-                anmelden();
-            else
-                einloggen();*/
-            promptersatz();
-            
+            promptersatz(); 
         }
+
         if (localStorage.getItem("room") == null)
             localStorage.setItem("room", "1");
         if (localStorage.getItem("login") != null && localStorage.getItem("login") != "" ) {
@@ -178,11 +173,6 @@ namespace P02 {
         if (auswahlmodus == "anmelden")
             communicate("signIn", "", name, passwort);
     }
-    
-        /*function hndl_abmelden(): void {
-            localStorage.removeItem("name");
-            location.reload();
-        }*/
 
 
         ///////////////////////////////////////////////////////////////////////////////////////
@@ -199,49 +189,6 @@ namespace P02 {
         localStorage.setItem("room", "2");
         location.reload();
     }
-
-    /*function anmelden(): void {
-        let neuerBenutzername: string | null = window.prompt("Wie soll dein Chatname sein?");
-        let neuespasswort: string | null = "";
-        while (neuerBenutzername == "" || neuerBenutzername == null) {
-            neuerBenutzername = window.prompt("Diesen >>Namen<< kannst du nicht verwenden. Gib einen neuen ein!");
-        }
-        neuespasswort = window.prompt("gebe dir ein Passwort welches du dir merken kannst!");
-        while (neuespasswort == "" || neuespasswort == null) {
-            neuespasswort = window.prompt("Gib dir ein gescheites Passwort! Mensch!!");
-        }
-        communicate("signIn", "", neuerBenutzername, neuespasswort);
-    }*/
-
-    /*function einloggen(): void {
-        let alterBenutzername: string | null = window.prompt("Wie ist dein Chatname?");
-        let altespasswort: string | null;
-        while (alterBenutzername == null || alterBenutzername == "") {
-            alterBenutzername = window.prompt("Safe nicht dein Benutzername...gib dein Benutzername ein!");
-        }
-        altespasswort = window.prompt("passwort!");
-        while (altespasswort == null || altespasswort == "") {
-            altespasswort = window.prompt("Wo ist dein Passwort? Des war es sicher nicht...gib mir dein Passwort jetzt!");
-        }
-        communicate("verifizieren", "", alterBenutzername, altespasswort);
-    }*/
-
-    /*function converter(_nachricht: Chatting[]): void {
-        console.log("es wird convertiert");
-        if (_nachricht.length > angezeigteNachrichten.length) {
-            for (let i: number = angezeigteNachrichten.length; i < _nachricht.length; i++)
-                angezeigteNachrichten.push(_nachricht[i]);
-            for (let i: number = angezeigteNachrichten.length - 1; i >= 0; i--) {
-                let a: Nachricht = new Nachricht (angezeigteNachrichten[i]._id, angezeigteNachrichten[i].login, angezeigteNachrichten[i].nachricht);
-                a.anzeigen(i);
-            }
-        }
-    }*/
-
-    /*function converterPlatzhalter(_nachricht: Chatting[]): void {
-        let a: Nachricht = new Nachricht (_nachricht[0]._id, _nachricht[0].login, _nachricht[0].nachricht);
-        a.anzeigen(0);
-    }*/
      
     function hndl_abmelden(): void {
         localStorage.removeItem("login");
@@ -273,7 +220,7 @@ namespace P02 {
         if (antwortString == "[]") {
             //converterPlatzhalter([{"_id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
         } else {
-            console.log("es wird convertiert");
+            //console.log("es wird convertiert");
             if (antwortanUser.length > angezeigteNachrichten.length) {
                 let altelänge: number = angezeigteNachrichten.length;
                 for (let i: number = angezeigteNachrichten.length; i < antwortanUser.length; i++)

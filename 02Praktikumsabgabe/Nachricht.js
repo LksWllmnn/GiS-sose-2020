@@ -3,7 +3,7 @@ var P02;
 (function (P02) {
     class Nachricht {
         constructor(_id, _absender, _nachricht) {
-            this._id = _id;
+            this.id = _id;
             this.absender = _absender;
             this.nachricht = _nachricht;
         }

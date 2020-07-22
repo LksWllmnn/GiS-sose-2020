@@ -1,11 +1,11 @@
 namespace P02 {
     export class Nachricht {
-        _id: string;
+        id: string;
         absender: string  | null;
         nachricht: string;
 
         constructor(_id: string, _absender: string | null, _nachricht: string ) {
-            this._id = _id;
+            this.id = _id;
             this.absender = _absender;
             this.nachricht = _nachricht;
         }
