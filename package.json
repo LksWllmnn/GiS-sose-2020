@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node 01Praktikumsabgabe/Server.js remote"
+    "start": "node 02Praktikumsabgabe/Server.js remote"
   },
   "repository": {
     "type": "git",
