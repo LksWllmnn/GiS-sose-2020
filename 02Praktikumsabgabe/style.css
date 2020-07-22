@@ -281,6 +281,10 @@ a[href="Memes.html"]{
     img[alt="einsMeme"]{
         width: 40%;
     }
+
+    .auswahl{
+        border-style: dashed;
+    }
 }
 
 /*scheiß IPad - Pro*/
@@ -317,6 +321,10 @@ a[href="Memes.html"]{
 
     img[alt="einsMeme"]{
         width: 40%;
+    }
+
+    .auswahl{
+        border-style: dashed;
     }
 }
 
@@ -382,4 +390,9 @@ a[href="Memes.html"]{
         width: 50%;
         margin: 1%;
     }
+
+    .auswahl{
+        border-style: dashed;
+    }
+    
 }

@@ -101,7 +101,7 @@ namespace P02 {
     
         let anmeldenDiv: HTMLDivElement = document.createElement("div");
         anmeldenDiv.id = "anmeldenDiv";
-        anmeldenDiv.innerHTML = "hier klicken zum ersten mal anmelden";
+        anmeldenDiv.innerHTML = "hier klicken zum Erstenmal anmelden";
         anmeldenDiv.className = "auswahl";
         anmeldenDiv.addEventListener("click", hndl_anmelden);
     
@@ -292,6 +292,7 @@ namespace P02 {
         if (antwortString == "Anmeldung akzeptiert") {
             console.log("wir sind drin");
             localStorage.setItem("login", "" + _benutzer);
+            location.reload();
             communicate("load", "", "", "");
         }
         else {
