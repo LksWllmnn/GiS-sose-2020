@@ -117,10 +117,10 @@ namespace P01 {
         }
     }*/
 
-    function converterPlatzhalter(_nachricht: Chatting[]): void {
+    /*function converterPlatzhalter(_nachricht: Chatting[]): void {
         let a: Nachricht = new Nachricht (_nachricht[0]._id, _nachricht[0].login, _nachricht[0].nachricht);
         a.anzeigen(0);
-    }
+    }*/
      
     function hndl_abmelden(): void {
         localStorage.removeItem("login");
@@ -150,7 +150,7 @@ namespace P01 {
         let antwortString: string = await antwort.text();
         let antwortanUser: Chatting[] = await JSON.parse(antwortString);
         if (antwortString == "[]") {
-            converterPlatzhalter([{"_id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
+            //converterPlatzhalter([{"_id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
         } else {
             console.log("es wird convertiert");
             if (antwortanUser.length > angezeigteNachrichten.length) {

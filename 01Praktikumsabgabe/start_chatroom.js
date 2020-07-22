@@ -89,10 +89,10 @@ var P01;
             }
         }
     }*/
-    function converterPlatzhalter(_nachricht) {
-        let a = new P01.Nachricht(_nachricht[0]._id, _nachricht[0].login, _nachricht[0].nachricht);
+    /*function converterPlatzhalter(_nachricht: Chatting[]): void {
+        let a: Nachricht = new Nachricht (_nachricht[0]._id, _nachricht[0].login, _nachricht[0].nachricht);
         a.anzeigen(0);
-    }
+    }*/
     function hndl_abmelden() {
         localStorage.removeItem("login");
         location.reload();
@@ -117,7 +117,7 @@ var P01;
         let antwortString = await antwort.text();
         let antwortanUser = await JSON.parse(antwortString);
         if (antwortString == "[]") {
-            converterPlatzhalter([{ "_id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben" }]);
+            //converterPlatzhalter([{"_id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
         }
         else {
             console.log("es wird convertiert");
