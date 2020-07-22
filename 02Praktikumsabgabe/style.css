@@ -55,6 +55,7 @@ button{
 
 body{
     background-image: url("HFUChat-Hintergrund.jpg");
+    background-color: black;
     background-position: center;
     background-size: cover;
     position: relative;
@@ -369,5 +370,16 @@ a[href="Memes.html"]{
     img[alt="einsMeme"]{
         margin:2%;
         width: 90%;
+    }
+
+    input{
+        width: 60%;
+        height: 10%;
+        margin: 1%;
+    }
+    
+    button{
+        width: 50%;
+        margin: 1%;
     }
 }

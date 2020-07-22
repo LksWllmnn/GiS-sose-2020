@@ -101,14 +101,14 @@ namespace P02 {
     
         let anmeldenDiv: HTMLDivElement = document.createElement("div");
         anmeldenDiv.id = "anmeldenDiv";
-        anmeldenDiv.innerHTML = "hier klicken zum anmelden";
+        anmeldenDiv.innerHTML = "hier klicken zum ersten mal anmelden";
         anmeldenDiv.className = "auswahl";
         anmeldenDiv.addEventListener("click", hndl_anmelden);
     
     
         let einloggenDiv: HTMLDivElement = document.createElement("div");
         einloggenDiv.id = "einloggenDiv";
-        einloggenDiv.innerHTML = "hier klicken zum ersten mal einloggen";
+        einloggenDiv.innerHTML = "hier klicken zum einloggen";
         einloggenDiv.className = "auswahl";
         einloggenDiv.addEventListener("click", hndl_einloggen);
     
