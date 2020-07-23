@@ -31,7 +31,7 @@ var P02;
             communicate("load", "", "", "");
             console.log(localStorage.getItem("login"));
             console.log(localStorage.getItem("room"));
-            setInterval(aktualisieren, 5000);
+            setInterval(aktualisieren, 3000);
         }
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////
