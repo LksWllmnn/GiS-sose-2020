@@ -64,6 +64,8 @@ namespace P02 {
         ///////////////////////////////////////////////////////////////////////////////////////
         //Funktionseinheiten
         ///////////////////////////////////////////////////////////////////////////////////////
+
+        //Einloggen/Anmelden vorgang
     function promptersatz(): void {
         
         console.log("wir sind in der funktion");
@@ -142,6 +144,7 @@ namespace P02 {
         console.log(auswahlmodus);
         let background: HTMLDivElement = <HTMLDivElement>document.getElementById("Background");
         let schutz: HTMLDivElement = <HTMLDivElement>document.getElementById("schutz");
+        //alter Schutz div wird gelöscht, neuer drüber gelegt
         background.removeChild(schutz);
         promptersatz();
     }
@@ -151,6 +154,7 @@ namespace P02 {
         console.log(auswahlmodus);
         let background: HTMLDivElement = <HTMLDivElement>document.getElementById("Background");
         let schutz: HTMLDivElement = <HTMLDivElement>document.getElementById("schutz");
+        //alter Schutz div wird gelöscht, neuer drüber gelegt
         background.removeChild(schutz);
         promptersatz();
     }
@@ -173,7 +177,6 @@ namespace P02 {
         if (auswahlmodus == "anmelden")
             communicate("signIn", "", name, passwort);
     }
-
 
         ///////////////////////////////////////////////////////////////////////////////////////
     function aktualisieren(): void {
@@ -220,7 +223,6 @@ namespace P02 {
         if (antwortString == "[]") {
             //converterPlatzhalter([{"_id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
         } else {
-            //console.log("es wird convertiert");
             if (antwortanUser.length > angezeigteNachrichten.length) {
                 let altelänge: number = angezeigteNachrichten.length;
                 for (let i: number = angezeigteNachrichten.length; i < antwortanUser.length; i++)
@@ -266,6 +268,7 @@ namespace P02 {
         }
     }
 
+    //hier werden alle URLs gebildet
     function communicate (_function: string, _chatroomNachricht: string, _benutzer: string | null, _passwort: string | null): void {
         //http://localhost:8101 | https://testgissose2020lw.herokuapp.com
         let url: string = "https://testgissose2020lw.herokuapp.com";

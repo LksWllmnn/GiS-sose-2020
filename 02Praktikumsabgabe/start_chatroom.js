@@ -40,6 +40,7 @@ var P02;
     ///////////////////////////////////////////////////////////////////////////////////////
     //Funktionseinheiten
     ///////////////////////////////////////////////////////////////////////////////////////
+    //Einloggen/Anmelden vorgang
     function promptersatz() {
         console.log("wir sind in der funktion");
         let großvater = document.getElementById("Background");
@@ -105,6 +106,7 @@ var P02;
         console.log(auswahlmodus);
         let background = document.getElementById("Background");
         let schutz = document.getElementById("schutz");
+        //alter Schutz div wird gelöscht, neuer drüber gelegt
         background.removeChild(schutz);
         promptersatz();
     }
@@ -113,6 +115,7 @@ var P02;
         console.log(auswahlmodus);
         let background = document.getElementById("Background");
         let schutz = document.getElementById("schutz");
+        //alter Schutz div wird gelöscht, neuer drüber gelegt
         background.removeChild(schutz);
         promptersatz();
     }
@@ -172,7 +175,6 @@ var P02;
             //converterPlatzhalter([{"_id": "000", "login": "keinChat", "nachricht": "noch hat niemand was geschrieben"}]);
         }
         else {
-            //console.log("es wird convertiert");
             if (antwortanUser.length > angezeigteNachrichten.length) {
                 let altelänge = angezeigteNachrichten.length;
                 for (let i = angezeigteNachrichten.length; i < antwortanUser.length; i++)
@@ -215,6 +217,7 @@ var P02;
             location.reload();
         }
     }
+    //hier werden alle URLs gebildet
     function communicate(_function, _chatroomNachricht, _benutzer, _passwort) {
         //http://localhost:8101 | https://testgissose2020lw.herokuapp.com
         let url = "https://testgissose2020lw.herokuapp.com";
